@@ -1,451 +1,515 @@
 > Task :app:preBuild UP-TO-DATE
 > Task :app:preDebugBuild UP-TO-DATE
 > Task :app:mergeDebugNativeDebugMetadata NO-SOURCE
-> Task :app:javaPreCompileDebug UP-TO-DATE
-> Task :app:checkDebugAarMetadata UP-TO-DATE
-> Task :app:generateDebugResValues UP-TO-DATE
-> Task :app:mapDebugSourceSetPaths UP-TO-DATE
-> Task :app:generateDebugResources UP-TO-DATE
-> Task :app:mergeDebugResources UP-TO-DATE
-> Task :app:packageDebugResources UP-TO-DATE
-> Task :app:parseDebugLocalResources UP-TO-DATE
-> Task :app:createDebugCompatibleScreenManifests UP-TO-DATE
-> Task :app:extractDeepLinksDebug UP-TO-DATE
-> Task :app:processDebugMainManifest UP-TO-DATE
-> Task :app:processDebugManifest UP-TO-DATE
-> Task :app:processDebugManifestForPackage UP-TO-DATE
-> Task :app:processDebugResources UP-TO-DATE
-> Task :app:compileDebugJavaWithJavac UP-TO-DATE
-> Task :app:mergeDebugShaders UP-TO-DATE
+> Task :app:javaPreCompileDebug FROM-CACHE
+> Task :app:generateDebugResValues FROM-CACHE
+> Task :app:checkDebugAarMetadata
+> Task :app:mapDebugSourceSetPaths
+> Task :app:generateDebugResources FROM-CACHE
+> Task :app:mergeDebugResources FROM-CACHE
+> Task :app:packageDebugResources FROM-CACHE
+> Task :app:parseDebugLocalResources FROM-CACHE
+> Task :app:createDebugCompatibleScreenManifests
+> Task :app:extractDeepLinksDebug FROM-CACHE
+> Task :app:processDebugMainManifest FROM-CACHE
+> Task :app:processDebugManifest FROM-CACHE
+> Task :app:processDebugManifestForPackage FROM-CACHE
+> Task :app:processDebugResources FROM-CACHE
+> Task :app:compileDebugJavaWithJavac FROM-CACHE
+> Task :app:mergeDebugShaders
 > Task :app:compileDebugShaders NO-SOURCE
 > Task :app:generateDebugAssets UP-TO-DATE
-> Task :app:mergeDebugAssets UP-TO-DATE
-> Task :app:compressDebugAssets UP-TO-DATE
+> Task :app:mergeDebugAssets
+> Task :app:compressDebugAssets FROM-CACHE
 > Task :app:processDebugJavaRes NO-SOURCE
-> Task :app:mergeDebugJavaResource UP-TO-DATE
-> Task :app:checkDebugDuplicateClasses UP-TO-DATE
-> Task :app:desugarDebugFileDependencies UP-TO-DATE
-> Task :app:mergeExtDexDebug UP-TO-DATE
-> Task :app:mergeLibDexDebug UP-TO-DATE
-> Task :app:dexBuilderDebug UP-TO-DATE
-> Task :app:mergeProjectDexDebug UP-TO-DATE
-
+> Task :app:desugarDebugFileDependencies FROM-CACHE
+> Task :app:checkDebugDuplicateClasses
+> Task :app:dexBuilderDebug FROM-CACHE
+> Task :app:mergeExtDexDebug FROM-CACHE
+> Task :app:mergeLibDexDebug FROM-CACHE
+> Task :app:mergeProjectDexDebug FROM-CACHE
+> Task :app:mergeDebugJavaResource
 > Task :app:configureCMakeDebug[arm64-v8a]
-C/C++: Cloning into 'sdl2-src'...
-C/C++: remote: Enumerating objects: 32964, done.        
-C/C++: remote: Counting objects:   0% (1/32964)        
-C/C++: remote: Counting objects:   1% (330/32964)        
-C/C++: remote: Counting objects:   2% (660/32964)        
-C/C++: remote: Counting objects:   3% (989/32964)        
-C/C++: remote: Counting objects:   4% (1319/32964)        
-C/C++: remote: Counting objects:   5% (1649/32964)        
-C/C++: remote: Counting objects:   6% (1978/32964)        
-C/C++: remote: Counting objects:   7% (2308/32964)        
-C/C++: remote: Counting objects:   8% (2638/32964)        
-C/C++: remote: Counting objects:   9% (2967/32964)        
-C/C++: remote: Counting objects:  10% (3297/32964)        
-C/C++: remote: Counting objects:  11% (3627/32964)        
-C/C++: remote: Counting objects:  12% (3956/32964)        
-C/C++: remote: Counting objects:  13% (4286/32964)        
-C/C++: remote: Counting objects:  14% (4615/32964)        
-C/C++: remote: Counting objects:  15% (4945/32964)        
-C/C++: remote: Counting objects:  16% (5275/32964)        
-C/C++: remote: Counting objects:  17% (5604/32964)        
-C/C++: remote: Counting objects:  18% (5934/32964)        
-C/C++: remote: Counting objects:  19% (6264/32964)        
-C/C++: remote: Counting objects:  20% (6593/32964)        
-C/C++: remote: Counting objects:  21% (6923/32964)        
-C/C++: remote: Counting objects:  22% (7253/32964)        
-C/C++: remote: Counting objects:  23% (7582/32964)        
-C/C++: remote: Counting objects:  24% (7912/32964)        
-C/C++: remote: Counting objects:  25% (8241/32964)        
-C/C++: remote: Counting objects:  26% (8571/32964)        
-C/C++: remote: Counting objects:  27% (8901/32964)        
-C/C++: remote: Counting objects:  28% (9230/32964)        
-C/C++: remote: Counting objects:  29% (9560/32964)        
-C/C++: remote: Counting objects:  30% (9890/32964)        
-C/C++: remote: Counting objects:  31% (10219/32964)        
-C/C++: remote: Counting objects:  32% (10549/32964)        
-C/C++: remote: Counting objects:  33% (10879/32964)        
-C/C++: remote: Counting objects:  34% (11208/32964)        
-C/C++: remote: Counting objects:  35% (11538/32964)        
-C/C++: remote: Counting objects:  36% (11868/32964)        
-C/C++: remote: Counting objects:  37% (12197/32964)        
-C/C++: remote: Counting objects:  38% (12527/32964)        
-C/C++: remote: Counting objects:  39% (12856/32964)        
-C/C++: remote: Counting objects:  40% (13186/32964)        
-C/C++: remote: Counting objects:  41% (13516/32964)        
-C/C++: remote: Counting objects:  42% (13845/32964)        
-C/C++: remote: Counting objects:  43% (14175/32964)        
-C/C++: remote: Counting objects:  44% (14505/32964)        
-C/C++: remote: Counting objects:  45% (14834/32964)        
-C/C++: remote: Counting objects:  46% (15164/32964)        
-C/C++: remote: Counting objects:  47% (15494/32964)        
-C/C++: remote: Counting objects:  48% (15823/32964)        
-C/C++: remote: Counting objects:  49% (16153/32964)        
-C/C++: remote: Counting objects:  50% (16482/32964)        
-C/C++: remote: Counting objects:  51% (16812/32964)        
-C/C++: remote: Counting objects:  52% (17142/32964)        
-C/C++: remote: Counting objects:  53% (17471/32964)        
-C/C++: remote: Counting objects:  54% (17801/32964)        
-C/C++: remote: Counting objects:  55% (18131/32964)        
-C/C++: remote: Counting objects:  56% (18460/32964)        
-C/C++: remote: Counting objects:  57% (18790/32964)        
-C/C++: remote: Counting objects:  58% (19120/32964)        
-C/C++: remote: Counting objects:  59% (19449/32964)        
-C/C++: remote: Counting objects:  60% (19779/32964)        
-C/C++: remote: Counting objects:  61% (20109/32964)        
-C/C++: remote: Counting objects:  62% (20438/32964)        
-C/C++: remote: Counting objects:  63% (20768/32964)        
-C/C++: remote: Counting objects:  64% (21097/32964)        
-C/C++: remote: Counting objects:  65% (21427/32964)        
-C/C++: remote: Counting objects:  66% (21757/32964)        
-C/C++: remote: Counting objects:  67% (22086/32964)        
-C/C++: remote: Counting objects:  68% (22416/32964)        
-C/C++: remote: Counting objects:  69% (22746/32964)        
-C/C++: remote: Counting objects:  70% (23075/32964)        
-C/C++: remote: Counting objects:  71% (23405/32964)        
-C/C++: remote: Counting objects:  72% (23735/32964)        
-C/C++: remote: Counting objects:  73% (24064/32964)        
-C/C++: remote: Counting objects:  74% (24394/32964)        
-C/C++: remote: Counting objects:  75% (24723/32964)        
-C/C++: remote: Counting objects:  76% (25053/32964)        
-C/C++: remote: Counting objects:  77% (25383/32964)        
-C/C++: remote: Counting objects:  78% (25712/32964)        
-C/C++: remote: Counting objects:  79% (26042/32964)        
-C/C++: remote: Counting objects:  80% (26372/32964)        
-C/C++: remote: Counting objects:  81% (26701/32964)        
-C/C++: remote: Counting objects:  82% (27031/32964)        
-C/C++: remote: Counting objects:  83% (27361/32964)        
-C/C++: remote: Counting objects:  84% (27690/32964)        
-C/C++: remote: Counting objects:  85% (28020/32964)        
-C/C++: remote: Counting objects:  86% (28350/32964)        
-C/C++: remote: Counting objects:  87% (28679/32964)        
-C/C++: remote: Counting objects:  88% (29009/32964)        
-C/C++: remote: Counting objects:  89% (29338/32964)        
-C/C++: remote: Counting objects:  90% (29668/32964)        
-C/C++: remote: Counting objects:  91% (29998/32964)        
-C/C++: remote: Counting objects:  92% (30327/32964)        
-C/C++: remote: Counting objects:  93% (30657/32964)        
-C/C++: remote: Counting objects:  94% (30987/32964)        
-C/C++: remote: Counting objects:  95% (31316/32964)        
-C/C++: remote: Counting objects:  96% (31646/32964)        
-C/C++: remote: Counting objects:  97% (31976/32964)        
-C/C++: remote: Counting objects:  98% (32305/32964)        
-C/C++: remote: Counting objects:  99% (32635/32964)        
-C/C++: remote: Counting objects: 100% (32964/32964)        
-C/C++: remote: Counting objects: 100% (32964/32964), done.        
-C/C++: remote: Compressing objects:   0% (1/16794)        
-C/C++: remote: Compressing objects:   1% (168/16794)        
-C/C++: remote: Compressing objects:   2% (336/16794)        
-C/C++: remote: Compressing objects:   3% (504/16794)        
-C/C++: remote: Compressing objects:   4% (672/16794)        
-C/C++: remote: Compressing objects:   5% (840/16794)        
-C/C++: remote: Compressing objects:   6% (1008/16794)        
-C/C++: remote: Compressing objects:   7% (1176/16794)        
-C/C++: remote: Compressing objects:   8% (1344/16794)        
-C/C++: remote: Compressing objects:   8% (1438/16794)        
-C/C++: remote: Compressing objects:   9% (1512/16794)        
-C/C++: remote: Compressing objects:  10% (1680/16794)        
-C/C++: remote: Compressing objects:  11% (1848/16794)        
-C/C++: remote: Compressing objects:  12% (2016/16794)        
-C/C++: remote: Compressing objects:  13% (2184/16794)        
-C/C++: remote: Compressing objects:  14% (2352/16794)        
-C/C++: remote: Compressing objects:  15% (2520/16794)        
-C/C++: remote: Compressing objects:  16% (2688/16794)        
-C/C++: remote: Compressing objects:  17% (2855/16794)        
-C/C++: remote: Compressing objects:  18% (3023/16794)        
-C/C++: remote: Compressing objects:  19% (3191/16794)        
-C/C++: remote: Compressing objects:  20% (3359/16794)        
-C/C++: remote: Compressing objects:  21% (3527/16794)        
-C/C++: remote: Compressing objects:  22% (3695/16794)        
-C/C++: remote: Compressing objects:  23% (3863/16794)        
-C/C++: remote: Compressing objects:  24% (4031/16794)        
-C/C++: remote: Compressing objects:  24% (4188/16794)        
-C/C++: remote: Compressing objects:  25% (4199/16794)        
-C/C++: remote: Compressing objects:  26% (4367/16794)        
-C/C++: remote: Compressing objects:  27% (4535/16794)        
-C/C++: remote: Compressing objects:  28% (4703/16794)        
-C/C++: remote: Compressing objects:  29% (4871/16794)        
-C/C++: remote: Compressing objects:  30% (5039/16794)        
-C/C++: remote: Compressing objects:  31% (5207/16794)        
-C/C++: remote: Compressing objects:  32% (5375/16794)        
-C/C++: remote: Compressing objects:  33% (5543/16794)        
-C/C++: remote: Compressing objects:  34% (5710/16794)        
-C/C++: remote: Compressing objects:  35% (5878/16794)        
-C/C++: remote: Compressing objects:  36% (6046/16794)        
-C/C++: remote: Compressing objects:  37% (6214/16794)        
-C/C++: remote: Compressing objects:  38% (6382/16794)        
-C/C++: remote: Compressing objects:  39% (6550/16794)        
-C/C++: remote: Compressing objects:  40% (6718/16794)        
-C/C++: remote: Compressing objects:  41% (6886/16794)        
-C/C++: remote: Compressing objects:  42% (7054/16794)        
-C/C++: remote: Compressing objects:  43% (7222/16794)        
-C/C++: remote: Compressing objects:  44% (7390/16794)        
-C/C++: remote: Compressing objects:  45% (7558/16794)        
-C/C++: remote: Compressing objects:  46% (7726/16794)        
-C/C++: remote: Compressing objects:  47% (7894/16794)        
-C/C++: remote: Compressing objects:  48% (8062/16794)        
-C/C++: remote: Compressing objects:  48% (8124/16794)        
-C/C++: remote: Compressing objects:  49% (8230/16794)        
-C/C++: remote: Compressing objects:  50% (8397/16794)        
-C/C++: remote: Compressing objects:  51% (8565/16794)        
-C/C++: remote: Compressing objects:  52% (8733/16794)        
-C/C++: remote: Compressing objects:  53% (8901/16794)        
-C/C++: remote: Compressing objects:  54% (9069/16794)        
-C/C++: remote: Compressing objects:  55% (9237/16794)        
-C/C++: remote: Compressing objects:  56% (9405/16794)        
-C/C++: remote: Compressing objects:  57% (9573/16794)        
-C/C++: remote: Compressing objects:  58% (9741/16794)        
-C/C++: remote: Compressing objects:  59% (9909/16794)        
-C/C++: remote: Compressing objects:  60% (10077/16794)        
-C/C++: remote: Compressing objects:  61% (10245/16794)        
-C/C++: remote: Compressing objects:  62% (10413/16794)        
-C/C++: remote: Compressing objects:  63% (10581/16794)        
-C/C++: remote: Compressing objects:  64% (10749/16794)        
-C/C++: remote: Compressing objects:  64% (10858/16794)        
-C/C++: remote: Compressing objects:  65% (10917/16794)        
-C/C++: remote: Compressing objects:  66% (11085/16794)        
-C/C++: remote: Compressing objects:  67% (11252/16794)        
-C/C++: remote: Compressing objects:  68% (11420/16794)        
-C/C++: remote: Compressing objects:  69% (11588/16794)        
-C/C++: remote: Compressing objects:  70% (11756/16794)        
-C/C++: remote: Compressing objects:  71% (11924/16794)        
-C/C++: remote: Compressing objects:  72% (12092/16794)        
-C/C++: remote: Compressing objects:  73% (12260/16794)        
-C/C++: remote: Compressing objects:  74% (12428/16794)        
-C/C++: remote: Compressing objects:  75% (12596/16794)        
-C/C++: remote: Compressing objects:  76% (12764/16794)        
-C/C++: remote: Compressing objects:  77% (12932/16794)        
-C/C++: remote: Compressing objects:  78% (13100/16794)        
-C/C++: remote: Compressing objects:  79% (13268/16794)        
-C/C++: remote: Compressing objects:  80% (13436/16794)        
-C/C++: remote: Compressing objects:  81% (13604/16794)        
-C/C++: remote: Compressing objects:  82% (13772/16794)        
-C/C++: remote: Compressing objects:  83% (13940/16794)        
-C/C++: remote: Compressing objects:  84% (14107/16794)        
-C/C++: remote: Compressing objects:  85% (14275/16794)        
-C/C++: remote: Compressing objects:  86% (14443/16794)        
-C/C++: remote: Compressing objects:  87% (14611/16794)        
-C/C++: remote: Compressing objects:  88% (14779/16794)        
-C/C++: remote: Compressing objects:  89% (14947/16794)        
-C/C++: remote: Compressing objects:  90% (15115/16794)        
-C/C++: remote: Compressing objects:  91% (15283/16794)        
-C/C++: remote: Compressing objects:  92% (15451/16794)        
-C/C++: remote: Compressing objects:  93% (15619/16794)        
-C/C++: remote: Compressing objects:  94% (15787/16794)        
-C/C++: remote: Compressing objects:  95% (15955/16794)        
-C/C++: remote: Compressing objects:  96% (16123/16794)        
-C/C++: remote: Compressing objects:  97% (16291/16794)        
-C/C++: remote: Compressing objects:  98% (16459/16794)        
-C/C++: remote: Compressing objects:  99% (16627/16794)        
-C/C++: remote: Compressing objects: 100% (16794/16794)        
-C/C++: remote: Compressing objects: 100% (16794/16794), done.        
-C/C++: Receiving objects:   0% (1/32964)
-C/C++: Receiving objects:   1% (330/32964)
-C/C++: Receiving objects:   2% (660/32964)
-C/C++: Receiving objects:   3% (989/32964)
-C/C++: Receiving objects:   4% (1319/32964)
-C/C++: Receiving objects:   5% (1649/32964)
-C/C++: Receiving objects:   6% (1978/32964)
-C/C++: Receiving objects:   7% (2308/32964)
-C/C++: Receiving objects:   8% (2638/32964)
-C/C++: Receiving objects:   9% (2967/32964)
-C/C++: Receiving objects:  10% (3297/32964)
-C/C++: Receiving objects:  11% (3627/32964)
-C/C++: Receiving objects:  12% (3956/32964)
-C/C++: Receiving objects:  13% (4286/32964)
-C/C++: Receiving objects:  14% (4615/32964)
-C/C++: Receiving objects:  15% (4945/32964)
-C/C++: Receiving objects:  16% (5275/32964)
-C/C++: Receiving objects:  17% (5604/32964)
-C/C++: Receiving objects:  18% (5934/32964)
-C/C++: Receiving objects:  19% (6264/32964)
-C/C++: Receiving objects:  20% (6593/32964)
-C/C++: Receiving objects:  21% (6923/32964)
-C/C++: Receiving objects:  22% (7253/32964)
-C/C++: Receiving objects:  23% (7582/32964)
-C/C++: Receiving objects:  24% (7912/32964)
-C/C++: Receiving objects:  25% (8241/32964)
-C/C++: Receiving objects:  26% (8571/32964)
-C/C++: Receiving objects:  27% (8901/32964)
-C/C++: Receiving objects:  28% (9230/32964), 9.82 MiB | 18.47 MiB/s
-C/C++: Receiving objects:  29% (9560/32964), 9.82 MiB | 18.47 MiB/s
-C/C++: Receiving objects:  30% (9890/32964), 9.82 MiB | 18.47 MiB/s
-C/C++: Receiving objects:  31% (10219/32964), 9.82 MiB | 18.47 MiB/s
-C/C++: Receiving objects:  32% (10549/32964), 9.82 MiB | 18.47 MiB/s
-C/C++: Receiving objects:  33% (10879/32964), 9.82 MiB | 18.47 MiB/s
-C/C++: Receiving objects:  34% (11208/32964), 9.82 MiB | 18.47 MiB/s
-C/C++: Receiving objects:  35% (11538/32964), 9.82 MiB | 18.47 MiB/s
-C/C++: Receiving objects:  36% (11868/32964), 9.82 MiB | 18.47 MiB/s
-C/C++: Receiving objects:  37% (12197/32964), 9.82 MiB | 18.47 MiB/s
-C/C++: Receiving objects:  38% (12527/32964), 9.82 MiB | 18.47 MiB/s
-C/C++: Receiving objects:  39% (12856/32964), 9.82 MiB | 18.47 MiB/s
-C/C++: Receiving objects:  40% (13186/32964), 9.82 MiB | 18.47 MiB/s
-C/C++: Receiving objects:  41% (13516/32964), 9.82 MiB | 18.47 MiB/s
-C/C++: Receiving objects:  41% (13791/32964), 9.82 MiB | 18.47 MiB/s
-C/C++: Receiving objects:  42% (13845/32964), 9.82 MiB | 18.47 MiB/s
-C/C++: Receiving objects:  43% (14175/32964), 9.82 MiB | 18.47 MiB/s
-C/C++: Receiving objects:  44% (14505/32964), 9.82 MiB | 18.47 MiB/s
-C/C++: Receiving objects:  45% (14834/32964), 9.82 MiB | 18.47 MiB/s
-C/C++: Receiving objects:  46% (15164/32964), 16.59 MiB | 16.08 MiB/s
-C/C++: Receiving objects:  47% (15494/32964), 16.59 MiB | 16.08 MiB/s
-C/C++: Receiving objects:  48% (15823/32964), 16.59 MiB | 16.08 MiB/s
-C/C++: Receiving objects:  49% (16153/32964), 16.59 MiB | 16.08 MiB/s
-C/C++: Receiving objects:  50% (16482/32964), 16.59 MiB | 16.08 MiB/s
-C/C++: Receiving objects:  51% (16812/32964), 16.59 MiB | 16.08 MiB/s
-C/C++: Receiving objects:  52% (17142/32964), 16.59 MiB | 16.08 MiB/s
-C/C++: Receiving objects:  53% (17471/32964), 16.59 MiB | 16.08 MiB/s
-C/C++: Receiving objects:  54% (17801/32964), 16.59 MiB | 16.08 MiB/s
-C/C++: Receiving objects:  55% (18131/32964), 16.59 MiB | 16.08 MiB/s
-C/C++: Receiving objects:  56% (18460/32964), 16.59 MiB | 16.08 MiB/s
-C/C++: Receiving objects:  57% (18790/32964), 16.59 MiB | 16.08 MiB/s
-C/C++: Receiving objects:  58% (19120/32964), 16.59 MiB | 16.08 MiB/s
-C/C++: Receiving objects:  59% (19449/32964), 16.59 MiB | 16.08 MiB/s
-C/C++: Receiving objects:  60% (19779/32964), 16.59 MiB | 16.08 MiB/s
-C/C++: Receiving objects:  61% (20109/32964), 16.59 MiB | 16.08 MiB/s
-C/C++: Receiving objects:  62% (20438/32964), 16.59 MiB | 16.08 MiB/s
-C/C++: Receiving objects:  63% (20768/32964), 16.59 MiB | 16.08 MiB/s
-C/C++: Receiving objects:  64% (21097/32964), 16.59 MiB | 16.08 MiB/s
-C/C++: Receiving objects:  65% (21427/32964), 16.59 MiB | 16.08 MiB/s
-C/C++: Receiving objects:  66% (21757/32964), 16.59 MiB | 16.08 MiB/s
-C/C++: Receiving objects:  67% (22086/32964), 16.59 MiB | 16.08 MiB/s
-C/C++: Receiving objects:  68% (22416/32964), 16.59 MiB | 16.08 MiB/s
-C/C++: Receiving objects:  69% (22746/32964), 16.59 MiB | 16.08 MiB/s
-C/C++: Receiving objects:  70% (23075/32964), 16.59 MiB | 16.08 MiB/s
-C/C++: Receiving objects:  71% (23405/32964), 16.59 MiB | 16.08 MiB/s
-C/C++: Receiving objects:  72% (23735/32964), 16.59 MiB | 16.08 MiB/s
-C/C++: Receiving objects:  73% (24064/32964), 16.59 MiB | 16.08 MiB/s
-C/C++: Receiving objects:  74% (24394/32964), 16.59 MiB | 16.08 MiB/s
-C/C++: Receiving objects:  75% (24723/32964), 16.59 MiB | 16.08 MiB/s
-C/C++: Receiving objects:  76% (25053/32964), 16.59 MiB | 16.08 MiB/s
-C/C++: Receiving objects:  77% (25383/32964), 16.59 MiB | 16.08 MiB/s
-C/C++: Receiving objects:  78% (25712/32964), 16.59 MiB | 16.08 MiB/s
-C/C++: Receiving objects:  79% (26042/32964), 34.56 MiB | 22.57 MiB/s
-C/C++: Receiving objects:  80% (26372/32964), 34.56 MiB | 22.57 MiB/s
-C/C++: Receiving objects:  81% (26701/32964), 34.56 MiB | 22.57 MiB/s
-C/C++: Receiving objects:  82% (27031/32964), 34.56 MiB | 22.57 MiB/s
-C/C++: Receiving objects:  83% (27361/32964), 34.56 MiB | 22.57 MiB/s
-C/C++: Receiving objects:  84% (27690/32964), 34.56 MiB | 22.57 MiB/s
-C/C++: Receiving objects:  85% (28020/32964), 34.56 MiB | 22.57 MiB/s
-C/C++: Receiving objects:  86% (28350/32964), 34.56 MiB | 22.57 MiB/s
-C/C++: Receiving objects:  87% (28679/32964), 34.56 MiB | 22.57 MiB/s
-C/C++: Receiving objects:  88% (29009/32964), 34.56 MiB | 22.57 MiB/s
-C/C++: Receiving objects:  89% (29338/32964), 34.56 MiB | 22.57 MiB/s
-C/C++: Receiving objects:  90% (29668/32964), 34.56 MiB | 22.57 MiB/s
-C/C++: Receiving objects:  91% (29998/32964), 34.56 MiB | 22.57 MiB/s
-C/C++: Receiving objects:  92% (30327/32964), 34.56 MiB | 22.57 MiB/s
-C/C++: Receiving objects:  93% (30657/32964), 34.56 MiB | 22.57 MiB/s
-C/C++: Receiving objects:  94% (30987/32964), 34.56 MiB | 22.57 MiB/s
-C/C++: Receiving objects:  95% (31316/32964), 34.56 MiB | 22.57 MiB/s
-C/C++: Receiving objects:  96% (31646/32964), 34.56 MiB | 22.57 MiB/s
-C/C++: Receiving objects:  97% (31976/32964), 34.56 MiB | 22.57 MiB/s
-C/C++: Receiving objects:  98% (32305/32964), 34.56 MiB | 22.57 MiB/s
-C/C++: Receiving objects:  99% (32635/32964), 34.56 MiB | 22.57 MiB/s
-C/C++: remote: Total 32964 (delta 22682), reused 22947 (delta 13994), pack-reused 0 (from 0)        
-C/C++: Receiving objects: 100% (32964/32964), 34.56 MiB | 22.57 MiB/s
-C/C++: Receiving objects: 100% (32964/32964), 43.64 MiB | 24.12 MiB/s, done.
-C/C++: Resolving deltas:   0% (0/22682)
-C/C++: Resolving deltas:   1% (229/22682)
-C/C++: Resolving deltas:   2% (455/22682)
-C/C++: Resolving deltas:   3% (681/22682)
-C/C++: Resolving deltas:   4% (909/22682)
-C/C++: Resolving deltas:   5% (1135/22682)
-C/C++: Resolving deltas:   6% (1362/22682)
-C/C++: Resolving deltas:   7% (1589/22682)
-C/C++: Resolving deltas:   8% (1817/22682)
-C/C++: Resolving deltas:   9% (2042/22682)
-C/C++: Resolving deltas:  10% (2269/22682)
-C/C++: Resolving deltas:  11% (2496/22682)
-C/C++: Resolving deltas:  12% (2722/22682)
-C/C++: Resolving deltas:  13% (2949/22682)
-C/C++: Resolving deltas:  14% (3176/22682)
-C/C++: Resolving deltas:  15% (3403/22682)
-C/C++: Resolving deltas:  16% (3630/22682)
-C/C++: Resolving deltas:  17% (3856/22682)
-C/C++: Resolving deltas:  18% (4083/22682)
-C/C++: Resolving deltas:  19% (4312/22682)
-C/C++: Resolving deltas:  20% (4538/22682)
-C/C++: Resolving deltas:  21% (4766/22682)
-C/C++: Resolving deltas:  22% (4991/22682)
-C/C++: Resolving deltas:  23% (5217/22682)
-C/C++: Resolving deltas:  24% (5447/22682)
-C/C++: Resolving deltas:  25% (5672/22682)
-C/C++: Resolving deltas:  26% (5901/22682)
-C/C++: Resolving deltas:  27% (6125/22682)
-C/C++: Resolving deltas:  28% (6351/22682)
-C/C++: Resolving deltas:  29% (6578/22682)
-C/C++: Resolving deltas:  30% (6805/22682)
-C/C++: Resolving deltas:  31% (7032/22682)
-C/C++: Resolving deltas:  32% (7259/22682)
-C/C++: Resolving deltas:  33% (7486/22682)
-C/C++: Resolving deltas:  34% (7712/22682)
-C/C++: Resolving deltas:  35% (7939/22682)
-C/C++: Resolving deltas:  36% (8166/22682)
-C/C++: Resolving deltas:  37% (8393/22682)
-C/C++: Resolving deltas:  38% (8620/22682)
-C/C++: Resolving deltas:  39% (8846/22682)
-C/C++: Resolving deltas:  40% (9073/22682)
-C/C++: Resolving deltas:  41% (9301/22682)
-C/C++: Resolving deltas:  42% (9528/22682)
-C/C++: Resolving deltas:  43% (9754/22682)
-C/C++: Resolving deltas:  44% (9981/22682)
-C/C++: Resolving deltas:  45% (10208/22682)
-C/C++: Resolving deltas:  46% (10434/22682)
-C/C++: Resolving deltas:  47% (10661/22682)
-C/C++: Resolving deltas:  48% (10888/22682)
-C/C++: Resolving deltas:  49% (11116/22682)
-C/C++: Resolving deltas:  50% (11344/22682)
-C/C++: Resolving deltas:  51% (11568/22682)
-C/C++: Resolving deltas:  52% (11795/22682)
-C/C++: Resolving deltas:  53% (12022/22682)
-C/C++: Resolving deltas:  54% (12249/22682)
-C/C++: Resolving deltas:  55% (12476/22682)
-C/C++: Resolving deltas:  56% (12702/22682)
-C/C++: Resolving deltas:  57% (12930/22682)
-C/C++: Resolving deltas:  58% (13156/22682)
-C/C++: Resolving deltas:  59% (13383/22682)
-C/C++: Resolving deltas:  60% (13610/22682)
-C/C++: Resolving deltas:  61% (13839/22682)
-C/C++: Resolving deltas:  62% (14065/22682)
-C/C++: Resolving deltas:  63% (14290/22682)
-C/C++: Resolving deltas:  64% (14517/22682)
-C/C++: Resolving deltas:  65% (14744/22682)
-C/C++: Resolving deltas:  66% (14972/22682)
-C/C++: Resolving deltas:  67% (15197/22682)
-C/C++: Resolving deltas:  68% (15424/22682)
-C/C++: Resolving deltas:  69% (15651/22682)
-C/C++: Resolving deltas:  70% (15879/22682)
-C/C++: Resolving deltas:  71% (16106/22682)
-C/C++: Resolving deltas:  72% (16333/22682)
-C/C++: Resolving deltas:  73% (16560/22682)
-C/C++: Resolving deltas:  74% (16785/22682)
-C/C++: Resolving deltas:  75% (17012/22682)
-C/C++: Resolving deltas:  76% (17242/22682)
-C/C++: Resolving deltas:  77% (17466/22682)
-C/C++: Resolving deltas:  78% (17692/22682)
-C/C++: Resolving deltas:  79% (17921/22682)
-C/C++: Resolving deltas:  80% (18149/22682)
-C/C++: Resolving deltas:  81% (18373/22682)
-C/C++: Resolving deltas:  82% (18600/22682)
-C/C++: Resolving deltas:  83% (18827/22682)
-C/C++: Resolving deltas:  84% (19054/22682)
-C/C++: Resolving deltas:  85% (19280/22682)
-C/C++: Resolving deltas:  86% (19507/22682)
-C/C++: Resolving deltas:  87% (19734/22682)
-C/C++: Resolving deltas:  88% (19961/22682)
-C/C++: Resolving deltas:  89% (20187/22682)
-C/C++: Resolving deltas:  90% (20415/22682)
-C/C++: Resolving deltas:  91% (20643/22682)
-C/C++: Resolving deltas:  92% (20869/22682)
-C/C++: Resolving deltas:  93% (21095/22682)
-C/C++: Resolving deltas:  94% (21322/22682)
-C/C++: Resolving deltas:  95% (21551/22682)
-C/C++: Resolving deltas:  96% (21775/22682)
-C/C++: Resolving deltas:  97% (22002/22682)
-C/C++: Resolving deltas:  98% (22229/22682)
-C/C++: Resolving deltas:  99% (22457/22682)
-C/C++: Resolving deltas: 100% (22682/22682)
-C/C++: Resolving deltas: 100% (22682/22682), done.
-C/C++: HEAD is now at 15ead9a4 Updated to version 2.28.5 for release
-¿Desea terminar el trabajo por lotes (S/N)? 
+
+> Task :app:buildCMakeDebug[arm64-v8a]
+C/C++: ninja: Entering directory `F:\re3\android\app\.cxx\Debug\b403f4fc\arm64-v8a'
+C/C++: C:\AndroidSDK\ndk\26.1.10909125\toolchains\llvm\prebuilt\windows-x86_64\bin\clang++.exe --target=aarch64-none-linux-android21 --sysroot=C:/AndroidSDK/ndk/26.1.10909125/toolchains/llvm/prebuilt/windows-x86_64/sysroot -DANDROID=1 -DAUDIO_OAL -DAUDIO_OAL_USE_MPG123 -DCMAKE_BUILD -DDEBUG -DLIBRW -DLIBRW_SDL2 -DLINUX=1 -DPOSIX=1 -DRW_GL3 -DUSE_OUR_VERSIONING -D_ANDROID=1 -D_LINUX=1 -Drevc_EXPORTS -IF:/re3/src -IF:/re3/src/animation -IF:/re3/src/audio -IF:/re3/src/audio/eax -IF:/re3/src/audio/oal -IF:/re3/src/buildings -IF:/re3/src/collision -IF:/re3/src/control -IF:/re3/src/core -IF:/re3/src/entities -IF:/re3/src/extras -IF:/re3/src/extras/shaders -IF:/re3/src/fakerw -IF:/re3/src/math -IF:/re3/src/modelinfo -IF:/re3/src/objects -IF:/re3/src/peds -IF:/re3/src/renderer -IF:/re3/src/rw -IF:/re3/src/save -IF:/re3/src/skel/android -IF:/re3/src/skel/android/demangle -IF:/re3/src/skel/android/libunwind -IF:/re3/src/skel/android/libunwind/mach-o -IF:/re3/src/skel -IF:/re3/src/skel/win -IF:/re3/src/text -IF:/re3/src/vehicles -IF:/re3/src/weapons -IF:/re3/vendor/librw -IF:/re3/vendor/SDL2/include -IF:/re3/android/app/.cxx/Debug/b403f4fc/arm64-v8a/SDL2/include -IF:/re3/android/app/.cxx/Debug/b403f4fc/arm64-v8a/SDL2/include/SDL2 -IF:/re3/android/app/.cxx/Debug/b403f4fc/arm64-v8a/SDL2/include-config-debug/SDL2 -IF:/re3/vendor/openal-soft/include -IF:/re3/vendor/openal-soft/include/AL -IF:/re3/vendor/mpg123/src/include -IF:/re3/vendor/mpg123/src/libmpg123 -IF:/re3/vendor/mpg123/src -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -std=c++14 -fexceptions -frtti -w -fno-limit-debug-info  -fPIC -w -fexceptions -frtti -fpermissive -funwind-tables -std=c++14 -MD -MT CMakeFiles/revc.dir/F_/re3/src/core/Pad.cpp.o -MF CMakeFiles\revc.dir\F_\re3\src\core\Pad.cpp.o.d -o CMakeFiles/revc.dir/F_/re3/src/core/Pad.cpp.o -c F:/re3/src/core/Pad.cpp
+C/C++: F:/re3/src/core/Pad.cpp:2696:23: error: use of undeclared identifier 'BtnType'
+C/C++:         if (gTouch.getButton(BtnType::CAR))
+C/C++:                              ^
+C/C++: F:/re3/src/core/Pad.cpp:2735:31: error: use of undeclared identifier 'BtnType'
+C/C++:         if (gTouch.getButtonJustDown(BtnType::CAR))
+C/C++:                                      ^
+C/C++: F:/re3/src/core/Pad.cpp:2765:23: error: use of undeclared identifier 'BtnType'
+C/C++:         if (gTouch.getButton(BtnType::ATTACK))
+C/C++:                              ^
+C/C++: F:/re3/src/core/Pad.cpp:3123:30: error: use of undeclared identifier 'BtnType'
+C/C++:         if(gTouch.getButtonJustDown(BtnType::JUMP))
+C/C++:                                     ^
+C/C++: F:/re3/src/core/Pad.cpp:3134:23: error: use of undeclared identifier 'BtnType'
+C/C++:         if (gTouch.getButton(BtnType::SPRINT))
+C/C++:                              ^
+C/C++: 5 errors generated.
+
+> Task :app:buildCMakeDebug[arm64-v8a] FAILED
+
+[Incubating] Problems report is available at: file:///F:/re3/android/build/reports/problems/problems-report.html
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':app:buildCMakeDebug[arm64-v8a]'.
+> com.android.ide.common.process.ProcessException: ninja: Entering directory `F:\re3\android\app\.cxx\Debug\b403f4fc\arm64-v8a'
+  [1/702] Building C object mpg123/CMakeFiles/libmpg123.dir/src/libmpg123/format.c.o
+  [2/702] Building C object mpg123/CMakeFiles/libmpg123.dir/src/libmpg123/equalizer.c.o
+  [3/702] Building C object mpg123/CMakeFiles/libmpg123.dir/src/libmpg123/parse.c.o
+  [4/702] Building C object mpg123/CMakeFiles/libmpg123.dir/src/libmpg123/frame.c.o
+  [5/702] Building C object mpg123/CMakeFiles/libmpg123.dir/src/libmpg123/optimize.c.o
+  [6/702] Building C object mpg123/CMakeFiles/libmpg123.dir/src/libmpg123/tabinit.c.o
+  [7/702] Building C object mpg123/CMakeFiles/libmpg123.dir/src/libmpg123/readers.c.o
+  [8/702] Building C object mpg123/CMakeFiles/libmpg123.dir/src/libmpg123/dct64.c.o
+  [9/702] Building C object mpg123/CMakeFiles/libmpg123.dir/src/libmpg123/layer1.c.o
+  [10/702] Building C object mpg123/CMakeFiles/libmpg123.dir/src/libmpg123/id3.c.o
+  [11/702] Generating version_witness.txt
+  [12/702] Building C object mpg123/CMakeFiles/libmpg123.dir/src/libmpg123/index.c.o
+  [13/702] Building C object mpg123/CMakeFiles/libmpg123.dir/src/libmpg123/feature.c.o
+  [14/702] Building C object mpg123/CMakeFiles/libmpg123.dir/src/libmpg123/layer2.c.o
+  [15/702] Building C object mpg123/CMakeFiles/libmpg123.dir/src/libmpg123/stringbuf.c.o
+  [16/702] Building C object mpg123/CMakeFiles/libmpg123.dir/src/libmpg123/dither.c.o
+  [17/702] Building ASM object mpg123/CMakeFiles/libmpg123.dir/src/libmpg123/dct36_neon64.S.o
+  [18/702] Building ASM object mpg123/CMakeFiles/libmpg123.dir/src/libmpg123/dct64_neon64.S.o
+  [19/702] Building C object mpg123/CMakeFiles/libmpg123.dir/src/libmpg123/libmpg123.c.o
+  [20/702] Building C object mpg123/CMakeFiles/libmpg123.dir/src/libmpg123/synth.c.o
+  [21/702] Building ASM object mpg123/CMakeFiles/libmpg123.dir/src/libmpg123/synth_neon64.S.o
+  [22/702] Building C object mpg123/CMakeFiles/libmpg123.dir/src/compat/compat_str.c.o
+  [23/702] Building C object mpg123/CMakeFiles/libmpg123.dir/src/compat/compat.c.o
+  [24/702] Building ASM object mpg123/CMakeFiles/libmpg123.dir/src/libmpg123/dct64_neon64_float.S.o
+  [25/702] Building ASM object mpg123/CMakeFiles/libmpg123.dir/src/libmpg123/synth_neon64_accurate.S.o
+  [26/702] Building ASM object mpg123/CMakeFiles/libmpg123.dir/src/libmpg123/synth_stereo_neon64_float.S.o
+  [27/702] Building C object mpg123/CMakeFiles/libmpg123.dir/src/libmpg123/lfs_wrap.c.o
+  [28/702] Building ASM object mpg123/CMakeFiles/libmpg123.dir/src/libmpg123/synth_neon64_float.S.o
+  [29/702] Building C object mpg123/CMakeFiles/libmpg123.dir/src/libmpg123/getcpuflags_arm.c.o
+  [30/702] Building ASM object mpg123/CMakeFiles/libmpg123.dir/src/libmpg123/check_neon.S.o
+  [31/702] Building C object mpg123/CMakeFiles/libmpg123.dir/src/libmpg123/layer3.c.o
+  [32/702] Building ASM object mpg123/CMakeFiles/libmpg123.dir/src/libmpg123/synth_stereo_neon64.S.o
+  [33/702] Building ASM object mpg123/CMakeFiles/libmpg123.dir/src/libmpg123/synth_neon64_s32.S.o
+  [34/702] Building ASM object mpg123/CMakeFiles/libmpg123.dir/src/libmpg123/synth_stereo_neon64_accurate.S.o
+  [35/702] Building ASM object mpg123/CMakeFiles/libmpg123.dir/src/libmpg123/synth_stereo_neon64_s32.S.o
+  [36/702] Generating include/SDL2/SDL_hints.h
+  [37/702] Generating include/SDL2/SDL_guid.h
+  [38/702] Generating include/SDL2/SDL_keycode.h
+  [39/702] Generating include/SDL2/SDL_hidapi.h
+  [40/702] Generating include/SDL2/SDL_loadso.h
+  [41/702] Generating include/SDL2/SDL_haptic.h
+  [42/702] Generating include/SDL2/SDL_joystick.h
+  [43/702] Generating include/SDL2/SDL_keyboard.h
+  [44/702] Generating include/SDL2/SDL_gesture.h
+  [45/702] Generating include/SDL2/SDL_atomic.h
+  [46/702] Generating include/SDL2/SDL_audio.h
+  [47/702] Generating include/SDL2/SDL_bits.h
+  [48/702] Generating include/SDL2/SDL_assert.h
+  [49/702] Generating include/SDL2/SDL.h
+  [50/702] Generating include/SDL2/SDL_cpuinfo.h
+  [51/702] Generating include/SDL2/SDL_events.h
+  [52/702] Generating include/SDL2/SDL_clipboard.h
+  [53/702] Generating include/SDL2/SDL_egl.h
+  [54/702] Generating include/SDL2/SDL_endian.h
+  [55/702] Generating include/SDL2/SDL_copying.h
+  [56/702] Generating include/SDL2/SDL_error.h
+  [57/702] Generating include/SDL2/SDL_blendmode.h
+  [58/702] Generating include/SDL2/SDL_gamecontroller.h
+  [59/702] Generating include/SDL2/SDL_filesystem.h
+  [60/702] Generating include/SDL2/SDL_name.h
+  [61/702] Generating include/SDL2/SDL_messagebox.h
+  [62/702] Generating include/SDL2/SDL_mouse.h
+  [63/702] Generating include/SDL2/SDL_mutex.h
+  [64/702] Generating include/SDL2/SDL_log.h
+  [65/702] Generating include/SDL2/SDL_locale.h
+  [66/702] Generating include/SDL2/SDL_misc.h
+  [67/702] Generating include/SDL2/SDL_main.h
+  [68/702] Generating include/SDL2/SDL_metal.h
+  [69/702] Generating include/SDL2/SDL_opengles2_khrplatform.h
+  [70/702] Generating include/SDL2/SDL_opengl_glext.h
+  [71/702] Generating include/SDL2/SDL_opengles2_gl2.h
+  [72/702] Generating include/SDL2/SDL_opengl.h
+  [73/702] Generating include/SDL2/SDL_opengles2_gl2platform.h
+  [74/702] Generating include/SDL2/SDL_opengles.h
+  [75/702] Generating include/SDL2/SDL_opengles2_gl2ext.h
+  [76/702] Generating include/SDL2/SDL_opengles2.h
+  [77/702] Generating include/SDL2/SDL_pixels.h
+  [78/702] Generating include/SDL2/SDL_rect.h
+  [79/702] Generating include/SDL2/SDL_render.h
+  [80/702] Generating include/SDL2/SDL_platform.h
+  [81/702] Generating include/SDL2/SDL_scancode.h
+  [82/702] Generating include/SDL2/SDL_sensor.h
+  [83/702] Generating include/SDL2/SDL_power.h
+  [84/702] Generating include/SDL2/SDL_rwops.h
+  [85/702] Generating include/SDL2/SDL_quit.h
+  [86/702] Generating include/SDL2/SDL_surface.h
+  [87/702] Generating include/SDL2/SDL_test_assert.h
+  [88/702] Generating include/SDL2/SDL_test.h
+  [89/702] Generating include/SDL2/SDL_test_compare.h
+  [90/702] Generating include/SDL2/SDL_test_common.h
+  [91/702] Generating include/SDL2/SDL_shape.h
+  [92/702] Generating include/SDL2/SDL_system.h
+  [93/702] Generating include/SDL2/SDL_syswm.h
+  [94/702] Linking C shared library F:\re3\android\app\build\intermediates\cxx\Debug\b403f4fc\obj\arm64-v8a\libmpg123.so
+  [95/702] Generating include/SDL2/SDL_stdinc.h
+  [96/702] Generating include/SDL2/SDL_test_memory.h
+  [97/702] Generating include/SDL2/SDL_test_crc32.h
+  [98/702] Generating include/SDL2/SDL_test_font.h
+  [99/702] Generating include/SDL2/SDL_test_log.h
+  [100/702] Generating include/SDL2/SDL_test_fuzzer.h
+  [101/702] Generating include/SDL2/SDL_test_harness.h
+  [102/702] Generating include/SDL2/SDL_test_md5.h
+  [103/702] Generating include/SDL2/SDL_test_images.h
+  [104/702] Generating include/SDL2/SDL_touch.h
+  [105/702] Generating include/SDL2/SDL_video.h
+  [106/702] Generating include/SDL2/SDL_vulkan.h
+  [107/702] Generating include/SDL2/SDL_test_random.h
+  [108/702] Generating include/SDL2/SDL_version.h
+  [109/702] Generating include/SDL2/SDL_thread.h
+  [110/702] Generating include/SDL2/SDL_timer.h
+  [111/702] Generating include/SDL2/SDL_types.h
+  [112/702] Generating include/SDL2/close_code.h
+  [113/702] Generating include/SDL2/begin_code.h
+  [114/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/dynapi/SDL_dynapi.c.o
+  [115/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/events/SDL_displayevents.c.o
+  [116/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/audio/SDL_audiodev.c.o
+  [117/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/cpuinfo/SDL_cpuinfo.c.o
+  [118/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/audio/SDL_audiotypecvt.c.o
+  [119/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/events/SDL_dropevents.c.o
+  [120/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/audio/SDL_mixer.c.o
+  [121/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/audio/SDL_wave.c.o
+  [122/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/audio/SDL_audiocvt.c.o
+  [123/702] Building CXX object openal-soft/CMakeFiles/common.dir/common/almalloc.cpp.o
+  [124/702] Building CXX object openal-soft/CMakeFiles/common.dir/common/alfstream.cpp.o
+  [125/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/SDL_hints.c.o
+  [126/702] Building CXX object openal-soft/CMakeFiles/common.dir/common/alcomplex.cpp.o
+  [127/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/events/SDL_clipboardevents.c.o
+  [128/702] Building CXX object openal-soft/CMakeFiles/common.dir/common/dynload.cpp.o
+  [129/702] Building CXX object openal-soft/CMakeFiles/common.dir/common/polyphase_resampler.cpp.o
+  [130/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/SDL_error.c.o
+  [131/702] Building CXX object openal-soft/CMakeFiles/common.dir/common/strutils.cpp.o
+  [132/702] Building CXX object openal-soft/CMakeFiles/common.dir/common/alstring.cpp.o
+  [133/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/SDL_guid.c.o
+  [134/702] Building CXX object openal-soft/CMakeFiles/common.dir/common/ringbuffer.cpp.o
+  [135/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/SDL_utils.c.o
+  [136/702] Building CXX object openal-soft/CMakeFiles/common.dir/common/threads.cpp.o
+  [137/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/SDL_assert.c.o
+  [138/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/SDL_log.c.o
+  [139/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/atomic/SDL_spinlock.c.o
+  [140/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/atomic/SDL_atomic.c.o
+  [141/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/SDL.c.o
+  [142/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/SDL_list.c.o
+  [143/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/SDL_dataqueue.c.o
+  [144/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/audio/SDL_audio.c.o
+  [145/702] Building CXX object librw/src/CMakeFiles/librw.dir/error.cpp.o
+  [146/702] Building CXX object librw/src/CMakeFiles/librw.dir/bmp.cpp.o
+  [147/702] Building CXX object librw/src/CMakeFiles/librw.dir/clump.cpp.o
+  [148/702] Building CXX object librw/src/CMakeFiles/librw.dir/base.cpp.o
+  [149/702] Building CXX object librw/src/CMakeFiles/librw.dir/camera.cpp.o
+  [150/702] Building CXX object librw/src/CMakeFiles/librw.dir/frame.cpp.o
+  [151/702] Building CXX object librw/src/CMakeFiles/librw.dir/light.cpp.o
+  [152/702] Building CXX object librw/src/CMakeFiles/librw.dir/geometry.cpp.o
+  [153/702] Building CXX object librw/src/CMakeFiles/librw.dir/pipeline.cpp.o
+  [154/702] Building CXX object librw/src/CMakeFiles/librw.dir/anim.cpp.o
+  [155/702] Building CXX object librw/src/CMakeFiles/librw.dir/image.cpp.o
+  [156/702] Building CXX object librw/src/CMakeFiles/librw.dir/plg.cpp.o
+  [157/702] Building CXX object librw/src/CMakeFiles/librw.dir/charset.cpp.o
+  [158/702] Building CXX object librw/src/CMakeFiles/librw.dir/hanim.cpp.o
+  [159/702] Building CXX object librw/src/CMakeFiles/librw.dir/geoplg.cpp.o
+  [160/702] Building CXX object librw/src/CMakeFiles/librw.dir/engine.cpp.o
+  [161/702] Building CXX object librw/src/CMakeFiles/librw.dir/render.cpp.o
+  [162/702] Building CXX object librw/src/CMakeFiles/librw.dir/matfx.cpp.o
+  [163/702] Building CXX object librw/src/CMakeFiles/librw.dir/png.cpp.o
+  [164/702] Building CXX object librw/src/CMakeFiles/librw.dir/prim.cpp.o
+  [165/702] Building CXX object librw/src/CMakeFiles/librw.dir/tga.cpp.o
+  [166/702] Building CXX object librw/src/CMakeFiles/librw.dir/userdata.cpp.o
+  [167/702] Building CXX object librw/src/CMakeFiles/librw.dir/uvanim.cpp.o
+  [168/702] Building CXX object librw/src/CMakeFiles/librw.dir/tristrip.cpp.o
+  [169/702] Building CXX object librw/src/CMakeFiles/librw.dir/world.cpp.o
+  [170/702] Building CXX object librw/src/CMakeFiles/librw.dir/raster.cpp.o
+  [171/702] Building CXX object librw/src/CMakeFiles/librw.dir/d3d/d3d8render.cpp.o
+  [172/702] Building CXX object librw/src/CMakeFiles/librw.dir/skin.cpp.o
+  [173/702] Building CXX object librw/src/CMakeFiles/librw.dir/d3d/d3d8skin.cpp.o
+  [174/702] Building CXX object librw/src/CMakeFiles/librw.dir/d3d/d3d8matfx.cpp.o
+  [175/702] Building CXX object librw/src/CMakeFiles/librw.dir/d3d/d3d8.cpp.o
+  [176/702] Building CXX object librw/src/CMakeFiles/librw.dir/d3d/d3d9skin.cpp.o
+  [177/702] Building CXX object librw/src/CMakeFiles/librw.dir/d3d/d3d9.cpp.o
+  [178/702] Building CXX object librw/src/CMakeFiles/librw.dir/d3d/d3d9matfx.cpp.o
+  [179/702] Building CXX object librw/src/CMakeFiles/librw.dir/d3d/d3d9render.cpp.o
+  [180/702] Building CXX object librw/src/CMakeFiles/librw.dir/d3d/d3ddevice.cpp.o
+  [181/702] Building CXX object librw/src/CMakeFiles/librw.dir/d3d/xboxmatfx.cpp.o
+  [182/702] Building CXX object librw/src/CMakeFiles/librw.dir/d3d/d3dimmed.cpp.o
+  [183/702] Building CXX object librw/src/CMakeFiles/librw.dir/texture.cpp.o
+  [184/702] Building CXX object librw/src/CMakeFiles/librw.dir/d3d/xbox.cpp.o
+  [185/702] Building CXX object librw/src/CMakeFiles/librw.dir/d3d/d3d.cpp.o
+  [186/702] Building CXX object librw/src/CMakeFiles/librw.dir/d3d/xboxskin.cpp.o
+  [187/702] Building CXX object librw/src/CMakeFiles/librw.dir/d3d/xboxvfmt.cpp.o
+  [188/702] Building CXX object librw/src/CMakeFiles/librw.dir/d3d/d3drender.cpp.o
+  [189/702] Building CXX object librw/src/CMakeFiles/librw.dir/ps2/ps2device.cpp.o
+  [190/702] Building C object librw/src/CMakeFiles/librw.dir/gl/glad/glad.c.o
+  [191/702] Building CXX object librw/src/CMakeFiles/librw.dir/ps2/pds.cpp.o
+  [192/702] Building CXX object librw/src/CMakeFiles/librw.dir/gl/gl3pipe.cpp.o
+  [193/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/events/SDL_gesture.c.o
+  [194/702] Building CXX object librw/src/CMakeFiles/librw.dir/gl/wdgl.cpp.o
+  [195/702] Building CXX object librw/src/CMakeFiles/librw.dir/ps2/ps2.cpp.o
+  [196/702] Building CXX object librw/src/CMakeFiles/librw.dir/ps2/ps2matfx.cpp.o
+  [197/702] Building CXX object librw/src/CMakeFiles/librw.dir/ps2/ps2skin.cpp.o
+  [198/702] Building CXX object librw/src/CMakeFiles/librw.dir/gl/gl3immed.cpp.o
+  [199/702] Building CXX object librw/src/CMakeFiles/librw.dir/gl/gl3matfx.cpp.o
+  [200/702] Building CXX object librw/src/CMakeFiles/librw.dir/gl/gl3.cpp.o
+  [201/702] Building CXX object librw/src/CMakeFiles/librw.dir/gl/gl3shader.cpp.o
+  [202/702] Building CXX object librw/src/CMakeFiles/librw.dir/gl/gl3device.cpp.o
+  [203/702] Building CXX object librw/src/CMakeFiles/librw.dir/gl/gl3skin.cpp.o
+  [204/702] Building CXX object librw/src/CMakeFiles/librw.dir/gl/gl3render.cpp.o
+  [205/702] Building CXX object librw/src/CMakeFiles/librw.dir/ps2/ps2raster.cpp.o
+  [206/702] Building CXX object librw/src/CMakeFiles/librw.dir/gl/gl3raster.cpp.o
+  [207/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/events/SDL_keyboard.c.o
+  [208/702] Building CXX object librw/src/CMakeFiles/librw.dir/lodepng/lodepng.cpp.o
+  [209/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/events/SDL_keysym_to_scancode.c.o
+  [210/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/events/imKStoUCS.c.o
+  [211/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/events/SDL_scancode_tables.c.o
+  [212/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/hidapi/SDL_hidapi.c.o
+  [213/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/events/SDL_quit.c.o
+  [214/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/events/SDL_windowevents.c.o
+  [215/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/events/SDL_touch.c.o
+  [216/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/events/SDL_mouse.c.o
+  [217/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/file/SDL_rwops.c.o
+  [218/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/libm/e_exp.c.o
+  [219/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/haptic/SDL_haptic.c.o
+  [220/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/joystick/controller_type.c.o
+  [221/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/libm/e_rem_pio2.c.o
+  [222/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/libm/k_sin.c.o
+  [223/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/joystick/SDL_steam_virtual_gamepad.c.o
+  [224/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/libm/e_atan2.c.o
+  [225/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/libm/s_atan.c.o
+  [226/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/libm/e_fmod.c.o
+  [227/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/events/SDL_events.c.o
+  [228/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/libm/e_sqrt.c.o
+  [229/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/libm/k_rem_pio2.c.o
+  [230/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/libm/e_log.c.o
+  [231/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/libm/k_cos.c.o
+  [232/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/libm/e_pow.c.o
+  [233/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/libm/k_tan.c.o
+  [234/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/libm/e_log10.c.o
+  [235/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/libm/s_fabs.c.o
+  [236/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/libm/s_copysign.c.o
+  [237/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/libm/s_cos.c.o
+  [238/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/joystick/SDL_gamecontroller.c.o
+  [239/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/libm/s_floor.c.o
+  [240/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/libm/s_scalbn.c.o
+  [241/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/locale/SDL_locale.c.o
+  [242/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/misc/SDL_url.c.o
+  [243/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/libm/s_sin.c.o
+  [244/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/joystick/SDL_joystick.c.o
+  [245/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/libm/s_tan.c.o
+  [246/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/render/SDL_yuv_sw.c.o
+  [247/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/render/direct3d/SDL_render_d3d.c.o
+  [248/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/power/SDL_power.c.o
+  [249/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/render/SDL_d3dmath.c.o
+  [250/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/render/direct3d/SDL_shaders_d3d.c.o
+  [251/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/video/SDL_blit_copy.c.o
+  [252/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/video/SDL_bmp.c.o
+  [253/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/video/SDL_blit_slow.c.o
+  [254/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/render/opengl/SDL_render_gl.c.o
+  [255/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/render/direct3d11/SDL_render_d3d11.c.o
+  [256/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/render/direct3d12/SDL_render_d3d12.c.o
+  [257/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/render/direct3d12/SDL_shaders_d3d12.c.o
+  [258/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/render/direct3d11/SDL_shaders_d3d11.c.o
+  [259/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/render/ps2/SDL_render_ps2.c.o
+  [260/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/render/opengles2/SDL_shaders_gles2.c.o
+  [261/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/render/opengles/SDL_render_gles.c.o
+  [262/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/render/opengl/SDL_shaders_gl.c.o
+  [263/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/render/software/SDL_drawline.c.o
+  [264/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/render/software/SDL_blendpoint.c.o
+  [265/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/render/psp/SDL_render_psp.c.o
+  [266/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/render/vitagxm/SDL_render_vita_gxm.c.o
+  [267/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/render/SDL_render.c.o
+  [268/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/video/SDL_blit_auto.c.o
+  [269/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/render/vitagxm/SDL_render_vita_gxm_tools.c.o
+  [270/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/video/SDL_blit_N.c.o
+  [271/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/stdlib/SDL_crc32.c.o
+  [272/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/render/vitagxm/SDL_render_vita_gxm_memory.c.o
+  [273/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/stdlib/SDL_crc16.c.o
+  [274/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/render/opengles2/SDL_render_gles2.c.o
+  [275/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/stdlib/SDL_getenv.c.o
+  [276/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/stdlib/SDL_malloc.c.o
+  [277/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/stdlib/SDL_iconv.c.o
+  [278/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/render/software/SDL_drawpoint.c.o
+  [279/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/stdlib/SDL_mslibc.c.o
+  [280/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/render/software/SDL_blendfillrect.c.o
+  [281/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/stdlib/SDL_qsort.c.o
+  [282/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/thread/SDL_thread.c.o
+  [283/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/render/software/SDL_blendline.c.o
+  [284/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/render/software/SDL_rotate.c.o
+  [285/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/stdlib/SDL_strtokr.c.o
+  [286/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/stdlib/SDL_string.c.o
+  [287/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/render/software/SDL_triangle.c.o
+  [288/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/stdlib/SDL_stdlib.c.o
+  [289/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/render/software/SDL_render_sw.c.o
+  [290/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/timer/SDL_timer.c.o
+  [291/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/sensor/SDL_sensor.c.o
+  [292/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/video/SDL_blit.c.o
+  [293/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/video/SDL_blit_0.c.o
+  [294/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/video/SDL_RLEaccel.c.o
+  [295/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/video/SDL_blit_1.c.o
+  [296/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/video/SDL_blit_A.c.o
+  [297/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/video/SDL_egl.c.o
+  [298/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/video/SDL_pixels.c.o
+  [299/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/video/SDL_clipboard.c.o
+  [300/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/video/SDL_rect.c.o
+  [301/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/video/SDL_fillrect.c.o
+  [302/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/video/SDL_shape.c.o
+  [303/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/video/SDL_surface.c.o
+  [304/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/video/SDL_vulkan_utils.c.o
+  [305/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/video/SDL_stretch.c.o
+  [306/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/video/yuv2rgb/yuv_rgb_std.c.o
+  [307/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/video/yuv2rgb/yuv_rgb_sse.c.o
+  [308/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/video/yuv2rgb/yuv_rgb_lsx.c.o
+  [309/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/video/SDL_yuv.c.o
+  [310/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/audio/dummy/SDL_dummyaudio.c.o
+  [311/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/joystick/virtual/SDL_virtualjoystick.c.o
+  [312/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/audio/disk/SDL_diskaudio.c.o
+  [313/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/loadso/dlopen/SDL_sysloadso.c.o
+  [314/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/video/dummy/SDL_nullevents.c.o
+  [315/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/video/dummy/SDL_nullvideo.c.o
+  [316/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/video/dummy/SDL_nullframebuffer.c.o
+  [317/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/video/offscreen/SDL_offscreenframebuffer.c.o
+  [318/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/video/offscreen/SDL_offscreenopengles.c.o
+  [319/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/video/offscreen/SDL_offscreenevents.c.o
+  [320/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/video/offscreen/SDL_offscreenwindow.c.o
+  [321/702] Building C object SDL2/CMakeFiles/SDL2.dir/C_/AndroidSDK/ndk/26.1.10909125/sources/android/cpufeatures/cpu-features.c.o
+  [322/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/misc/android/SDL_sysurl.c.o
+  [323/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/video/offscreen/SDL_offscreenvideo.c.o
+  [324/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/haptic/android/SDL_syshaptic.c.o
+  [325/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/audio/openslES/SDL_openslES.c.o
+  [326/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/audio/aaudio/SDL_aaudio.c.o
+  [327/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/video/SDL_video.c.o
+  [328/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/filesystem/android/SDL_sysfilesystem.c.o
+  [329/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/audio/android/SDL_androidaudio.c.o
+  [330/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_combined.c.o
+  [331/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_gamecube.c.o
+  [332/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_ps3.c.o
+  [333/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_luna.c.o
+  [334/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_stadia.c.o
+  [335/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_shield.c.o
+  [336/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/core/android/SDL_android.c.o
+  [337/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_rumble.c.o
+  [338/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_ps5.c.o
+  [339/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_ps4.c.o
+  [340/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_xbox360.c.o
+  [341/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_steam.c.o
+  [342/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_steamdeck.c.o
+  [343/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_switch.c.o
+  [344/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_wii.c.o
+  [345/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapijoystick.c.o
+  [346/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/joystick/android/SDL_sysjoystick.c.o
+  [347/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/joystick/steam/SDL_steamcontroller.c.o
+  [348/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_xboxone.c.o
+  [349/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/joystick/hidapi/SDL_hidapi_xbox360w.c.o
+  [350/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/timer/unix/SDL_systimer.c.o
+  [351/702] Building CXX object SDL2/CMakeFiles/SDL2.dir/src/hidapi/android/hid.cpp.o
+  [352/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/power/android/SDL_syspower.c.o
+  [353/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/sensor/android/SDL_androidsensor.c.o
+  [354/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/locale/android/SDL_syslocale.c.o
+  [355/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/video/android/SDL_androidclipboard.c.o
+  [356/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/video/android/SDL_androidkeyboard.c.o
+  [357/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/video/android/SDL_androidgl.c.o
+  [358/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/video/android/SDL_androidevents.c.o
+  [359/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/video/android/SDL_androidmessagebox.c.o
+  [360/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/video/android/SDL_androidmouse.c.o
+  [361/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/video/android/SDL_androidvulkan.c.o
+  [362/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/thread/pthread/SDL_systhread.c.o
+  [363/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/video/android/SDL_androidtouch.c.o
+  [364/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/thread/pthread/SDL_syscond.c.o
+  [365/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/thread/pthread/SDL_syssem.c.o
+  [366/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/thread/pthread/SDL_sysmutex.c.o
+  [367/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/thread/pthread/SDL_systls.c.o
+  [368/702] Linking CXX static library openal-soft\libcommon.a
+  [369/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/video/android/SDL_androidwindow.c.o
+  [370/702] Building C object SDL2/CMakeFiles/SDL2.dir/src/video/android/SDL_androidvideo.c.o
+  [371/702] Generating default_hrtf.txt
+  [372/702] Linking CXX shared library F:\re3\android\app\build\intermediates\cxx\Debug\b403f4fc\obj\arm64-v8a\libSDL2.so
+  [373/702] Building CXX object CMakeFiles/revc.dir/F_/re3/src/animation/AnimBlendAssocGroup.cpp.o
+  [374/702] Building CXX object CMakeFiles/revc.dir/F_/re3/src/core/Range2D.cpp.o
+  [375/702] Building CXX object CMakeFiles/revc.dir/F_/re3/src/core/timebars.cpp.o
+  [376/702] Building CXX object CMakeFiles/revc.dir/F_/re3/src/core/Profile.cpp.o
+  [377/702] Building CXX object CMakeFiles/revc.dir/F_/re3/src/core/Range3D.cpp.o
+  [378/702] Building CXX object CMakeFiles/revc.dir/F_/re3/src/extras/custompipes.cpp.o
+  [379/702] Building CXX object CMakeFiles/revc.dir/F_/re3/src/entities/Entity.cpp.o
+  [380/702] Building CXX object CMakeFiles/revc.dir/F_/re3/src/entities/Dummy.cpp.o
+  [381/702] Building CXX object CMakeFiles/revc.dir/F_/re3/src/core/Ropes.cpp.o
+  [382/702] Building CXX object CMakeFiles/revc.dir/F_/re3/src/core/Placeable.cpp.o
+  [383/702] Building CXX object CMakeFiles/revc.dir/F_/re3/src/core/References.cpp.o
+  [384/702] Building CXX object CMakeFiles/revc.dir/F_/re3/src/core/PlayerInfo.cpp.o
+  [385/702] Building CXX object CMakeFiles/revc.dir/F_/re3/src/core/Radar.cpp.o
+  [386/702] Building CXX object CMakeFiles/revc.dir/F_/re3/src/core/Pools.cpp.o
+  [387/702] Building CXX object CMakeFiles/revc.dir/F_/re3/src/extras/frontendoption.cpp.o
+  [388/702] Building CXX object CMakeFiles/revc.dir/F_/re3/src/entities/Physical.cpp.o
+  [389/702] Building CXX object CMakeFiles/revc.dir/F_/re3/src/core/TimeStep.cpp.o
+  [390/702] Building CXX object CMakeFiles/revc.dir/F_/re3/src/extras/custompipes_d3d9.cpp.o
+  [391/702] Building CXX object CMakeFiles/revc.dir/F_/re3/src/core/Pad.cpp.o
+  FAILED: CMakeFiles/revc.dir/F_/re3/src/core/Pad.cpp.o 
+  C:\AndroidSDK\ndk\26.1.10909125\toolchains\llvm\prebuilt\windows-x86_64\bin\clang++.exe --target=aarch64-none-linux-android21 --sysroot=C:/AndroidSDK/ndk/26.1.10909125/toolchains/llvm/prebuilt/windows-x86_64/sysroot -DANDROID=1 -DAUDIO_OAL -DAUDIO_OAL_USE_MPG123 -DCMAKE_BUILD -DDEBUG -DLIBRW -DLIBRW_SDL2 -DLINUX=1 -DPOSIX=1 -DRW_GL3 -DUSE_OUR_VERSIONING -D_ANDROID=1 -D_LINUX=1 -Drevc_EXPORTS -IF:/re3/src -IF:/re3/src/animation -IF:/re3/src/audio -IF:/re3/src/audio/eax -IF:/re3/src/audio/oal -IF:/re3/src/buildings -IF:/re3/src/collision -IF:/re3/src/control -IF:/re3/src/core -IF:/re3/src/entities -IF:/re3/src/extras -IF:/re3/src/extras/shaders -IF:/re3/src/fakerw -IF:/re3/src/math -IF:/re3/src/modelinfo -IF:/re3/src/objects -IF:/re3/src/peds -IF:/re3/src/renderer -IF:/re3/src/rw -IF:/re3/src/save -IF:/re3/src/skel/android -IF:/re3/src/skel/android/demangle -IF:/re3/src/skel/android/libunwind -IF:/re3/src/skel/android/libunwind/mach-o -IF:/re3/src/skel -IF:/re3/src/skel/win -IF:/re3/src/text -IF:/re3/src/vehicles -IF:/re3/src/weapons -IF:/re3/vendor/librw -IF:/re3/vendor/SDL2/include -IF:/re3/android/app/.cxx/Debug/b403f4fc/arm64-v8a/SDL2/include -IF:/re3/android/app/.cxx/Debug/b403f4fc/arm64-v8a/SDL2/include/SDL2 -IF:/re3/android/app/.cxx/Debug/b403f4fc/arm64-v8a/SDL2/include-config-debug/SDL2 -IF:/re3/vendor/openal-soft/include -IF:/re3/vendor/openal-soft/include/AL -IF:/re3/vendor/mpg123/src/include -IF:/re3/vendor/mpg123/src/libmpg123 -IF:/re3/vendor/mpg123/src -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -std=c++14 -fexceptions -frtti -w -fno-limit-debug-info  -fPIC -w -fexceptions -frtti -fpermissive -funwind-tables -std=c++14 -MD -MT CMakeFiles/revc.dir/F_/re3/src/core/Pad.cpp.o -MF CMakeFiles\revc.dir\F_\re3\src\core\Pad.cpp.o.d -o CMakeFiles/revc.dir/F_/re3/src/core/Pad.cpp.o -c F:/re3/src/core/Pad.cpp
+  F:/re3/src/core/Pad.cpp:2696:23: error: use of undeclared identifier 'BtnType'
+          if (gTouch.getButton(BtnType::CAR))
+                               ^
+  F:/re3/src/core/Pad.cpp:2735:31: error: use of undeclared identifier 'BtnType'
+          if (gTouch.getButtonJustDown(BtnType::CAR))
+                                       ^
+  F:/re3/src/core/Pad.cpp:2765:23: error: use of undeclared identifier 'BtnType'
+          if (gTouch.getButton(BtnType::ATTACK))
+                               ^
+  F:/re3/src/core/Pad.cpp:3123:30: error: use of undeclared identifier 'BtnType'
+          if(gTouch.getButtonJustDown(BtnType::JUMP))
+                                      ^
+  F:/re3/src/core/Pad.cpp:3134:23: error: use of undeclared identifier 'BtnType'
+          if (gTouch.getButton(BtnType::SPRINT))
+                               ^
+  5 errors generated.
+  [392/702] Building CXX object CMakeFiles/revc.dir/F_/re3/src/core/Stats.cpp.o
+  [393/702] Building CXX object CMakeFiles/revc.dir/F_/re3/src/core/MenuScreensCustom.cpp.o
+  [394/702] Building CXX object CMakeFiles/revc.dir/F_/re3/src/extras/postfx.cpp.o
+  [395/702] Building CXX object CMakeFiles/revc.dir/F_/re3/src/extras/custompipes_gl.cpp.o
+  [396/702] Building CXX object CMakeFiles/revc.dir/F_/re3/src/extras/debugmenu.cpp.o
+  [397/702] Building CXX object CMakeFiles/revc.dir/F_/re3/src/core/Zones.cpp.o
+  [398/702] Building CXX object CMakeFiles/revc.dir/F_/re3/src/core/User.cpp.o
+  [399/702] Building CXX object CMakeFiles/revc.dir/F_/re3/src/core/obrstr.cpp.o
+  [400/702] Building CXX object CMakeFiles/revc.dir/F_/re3/src/core/ZoneCull.cpp.o
+  [401/702] Building CXX object CMakeFiles/revc.dir/F_/re3/src/core/SurfaceTable.cpp.o
+  [402/702] Building CXX object CMakeFiles/revc.dir/F_/re3/src/core/Wanted.cpp.o
+  [403/702] Building CXX object CMakeFiles/revc.dir/F_/re3/src/core/Streaming.cpp.o
+  [404/702] Building CXX object CMakeFiles/revc.dir/F_/re3/src/core/World.cpp.o
+  [405/702] Building CXX object CMakeFiles/revc.dir/F_/re3/src/objects/DummyObject.cpp.o
+  [406/702] Building CXX object CMakeFiles/revc.dir/F_/re3/src/core/main.cpp.o
+  [407/702] Building CXX object CMakeFiles/revc.dir/F_/re3/src/core/Timer.cpp.o
+  [408/702] Building CXX object CMakeFiles/revc.dir/F_/re3/src/core/re3.cpp.o
+  ninja: build stopped: subcommand failed.
+  
+  C++ build system [build] failed while executing:
+      @echo off
+      "C:\\AndroidSDK\\cmake\\3.22.1\\bin\\ninja.exe" ^
+        -C ^
+        "F:\\re3\\android\\app\\.cxx\\Debug\\b403f4fc\\arm64-v8a" ^
+        OpenAL ^
+        SDL2 ^
+        libmpg123 ^
+        revc
+    from F:\re3\android\app
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights from a Build Scan (powered by Develocity).
+> Get more help at https://help.gradle.org.
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 10.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/9.3.0-20251129014759+0000/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD FAILED in 1m 28s
+27 actionable tasks: 9 executed, 18 from cache

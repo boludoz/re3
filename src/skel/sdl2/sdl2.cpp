@@ -1117,22 +1117,31 @@ void SDL_Events(SDL_Event *event)
 				FrontEndMenuManager.m_nTouchTempPosX = event->tfinger.x * (float)RsGlobal.maximumWidth;
 				FrontEndMenuManager.m_nTouchTempPosY = event->tfinger.y * (float)RsGlobal.maximumHeight;
 			}
-			touchInfo[event->tfinger.fingerId].pressed = true;
-			touchInfo[event->tfinger.fingerId].x = event->tfinger.x * (float)RsGlobal.maximumWidth;
-			touchInfo[event->tfinger.fingerId].y = event->tfinger.y * (float)RsGlobal.maximumHeight;
+			{
+				int idx = (int)(event->tfinger.fingerId % 10);
+				touchInfo[idx].pressed = true;
+				touchInfo[idx].x = event->tfinger.x * (float)RsGlobal.maximumWidth;
+				touchInfo[idx].y = event->tfinger.y * (float)RsGlobal.maximumHeight;
+			}
 			break;
 		case SDL_FINGERUP:
-			touchInfo[event->tfinger.fingerId].pressed = false;
-			touchInfo[event->tfinger.fingerId].x = 0.0f;
-			touchInfo[event->tfinger.fingerId].y = 0.0f;
-			touchInfo[event->tfinger.fingerId].dx = 0.0f;
-			touchInfo[event->tfinger.fingerId].dy = 0.0f;
+			{
+				int idx = (int)(event->tfinger.fingerId % 10);
+				touchInfo[idx].pressed = false;
+				touchInfo[idx].x = 0.0f;
+				touchInfo[idx].y = 0.0f;
+				touchInfo[idx].dx = 0.0f;
+				touchInfo[idx].dy = 0.0f;
+			}
 			break;
 		case SDL_FINGERMOTION:
-			touchInfo[event->tfinger.fingerId].x  += event->tfinger.dx * (float)RsGlobal.maximumWidth;
-			touchInfo[event->tfinger.fingerId].y  += event->tfinger.dy * (float)RsGlobal.maximumHeight;
-			touchInfo[event->tfinger.fingerId].dx  = event->tfinger.dx * (float)RsGlobal.maximumWidth;
-			touchInfo[event->tfinger.fingerId].dy  = event->tfinger.dy * (float)RsGlobal.maximumHeight;
+			{
+				int idx = (int)(event->tfinger.fingerId % 10);
+				touchInfo[idx].x  += event->tfinger.dx * (float)RsGlobal.maximumWidth;
+				touchInfo[idx].y  += event->tfinger.dy * (float)RsGlobal.maximumHeight;
+				touchInfo[idx].dx  = event->tfinger.dx * (float)RsGlobal.maximumWidth;
+				touchInfo[idx].dy  = event->tfinger.dy * (float)RsGlobal.maximumHeight;
+			}
 	}
 }
 

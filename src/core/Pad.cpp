@@ -84,7 +84,7 @@ CTouchControllerState CPad::OldTouchControllerState;
 CTouchControllerState CPad::NewTouchControllerState;
 CTouchControllerState CPad::TempTouchControllerState;
 
-CTouch gTouch;
+// gTouch está definido en Touch.cpp
 
 #ifdef DETECT_PAD_INPUT_SWITCH
 bool CPad::IsAffectedByController = false;
@@ -2762,6 +2762,9 @@ int32 CPad::GetWeapon(void)
 	if ( ArePlayerControlsDisabled() )
 		return false;
 
+	if (gTouch.getButton(BtnType::ATTACK))
+		return 255;
+
 	switch (CURMODE)
 	{
 		case 0:
@@ -2794,6 +2797,9 @@ bool CPad::WeaponJustDown(void)
 {
 	if ( ArePlayerControlsDisabled() )
 		return false;
+
+	if (gTouch.getButtonJustDown(BtnType::ATTACK))
+		return true;
 
 	switch (CURMODE)
 	{
@@ -3127,6 +3133,10 @@ bool CPad::GetSprint(void)
 {
 	if ( ArePlayerControlsDisabled() )
 		return false;
+
+	if (gTouch.getButton(BtnType::SPRINT))
+		return true;
+
 	switch (CURMODE)
 	{
 		case 0:

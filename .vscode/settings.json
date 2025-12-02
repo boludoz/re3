@@ -37,6 +37,12 @@
     "filesystem": "cpp",
     "complex": "cpp",
     "queue": "cpp",
-    "stack": "cpp"
+    "stack": "cpp",
+    "locale": "cpp",
+    "thread": "cpp",
+    "xlocale": "cpp",
+    "xlocmon": "cpp",
+    "xlocnum": "cpp",
+    "xloctime": "cpp"
   }
 }
