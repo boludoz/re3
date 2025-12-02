@@ -1,3 +1,5 @@
+#include "SDL_events.h"
+#include "SDL_mouse.h"
 #define WITHDINPUT
 #include "common.h"
 #include "crossplatform.h"
@@ -41,6 +43,7 @@
 #include "Stats.h"
 #include "CarCtrl.h"
 #include "TrafficLights.h"
+#include "Touch.h"
 
 #ifdef GTA_PS2
 #include "eetypes.h"
@@ -76,6 +79,12 @@ char CPad::KeyBoardCheatString[30];
 CMouseControllerState CPad::OldMouseControllerState;
 CMouseControllerState CPad::NewMouseControllerState;
 CMouseControllerState CPad::PCTempMouseControllerState;
+
+CTouchControllerState CPad::OldTouchControllerState;
+CTouchControllerState CPad::NewTouchControllerState;
+CTouchControllerState CPad::TempTouchControllerState;
+
+CTouch gTouch;
 
 #ifdef DETECT_PAD_INPUT_SWITCH
 bool CPad::IsAffectedByController = false;
@@ -751,6 +760,9 @@ void CPad::Clear(bool bResetPlayerControls)
 	NewMouseControllerState.Clear();
 	OldMouseControllerState.Clear();
 	PCTempMouseControllerState.Clear();
+	
+	NewTouchControllerState.Clear();
+	OldTouchControllerState.Clear();
 
 	Phase = 0;
 	ShakeFreq = 0;
@@ -825,6 +837,19 @@ void CMouseControllerState::Clear()
 	MXB2 = 0;
 }
 
+CTouchControllerState::CTouchControllerState()
+{
+	TCH = 0;
+
+	x = 0.0f;
+	y = 0.0f;
+}
+
+void CTouchControllerState::Clear()
+{
+	TCH = 0;
+}
+
 CMouseControllerState CMousePointerStateHelper::GetMouseSetUp()
 {
 	CMouseControllerState state;
@@ -865,7 +890,7 @@ CMouseControllerState CMousePointerStateHelper::GetMouseSetUp()
 #else
 	// It seems there is no way to get number of buttons on mouse, so assign all buttons if we have mouse.
 	double xpos = 1.0f, ypos;
-	glfwGetCursorPos(PSGLOBAL(window), &xpos, &ypos);
+//	glfwGetCursorPos(PSGLOBAL(window), &xpos, &ypos);
 
 	if (xpos != 0.f) {
 		state.MMB = true;
@@ -921,7 +946,7 @@ void CPad::UpdateMouse()
 			NewMouseControllerState = PCTempMouseControllerState;
 		}
 	}
-#else
+#elif !defined LIBRW_SDL2 
 	if ( IsForegroundApp() && PSGLOBAL(cursorIsInWindow) )
 	{
 		double xpos = 1.0f, ypos;
@@ -962,7 +987,66 @@ void CPad::UpdateMouse()
 		OldMouseControllerState = NewMouseControllerState;
 		NewMouseControllerState = PCTempMouseControllerState;
 	}
+#else
+	if ( IsForegroundApp() )
+	{
+		int32 signX = 1;
+		int32 signY = 1;
+
+		if (!FrontEndMenuManager.m_bMenuActive)
+		{
+			if (MousePointerStateHelper.bInvertVertically)
+				signY = -1;
+			if (MousePointerStateHelper.bInvertHorizontally)
+				signX = -1;
+		}
+
+		PCTempMouseControllerState.Clear();
+
+		PCTempMouseControllerState.x = (float)(signX * (mousePosX - PSGLOBAL(lastMousePos.x)));
+		PCTempMouseControllerState.y = (float)(signY * (mousePosY - PSGLOBAL(lastMousePos.y)));
+		PCTempMouseControllerState.LMB = mouse1;
+		PCTempMouseControllerState.RMB = mouse2;
+		/*PCTempMouseControllerState.MMB = glfwGetMouseButton(PSGLOBAL(window), GLFW_MOUSE_BUTTON_MIDDLE);
+		PCTempMouseControllerState.MXB1 = glfwGetMouseButton(PSGLOBAL(window), GLFW_MOUSE_BUTTON_4);
+		PCTempMouseControllerState.MXB2 = glfwGetMouseButton(PSGLOBAL(window), GLFW_MOUSE_BUTTON_5);*/
+
+		if (PSGLOBAL(mouseWheel) > 0)
+			PCTempMouseControllerState.WHEELUP = 1;
+		else if (PSGLOBAL(mouseWheel) < 0)
+			PCTempMouseControllerState.WHEELDN = 1;
+
+		PSGLOBAL(lastMousePos.x) = mousePosX;
+		PSGLOBAL(lastMousePos.y) = mousePosY;
+		PSGLOBAL(mouseWheel) = 0;
+
+		OldMouseControllerState = NewMouseControllerState;
+		NewMouseControllerState = PCTempMouseControllerState;
+	}
 #endif
+}
+
+void CPad::UpdateTouch() // 1sh0zer: I know it's better to use some preprocessor directives for this, but I'm lazy ass.
+{
+	int32 signX = 1;
+	int32 signY = 1;
+	TempTouchControllerState.Clear();
+	
+	for(int i = 0; i < 10; i++)
+	{
+		const TouchInfo &touch = touchInfo[i];
+		if(!touch.pressed)
+			continue;
+		TempTouchControllerState.x = (float)(signX * (touch.x - PSGLOBAL(lastTouchPos.x)));
+		TempTouchControllerState.y = (float)(signY * (touch.y - PSGLOBAL(lastTouchPos.y)));
+		TempTouchControllerState.TCH = touch.pressed;
+		
+		PSGLOBAL(lastTouchPos.x) = touch.x;
+		PSGLOBAL(lastTouchPos.y) = touch.y;
+	}
+	
+	OldTouchControllerState = NewTouchControllerState;
+	NewTouchControllerState = TempTouchControllerState;
 }
 
 CControllerState CPad::ReconcileTwoControllersInput(CControllerState const &State1, CControllerState const &State2)
@@ -1029,8 +1113,8 @@ CControllerState CPad::ReconcileTwoControllersInput(CControllerState const &Stat
 
 void CPad::StartShake(int16 nDur, uint8 nFreq)
 {
-	if ( !FrontEndMenuManager.m_PrefsUseVibration )
-		return;
+	// if ( !FrontEndMenuManager.m_PrefsUseVibration )
+	// 	return;
 
 	if ( CCutsceneMgr::IsRunning() || CGame::playingIntro )
 		return;
@@ -1051,8 +1135,8 @@ void CPad::StartShake(int16 nDur, uint8 nFreq)
 
 void CPad::StartShake_Distance(int16 nDur, uint8 nFreq, float fX, float fY, float fZ)
 {
-	if ( !FrontEndMenuManager.m_PrefsUseVibration )
-		return;
+	// if ( !FrontEndMenuManager.m_PrefsUseVibration )
+	// 	return;
 
 	if ( CCutsceneMgr::IsRunning() || CGame::playingIntro )
 		return;
@@ -1078,8 +1162,8 @@ void CPad::StartShake_Distance(int16 nDur, uint8 nFreq, float fX, float fY, floa
 
 void CPad::StartShake_Train(float fX, float fY)
 {
-	if ( !FrontEndMenuManager.m_PrefsUseVibration )
-		return;
+	// if ( !FrontEndMenuManager.m_PrefsUseVibration )
+	// 	return;
 
 	if ( CCutsceneMgr::IsRunning() || CGame::playingIntro )
 		return;
@@ -1657,6 +1741,7 @@ void CPad::UpdatePads(void)
 	bool bUpdate = true;
 
 	GetPad(0)->UpdateMouse();
+	GetPad(0)->UpdateTouch();
 #ifdef XINPUT
 	GetPad(0)->AffectFromXinput(m_bMapPadOneToPadTwo ? 1 : 0);
 	GetPad(1)->AffectFromXinput(m_bMapPadOneToPadTwo ? 0 : 1);
@@ -2091,6 +2176,9 @@ int16 CPad::GetSteeringLeftRight(void)
 	if ( ArePlayerControlsDisabled() )
 		return 0;
 
+	if(gTouch.moveAxisX != 0)
+		return gTouch.moveAxisX;
+	
 	int16 value;
 	switch (CURMODE)
 	{
@@ -2132,7 +2220,7 @@ int16 CPad::GetSteeringUpDown(void)
 {
 	if ( ArePlayerControlsDisabled() )
 		return 0;
-
+	
 	switch (CURMODE)
 	{
 		case 0:
@@ -2163,6 +2251,10 @@ int16 CPad::GetSteeringUpDown(void)
 
 int16 CPad::GetCarGunUpDown(void)
 {
+	
+	if(gTouch.lookAxisY != 0)
+		return gTouch.lookAxisY;
+	
 	if ( ArePlayerControlsDisabled() )
 		return 0;
 
@@ -2190,9 +2282,14 @@ int16 CPad::GetCarGunUpDown(void)
 
 int16 CPad::GetCarGunLeftRight(void)
 {
+	if(gTouch.lookAxisX != 0)
+		return gTouch.lookAxisX;
+	
 	if ( ArePlayerControlsDisabled() )
 		return 0;
 
+	
+	
 	switch (CURMODE)
 	{
 		case 0:
@@ -2219,7 +2316,10 @@ int16 CPad::GetPedWalkLeftRight(void)
 {
 	if ( ArePlayerControlsDisabled() )
 		return 0;
-
+	
+	if(gTouch.moveAxisX != 0)
+		return gTouch.moveAxisX;
+	
 	switch (CURMODE)
 	{
 		case 0:
@@ -2253,6 +2353,9 @@ int16 CPad::GetPedWalkUpDown(void)
 	if ( ArePlayerControlsDisabled() )
 		return 0;
 
+	if(gTouch.moveAxisY != 0)
+		return gTouch.moveAxisY;
+	
 	switch (CURMODE)
 	{
 		case 0:
@@ -2283,6 +2386,8 @@ int16 CPad::GetPedWalkUpDown(void)
 
 int16 CPad::GetAnalogueUpDown(void)
 {
+	// if(gTouch.lookAxisY != 0)
+	// 	return gTouch.lookAxisY;
 	switch (CURMODE)
 	{
 		case 0:
@@ -2313,6 +2418,8 @@ int16 CPad::GetAnalogueUpDown(void)
 
 int16 CPad::GetAnalogueLeftRight(void)
 {
+	// if(gTouch.lookAxisX != 0)
+	// 	return gTouch.lookAxisX;
 	switch (CURMODE)
 	{
 		case 0:
@@ -2541,6 +2648,12 @@ int16 CPad::GetHandBrake(void)
 
 int16 CPad::GetBrake(void)
 {
+	int16 axis = 2 * gTouch.moveAxisY;
+	if ( axis < 0 )
+		return 0;
+	else
+		return axis;
+	
 	if ( ArePlayerControlsDisabled() )
 		return 0;
 
@@ -2579,6 +2692,9 @@ int16 CPad::GetBrake(void)
 
 bool CPad::GetExitVehicle(void)
 {
+	
+	if (gTouch.getButton(BtnType::CAR))
+		return true;
 	if ( ArePlayerControlsDisabled() )
 		return false;
 
@@ -2616,6 +2732,9 @@ bool CPad::ExitVehicleJustDown(void)
 	if ( JustOutOfFrontend != 0 )
 		return false;
 
+	if (gTouch.getButtonJustDown(BtnType::CAR))
+		return true;
+	
 	switch (CURMODE)
 	{
 		case 0:
@@ -2706,6 +2825,13 @@ bool CPad::WeaponJustDown(void)
 
 int16 CPad::GetAccelerate(void)
 {
+	int16 axis = -2 * gTouch.moveAxisY;
+	if ( axis < 0 )
+		return 0;
+	else
+		return axis;
+
+	
 	if ( ArePlayerControlsDisabled() )
 		return 0;
 
@@ -2991,6 +3117,9 @@ bool CPad::JumpJustDown(void)
 	if ( ArePlayerControlsDisabled() )
 		return false;
 
+	if(gTouch.getButtonJustDown(BtnType::JUMP))
+		return true;
+	
 	return !!(NewState.Square && !OldState.Square);
 }
 
@@ -2998,7 +3127,6 @@ bool CPad::GetSprint(void)
 {
 	if ( ArePlayerControlsDisabled() )
 		return false;
-
 	switch (CURMODE)
 	{
 		case 0:
@@ -3281,7 +3409,9 @@ int16 CPad::SniperModeLookUpDown(void)
 int16 CPad::LookAroundLeftRight(void)
 {
 	float axis = GetPad(0)->NewState.RightStickX;
-
+	if ((axis == 0) && (gTouch.lookAxisX != 0))
+		axis = gTouch.lookAxisX;
+	
 	if ( Abs(axis) > 85 && !GetLookBehindForPed() )
 		return (int16) ( (axis + ( ( axis > 0 ) ? -85 : 85) )
 							* (127.0f / 32.0f) ); // 3.96875f
@@ -3296,6 +3426,8 @@ int16 CPad::LookAroundLeftRight(void)
 int16 CPad::LookAroundUpDown(void)
 {
 	int16 axis = GetPad(0)->NewState.RightStickY;
+	if ((axis == 0) && (gTouch.lookAxisY != 0))
+		axis = gTouch.lookAxisY;
 #ifdef FIX_BUGS
 	axis = -axis;
 #endif

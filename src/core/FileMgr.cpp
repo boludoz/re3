@@ -1,3 +1,4 @@
+#include <cstring>
 #define _CRT_SECURE_NO_WARNINGS
 #include <fcntl.h>
 #ifdef _WIN32
@@ -37,9 +38,18 @@ static myFILE myfiles[NUMFILES];
 // Case-insensitivity on linux (from https://github.com/OneSadCookie/fcaseopen)
 void mychdir(char const *path)
 {
+	if(!path)
+		return;
 	char* r = casepath(path, false);
     if (r) {
-        chdir(r);
+		char pathRoot[MAX_PATH];
+		CFileMgr fmgr;
+		strcpy(pathRoot, fmgr.GetRootDirName());
+		strcat(pathRoot, r);
+        chdir(pathRoot);
+		char cwd[1028];
+		getcwd(cwd, sizeof(cwd));
+		// debug("Changing dir to %s . Now it is %s \n", pathRoot, cwd);
 		free(r);
     } else {
         errno = ENOENT;
@@ -53,6 +63,7 @@ void mychdir(char const *path)
 static int
 myfopen(const char *filename, const char *mode)
 {
+	// debug("Opening file %s, with mode %s\n", filename, mode);
 	int fd;
 	char realmode[10], *p;
 
@@ -200,8 +211,13 @@ char CFileMgr::ms_dirName[128];
 void
 CFileMgr::Initialise(void)
 {
-	_getcwd(ms_rootDirName, 128);
-	strcat(ms_rootDirName, "\\");
+	if(getenv("GAMEFILES") != NULL)
+	{
+		strcpy(ms_rootDirName, getenv("GAMEFILES"));
+		//_getcwd(ms_rootDirName, 128);
+		strcat(ms_rootDirName, "/");
+	}
+	debug("root dir is %s\n", ms_rootDirName);
 }
 
 void
@@ -213,22 +229,17 @@ CFileMgr::ChangeDir(const char *dir)
 	}
 	if(*dir != '\0'){
 		strcat(ms_dirName, dir);
-		// BUG in the game it seems, it's off by one
-		if(dir[strlen(dir)-1] != '\\')
-			strcat(ms_dirName, "\\");
 	}
 	mychdir(ms_dirName);
 }
 
+//1sh0zer: that's so fucked up i allready hate this shit
 void
 CFileMgr::SetDir(const char *dir)
 {
 	strcpy(ms_dirName, ms_rootDirName);
 	if(*dir != '\0'){
 		strcat(ms_dirName, dir);
-		// BUG in the game it seems, it's off by one
-		if(dir[strlen(dir)-1] != '\\')
-			strcat(ms_dirName, "\\");
 	}
 	mychdir(ms_dirName);
 }

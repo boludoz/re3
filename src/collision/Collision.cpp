@@ -101,7 +101,7 @@ GetCollisionInSectorList(CPtrList &list)
 
 	for(node = list.first; node; node = node->next){
 		e = (CEntity*)node->item;
-		level = CModelInfo::GetModelInfo(e->GetModelIndex())->GetColModel()->level;
+		level = CModelInfo::GetColModel(e->GetModelIndex())->level;
 		if(level != LEVEL_GENERIC)
 			return (eLevelName)level;
 	}
@@ -144,11 +144,10 @@ CCollision::SortOutCollisionAfterLoad(void)
 void
 CCollision::LoadCollisionScreen(eLevelName level)
 {
-	static Const char *levelNames[4] = {
+	static Const char *levelNames[] = {
 		"",
 		"IND_ZON",
 		"COM_ZON",
-		"SUB_ZON"
 	};
 
 	// Why twice?

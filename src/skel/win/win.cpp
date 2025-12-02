@@ -915,14 +915,14 @@ void WaitForState(FILTER_STATE State)
  */
 void HandleGraphEvent(void)
 {
-	LONG evCode, evParam1, evParam2;
+	LONG evCode;
+	LONG_PTR evParam1, evParam2;
 	HRESULT hr=S_OK;
 	
 	ASSERT(pME != nil);
 
 	// Process all queued events
-	while (SUCCEEDED(pME->GetEvent(&evCode, (LONG_PTR *)&evParam1,
-		(LONG_PTR *)&evParam2, 0)))
+	while (SUCCEEDED(pME->GetEvent(&evCode, &evParam1, &evParam2, 0)))
 	{
 		// Free memory associated with callback, since we're not using it
 		hr = pME->FreeEventParams(evCode, evParam1, evParam2);
@@ -1498,7 +1498,7 @@ psSelectDevice()
 #ifdef DEFAULT_NATIVE_RESOLUTION
 				GcurSelVM = 1;
 #else
-				MessageBox(nil, "Cannot find 640x480 video mode", "GTA3", MB_OK);
+				MessageBox(nil, "Cannot find 640x480 video mode", "GTA: Vice City", MB_OK);
 				return FALSE;
 #endif
 			}
@@ -1541,7 +1541,7 @@ psSelectDevice()
 		}
 
 		if(bestFsMode < 0){
-			MessageBox(nil, "Cannot find desired video mode", "GTA3", MB_OK);
+			MessageBox(nil, "Cannot find desired video mode", "GTA: Vice City", MB_OK);
 			return FALSE;
 		}
 		GcurSelVM = bestFsMode;
@@ -2179,10 +2179,12 @@ WinMain(HINSTANCE instance,
 
 #ifdef LOAD_INI_SETTINGS
 		LoadINIControllerSettings();
-		if (connectedPadButtons != 0) {
-			ControlsManager.InitDefaultControlConfigJoyPad(connectedPadButtons);
-			SaveINIControllerSettings();
-		}
+		if (connectedPadButtons != 0)
+			ControlsManager.InitDefaultControlConfigJoyPad(connectedPadButtons); // add (connected-saved) amount of new button assignments on top of ours
+
+		// these have 2 purposes: creating .ini at the start, and adding newly introduced settings to old .ini at the start
+		SaveINISettings();
+		SaveINIControllerSettings();
 #endif
 	}
 	

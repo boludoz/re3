@@ -23,6 +23,7 @@
 #include "Replay.h"
 #include "PedPlacement.h"
 #include "VarConsole.h"
+#include "SaveBuf.h"
 
 #define PAD_MOVE_TO_GAME_WORLD_MOVE 60.0f
 
@@ -97,6 +98,9 @@ CPlayerPed::CPlayerPed(void) : CPed(PEDTYPE_PLAYER1)
 	m_nAttackDirToCheck = 0;
 	m_nLastBusFareCollected = 0;
 	idleAnimBlockIndex = CAnimManager::GetAnimationBlockIndex("playidles");
+#ifdef FREE_CAM
+	m_bFreeAimActive = false;
+#endif
 }
 
 void
@@ -573,8 +577,12 @@ CPlayerPed::DoWeaponSmoothSpray(void)
 					return -1.0f;
 
 			case WEAPONTYPE_CHAINSAW:
-				if (GetMeleeStartAnim(weaponInfo) && RpAnimBlendClumpGetAssociation(GetClump(), GetMeleeStartAnim(weaponInfo)))
+				if (GetMeleeStartAnim(weaponInfo) && RpAnimBlendClumpGetAssociation(GetClump(), GetMeleeStartAnim(weaponInfo))) {
+#ifdef FREE_CAM
+					if (TheCamera.Cams[0].Using3rdPersonMouseCam()) return -1.0f;
+#endif
 					return PI / 128.0f;
+				}
 				else if (GetFireAnimGround(weaponInfo, false) && RpAnimBlendClumpGetAssociation(GetClump(), GetFireAnimGround(weaponInfo, false)))
 					return PI / 176.f;
 				else
@@ -721,10 +729,17 @@ CPlayerPed::ProcessWeaponSwitch(CPad *padUsed)
 
 				for (m_nSelectedWepSlot = m_currentWeapon + 1; m_nSelectedWepSlot < TOTAL_WEAPON_SLOTS; ++m_nSelectedWepSlot) {
 					if (HasWeaponSlot(m_nSelectedWepSlot) && GetWeapon(m_nSelectedWepSlot).HasWeaponAmmoToBeUsed()) {
+#ifdef FIX_BUGS
+						goto switchDetectDone;
+#else
 						goto spentAmmoCheck;
+#endif
 					}
 				}
 				m_nSelectedWepSlot = 0;
+#ifdef FIX_BUGS
+				goto switchDetectDone;
+#endif
 			}
 		} else if (padUsed->CycleWeaponLeftJustDown()) {
 			if (TheCamera.PlayerWeaponMode.Mode != CCam::MODE_M16_1STPERSON
@@ -746,6 +761,10 @@ CPlayerPed::ProcessWeaponSwitch(CPad *padUsed)
 					
 					--m_nSelectedWepSlot;
 				} while (m_nSelectedWepSlot != WEAPONSLOT_UNARMED);
+#ifdef FIX_BUGS
+				goto switchDetectDone;
+#endif
+
 			}
 		}
 	}
@@ -769,7 +788,8 @@ spentAmmoCheck:
 
 				// BUG: m_nSelectedWepSlot and GetWeapon(..) takes slot in VC but they compared them against weapon types in whole condition! jeez
 #ifdef FIX_BUGS
-				if (m_nSelectedWepSlot == WEAPONSLOT_MELEE || GetWeapon(m_nSelectedWepSlot).m_nAmmoTotal > 0 && m_nSelectedWepSlot != WEAPONSLOT_PROJECTILE) {
+				if (m_nSelectedWepSlot == WEAPONSLOT_MELEE ||
+					GetWeapon(m_nSelectedWepSlot).m_nAmmoTotal > 0 && (m_nSelectedWepSlot != WEAPONSLOT_PROJECTILE || GetWeapon(WEAPONSLOT_PROJECTILE).m_eWeaponType == WEAPONTYPE_DETONATOR_GRENADE)) {
 #else
 				if (m_nSelectedWepSlot == WEAPONTYPE_BASEBALLBAT && GetWeapon(WEAPONTYPE_BASEBALLBAT).m_eWeaponType == WEAPONTYPE_BASEBALLBAT
 					|| GetWeapon(m_nSelectedWepSlot).m_nAmmoTotal > 0
@@ -836,8 +856,8 @@ CPlayerPed::PlayerControlFighter(CPad *padUsed)
 
 	if (padMove > 0.0f) {
 		m_fRotationDest = CGeneral::GetRadianAngleBetweenPoints(0.0f, 0.0f, -leftRight, upDown) - TheCamera.Orientation;
-		m_takeAStepAfterAttack = padMove > 2 * PAD_MOVE_TO_GAME_WORLD_MOVE;
-		if (padUsed->GetSprint() && padMove > 1 * PAD_MOVE_TO_GAME_WORLD_MOVE)
+		m_takeAStepAfterAttack = padMove > (2 * PAD_MOVE_TO_GAME_WORLD_MOVE);
+		if (padUsed->GetSprint() && padMove > (1 * PAD_MOVE_TO_GAME_WORLD_MOVE))
 			bIsAttacking = false;
 	}
 
@@ -869,7 +889,7 @@ CPlayerPed::PlayerControl1stPersonRunAround(CPad *padUsed)
 	if (m_nPedState == PED_JUMP) {
 		if (bIsInTheAir) {
 			if (bUsesCollision && !bHitSteepSlope && (!bHitSomethingLastFrame || m_vecDamageNormal.z > 0.6f)
-				&& m_fDistanceTravelled < CTimer::GetTimeStep() * 0.02 && m_vecMoveSpeed.MagnitudeSqr() < 0.01f) {
+				&& m_fDistanceTravelled < CTimer::GetTimeStepInSeconds() && m_vecMoveSpeed.MagnitudeSqr() < 0.01f) {
 
 				float angleSin = Sin(m_fRotationCur); // originally sin(DEGTORAD(RADTODEG(m_fRotationCur))) o_O
 				float angleCos = Cos(m_fRotationCur);
@@ -1049,7 +1069,7 @@ CPlayerPed::FindNextWeaponLockOnTarget(CEntity *previousTarget, bool lookToLeft)
 	// nextTarget = nil; // duplicate
 	float lastCloseness = -10000.0f;
 	// CGeneral::GetATanOfXY(GetForward().x, GetForward().y); // unused
-	CVector distVec = previousTarget->GetPosition() - GetPosition();
+	CVector distVec = previousTarget->GetPosition() - TheCamera.GetPosition();
 	float referenceBeta = CGeneral::GetATanOfXY(distVec.x, distVec.y);
 
 	for (int h = CPools::GetPedPool()->GetSize() - 1; h >= 0; h--) {
@@ -1061,7 +1081,7 @@ CPlayerPed::FindNextWeaponLockOnTarget(CEntity *previousTarget, bool lookToLeft)
 					&& (!pedToCheck->bInVehicle || (pedToCheck->m_pMyVehicle && pedToCheck->m_pMyVehicle->IsBike()))
 #endif
 					&& pedToCheck->m_leader != this && !pedToCheck->bNeverEverTargetThisPed
-					&& OurPedCanSeeThisOne(pedToCheck) && CanIKReachThisTarget(pedToCheck->GetPosition(), GetWeapon(), true)) {
+					&& OurPedCanSeeThisOne(pedToCheck, true) && CanIKReachThisTarget(pedToCheck->GetPosition(), GetWeapon(), true)) {
 
 					EvaluateNeighbouringTarget(pedToCheck, &nextTarget, &lastCloseness,
 						weaponRange, referenceBeta, lookToLeft, IsThisPedAnAimingPriority(pedToCheck));
@@ -1187,7 +1207,7 @@ CPlayerPed::ProcessAnimGroups(void)
 				GetWeapon()->m_eWeaponType == WEAPONTYPE_MINIGUN)
 				groupToSet = ASSOCGRP_PLAYERCHAINSAW;
 			else if (GetWeapon()->m_eWeaponType != WEAPONTYPE_COLT45 && GetWeapon()->m_eWeaponType != WEAPONTYPE_UZI
-				// I hope this is a inlined function...
+				// I hope this is an inlined function...
 				&& GetWeapon()->m_eWeaponType != WEAPONTYPE_PYTHON && GetWeapon()->m_eWeaponType != WEAPONTYPE_TEC9
 				&& GetWeapon()->m_eWeaponType != WEAPONTYPE_SILENCED_INGRAM && GetWeapon()->m_eWeaponType != WEAPONTYPE_MP5
 				&& GetWeapon()->m_eWeaponType != WEAPONTYPE_GOLFCLUB && GetWeapon()->m_eWeaponType != WEAPONTYPE_KATANA
@@ -1220,11 +1240,21 @@ CPlayerPed::ProcessPlayerWeapon(CPad *padUsed)
 	}
 
 	if (padUsed->DuckJustDown() && !bIsDucking && m_nMoveState != PEDMOVE_SPRINT) {
+#ifdef FIX_BUGS
+		// fix tommy being locked into looking at the same spot if you duck just after starting to shoot
+		if(!m_pPointGunAt)
+			ClearPointGunAt();
+#endif
 		bCrouchWhenShooting = true;
 		SetDuck(60000, true);
 	} else if (bIsDucking && (padUsed->DuckJustDown() || m_nMoveState == PEDMOVE_SPRINT ||
 		padUsed->GetSprint() || padUsed->JumpJustDown() || padUsed->ExitVehicleJustDown())) {
 
+#ifdef FIX_BUGS
+		// same fix as above except for standing up
+		if(!m_pPointGunAt)
+			ClearPointGunAt();
+#endif
 		ClearDuck(true);
 		bCrouchWhenShooting = false;
 	}
@@ -1327,17 +1357,22 @@ CPlayerPed::ProcessPlayerWeapon(CPad *padUsed)
 			if ((padUsed->GetTarget() && CAN_AIM_WITH_ARM) || padUsed->GetWeapon()) {
 				float limitedCam = CGeneral::LimitRadianAngle(-TheCamera.Orientation);
 
+				m_cachedCamSource = TheCamera.Cams[TheCamera.ActiveCam].Source;
+				m_cachedCamFront = TheCamera.Cams[TheCamera.ActiveCam].Front;
+				m_cachedCamUp = TheCamera.Cams[TheCamera.ActiveCam].Up;
+				
 				// On this one we can rotate arm.
 				if (CAN_AIM_WITH_ARM) {
-					if (!padUsed->GetWeapon()) { // making this State != ATTACK still stops it after attack. Re-start it immediately!
-						SetPointGunAt(nil);
-						bIsPointingGunAt = false; // to not stop after attack
-					}
 					pointedGun = 2;
-					SetLookFlag(limitedCam, true);
+					m_bFreeAimActive = true;
+					SetLookFlag(limitedCam, true, true);
 					SetAimFlag(limitedCam);
-					SetLookTimer(INT32_MAX); // removing this makes head move for real, but I experinced some bugs.
-					
+					SetLookTimer(INT32_MAX);
+					((CPlayerPed*)this)->m_fFPSMoveHeading = TheCamera.Find3rdPersonQuickAimPitch();
+					if (m_nPedState != PED_ATTACK && m_nPedState != PED_AIM_GUN) {
+						// This is a seperate ped state just for pointing gun. Used for target button
+						SetPointGunAt(nil);
+					}
 				} else {
 					m_fRotationDest = limitedCam;
 					changedHeadingRate = 2;
@@ -1365,9 +1400,19 @@ CPlayerPed::ProcessPlayerWeapon(CPad *padUsed)
 		changedHeadingRate = 0;
 		RestoreHeadingRate();
 	}
-	if (pointedGun == 1 && m_nPedState != PED_ATTACK) {
-		pointedGun = 0;
-		ClearPointGunAt();
+	if (pointedGun == 1) {
+		if (m_nPedState == PED_ATTACK) {
+			if (!padUsed->GetWeapon() && (m_pedIK.m_flags & CPedIK::GUN_POINTED_SUCCESSFULLY) == 0) {
+				float limitedCam = CGeneral::LimitRadianAngle(-TheCamera.Orientation);
+
+				SetAimFlag(limitedCam);
+				((CPlayerPed*)this)->m_fFPSMoveHeading = TheCamera.Find3rdPersonQuickAimPitch();
+				m_bFreeAimActive = true;
+			}
+		} else {
+			pointedGun = 0;
+			ClearPointGunAt();
+		}
 	}
 #endif
 
@@ -1464,6 +1509,13 @@ CPlayerPed::PlayerControlZelda(CPad *padUsed)
 		padMoveInGameUnit = CVector2D(leftRight, upDown).Magnitude() / PAD_MOVE_TO_GAME_WORLD_MOVE;
 	}
 
+#ifdef FREE_CAM
+	if (TheCamera.Cams[0].Using3rdPersonMouseCam() && smoothSprayRate > 0.0f) {
+		padMoveInGameUnit = 0.0f;
+		smoothSprayWithoutMove = false;
+	}
+#endif
+
 	if (padMoveInGameUnit > 0.0f || smoothSprayWithoutMove) {
 		float padHeading = CGeneral::GetRadianAngleBetweenPoints(0.0f, 0.0f, -leftRight, upDown);
 		float neededTurn = CGeneral::LimitRadianAngle(padHeading - camOrientation);
@@ -1483,7 +1535,7 @@ CPlayerPed::PlayerControlZelda(CPad *padUsed)
 	if (m_nPedState == PED_JUMP) {
 		if (bIsInTheAir) {
 			if (bUsesCollision && !bHitSteepSlope && (!bHitSomethingLastFrame || m_vecDamageNormal.z > 0.6f)
-				&& m_fDistanceTravelled < CTimer::GetTimeStep() * 0.02 && m_vecMoveSpeed.MagnitudeSqr() < 0.01f) {
+				&& m_fDistanceTravelled < CTimer::GetTimeStepInSeconds() && m_vecMoveSpeed.MagnitudeSqr() < 0.01f) {
 
 				float angleSin = Sin(m_fRotationCur); // originally sin(DEGTORAD(RADTODEG(m_fRotationCur))) o_O
 				float angleCos = Cos(m_fRotationCur);
@@ -1679,7 +1731,7 @@ CPlayerPed::ProcessControl(void)
 		}
 	}
 	if (GetWeapon()->m_eWeaponType == WEAPONTYPE_CHAINSAW && m_nPedState != PED_ATTACK && !bInVehicle) {
-		DMAudio.PlayOneShot(m_audioEntityId, SOUND_WEAPON_CHAINSAW_ATTACK, 0.0f);
+		DMAudio.PlayOneShot(m_audioEntityId, SOUND_WEAPON_CHAINSAW_IDLE, 0.0f);
 	}
 
 	if (m_nMoveState != PEDMOVE_RUN && m_nMoveState != PEDMOVE_SPRINT)
@@ -2079,13 +2131,13 @@ CPlayerPed::UpdateMeleeAttackers(void)
 void
 CPlayerPed::RemovePedFromMeleeList(CPed *ped)
 {
-	int i = 0;
-	for (; m_pMeleeList[i] != ped; i++) {
-		if (i >= ARRAY_SIZE(m_pMeleeList))
+	for (uint16 i = 0; i < ARRAY_SIZE(m_pMeleeList); i++) {
+		if (m_pMeleeList[i] == ped) {
+			m_pMeleeList[i] = nil;
+			ped->m_attackTimer = 0;
 			return;
+		}
 	}
-	m_pMeleeList[i] = nil;
-	ped->m_attackTimer = 0;
 }
 
 void
@@ -2187,14 +2239,14 @@ void
 CPlayerPed::Save(uint8*& buf)
 {
 	CPed::Save(buf);
-	SkipSaveBuf(buf, 16);
+	ZeroSaveBuf(buf, 16);
 	CopyToBuf(buf, m_fMaxStamina);
-	SkipSaveBuf(buf, 28);
+	ZeroSaveBuf(buf, 28);
 	CopyToBuf(buf, m_nTargettableObjects[0]);
 	CopyToBuf(buf, m_nTargettableObjects[1]);
 	CopyToBuf(buf, m_nTargettableObjects[2]);
 	CopyToBuf(buf, m_nTargettableObjects[3]);
-	SkipSaveBuf(buf, 164);
+	ZeroSaveBuf(buf, 164);
 }
 
 void

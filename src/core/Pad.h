@@ -1,5 +1,10 @@
 #pragma once
 
+#include "common.h"
+#include "config.h"
+#include "Touch.h"
+
+extern CTouch gTouch;
 enum {
 	PLAYERCONTROL_ENABLED = 0,
 	PLAYERCONTROL_CAMERA = 1,
@@ -54,6 +59,18 @@ public:
 	CMouseControllerState();
 	void Clear();
 };
+
+class CTouchControllerState
+{
+public:
+	bool TCH;
+	uint8_t pad[3];
+	float x, y;
+	
+	CTouchControllerState();
+	void Clear();
+};
+VALIDATE_SIZE(CTouchControllerState, 0x12);
 
 VALIDATE_SIZE(CMouseControllerState, 0x10);
 
@@ -186,6 +203,10 @@ public:
 	static CMouseControllerState OldMouseControllerState;
 	static CMouseControllerState NewMouseControllerState;
 	static CMouseControllerState PCTempMouseControllerState;
+	//touch
+	static CTouchControllerState OldTouchControllerState;
+	static CTouchControllerState NewTouchControllerState;
+	static CTouchControllerState TempTouchControllerState;
 	
 	
 #ifdef GTA_PS2_STUFF
@@ -195,6 +216,7 @@ public:
 	void ClearMouseHistory();
 	void ClearKeyBoardHistory();
 	void UpdateMouse();
+	void UpdateTouch();
 	CControllerState ReconcileTwoControllersInput(CControllerState const &State1, CControllerState const &State2);
 	void StartShake(int16 nDur, uint8 nFreq);
 	void StartShake_Distance(int16 nDur, uint8 nFreq, float fX, float fY, float fz);
@@ -317,6 +339,17 @@ public:
 
 	float GetMouseX() { return NewMouseControllerState.x; }
 	float GetMouseY() { return NewMouseControllerState.y; }
+	
+	//finger
+	
+	bool GetFingerJustDown() {return !!(NewTouchControllerState.TCH && !OldTouchControllerState.TCH);}
+	bool GetFingerJustUp()  { return !!(!NewTouchControllerState.TCH && OldTouchControllerState.TCH); }
+	
+	float GetTouchX() { return NewTouchControllerState.x; }
+	float GetTouchY() { return NewTouchControllerState.y; }
+	
+	bool GetFinger()         { return NewTouchControllerState.TCH; }
+	bool GetFingerUp()         { return !OldTouchControllerState.TCH; }
 
 	// keyboard
 	
@@ -483,3 +516,19 @@ public:
 
 VALIDATE_SIZE(CPad, 0xFC);
 extern CPad Pads[MAX_PADS];
+
+//TODO: Refactor this piece of shit and make it safer
+#ifdef LIBRW_SDL2
+extern bool mouse1;
+extern bool mouse2;
+extern float mousePosX;
+extern float mousePosY;
+
+struct TouchInfo{
+	float x, y;
+	float dx, dy;
+	bool pressed;
+};
+
+extern TouchInfo touchInfo[10];
+#endif

@@ -543,7 +543,8 @@ CCutsceneMgr::Update(void)
 				|| (CGame::playingIntro && CPad::GetPad(0)->GetStartJustDown())
 				|| CPad::GetPad(0)->GetLeftMouseJustDown()
 				|| CPad::GetPad(0)->GetEnterJustDown()
-				|| CPad::GetPad(0)->GetCharJustDown(' '))
+				|| CPad::GetPad(0)->GetCharJustDown(' ')
+				|| CPad::GetPad(0)->GetFingerJustDown())
 					FinishCutscene();
 		}
 }

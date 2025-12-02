@@ -1,3 +1,4 @@
+#include "SDL_gamecontroller.h"
 #define WITHDINPUT
 #include "common.h"
 #include "platform.h"
@@ -46,33 +47,33 @@ void CControllerConfigManager::MakeControllerActionsBlank()
 #ifdef RW_GL3
 int MapIdToButtonId(int mapId) {
 	switch (mapId) {
-		case GLFW_GAMEPAD_BUTTON_A: // Cross
+		case SDL_CONTROLLER_BUTTON_A: // Cross
 			return 2;
-		case GLFW_GAMEPAD_BUTTON_B: // Circle
+		case SDL_CONTROLLER_BUTTON_B: // Circle
 			return 1;
-		case GLFW_GAMEPAD_BUTTON_X: // Square
+		case SDL_CONTROLLER_BUTTON_X: // Square
 			return 3;
-		case GLFW_GAMEPAD_BUTTON_Y: // Triangle
+		case SDL_CONTROLLER_BUTTON_Y: // Triangle
 			return 4;
-		case GLFW_GAMEPAD_BUTTON_LEFT_BUMPER:
+		case SDL_CONTROLLER_BUTTON_LEFTSHOULDER:
 			return 7;
-		case GLFW_GAMEPAD_BUTTON_RIGHT_BUMPER:
+		case SDL_CONTROLLER_BUTTON_RIGHTSHOULDER:
 			return 8;
-		case GLFW_GAMEPAD_BUTTON_BACK:
+		case SDL_CONTROLLER_BUTTON_BACK:
 			return 9;
-		case GLFW_GAMEPAD_BUTTON_START:
+		case SDL_CONTROLLER_BUTTON_START:
 			return 12;
-		case GLFW_GAMEPAD_BUTTON_LEFT_THUMB:
+		case SDL_CONTROLLER_BUTTON_LEFTSTICK:
 			return 10;
-		case GLFW_GAMEPAD_BUTTON_RIGHT_THUMB:
+		case SDL_CONTROLLER_BUTTON_RIGHTSTICK:
 			return 11;
-		case GLFW_GAMEPAD_BUTTON_DPAD_UP:
+		case SDL_CONTROLLER_BUTTON_DPAD_UP:
 			return 13;
-		case GLFW_GAMEPAD_BUTTON_DPAD_RIGHT:
+		case SDL_CONTROLLER_BUTTON_DPAD_RIGHT:
 			return 14;
-		case GLFW_GAMEPAD_BUTTON_DPAD_DOWN:
+		case SDL_CONTROLLER_BUTTON_DPAD_DOWN:
 			return 15;
-		case GLFW_GAMEPAD_BUTTON_DPAD_LEFT:
+		case SDL_CONTROLLER_BUTTON_DPAD_LEFT:
 			return 16;
 		// GLFW sends those as axes, so I added them here manually.
 		case 15: // Left trigger
@@ -100,9 +101,12 @@ int32 CControllerConfigManager::GetJoyButtonJustDown()
 #elif defined RW_GL3
 	if (m_NewState.isGamepad) {
 		for (int32 i = 0; i < MAX_BUTTONS; i++) {
-			if (m_NewState.mappedButtons[i] && !(m_OldState.mappedButtons[i]))
+			printf("Button number %d, NewState: %d, OldState: %d\n",i, m_NewState.mappedButtons[i], m_OldState.mappedButtons[i]);
+			if (m_NewState.mappedButtons[i] && !(m_OldState.mappedButtons[i])){
 				return MapIdToButtonId(i);
+			}
 		}
+		printf("\n\n");
 	} else {
 		for (int32 i = 0; i < Min(m_NewState.numButtons, MAX_BUTTONS); i++) {
 			if (m_NewState.buttons[i] && !(m_OldState.buttons[i]))
@@ -2673,6 +2677,14 @@ const char *PlayStationButtons[][MAX_CONTROLLERACTIONS] =
 #undef PS2_CROSS
 #undef PS2_SQUARE
 
+const char *NintendoSwitchButtons_noIcons[][MAX_CONTROLLERACTIONS] =
+    CONTROLLER_BUTTONS("Y", "A", "B", "X", "L", "ZL", "LS", "R", "ZR", "RS", "BACK", "right stick up", "right stick down", "right stick left", "right stick right");
+
+#ifdef BUTTON_ICONS
+const char *NintendoSwitchButtons[][MAX_CONTROLLERACTIONS] =
+    CONTROLLER_BUTTONS("~T~", "~O~", "~X~", "~Q~", "~K~", "~M~", "~A~", "~J~", "~V~", "~C~", "BACK", "~H~", "~L~", "~(~", "~)~");
+#endif
+
 #undef UP
 #undef DOWN
 #undef LEFT
@@ -2698,6 +2710,9 @@ void CControllerConfigManager::GetWideStringOfCommandKeys(uint16 action, wchar *
 		case CMenuManager::CONTROLLER_DUALSHOCK4:
 			Buttons = CFont::ButtonsSlot != -1 ? PlayStationButtons : PlayStationButtons_noIcons;
 			break;
+		case CMenuManager::CONTROLLER_NINTENDO_SWITCH:
+			Buttons = CFont::ButtonsSlot != -1 ? NintendoSwitchButtons : NintendoSwitchButtons_noIcons;
+			break;
 		default:
 	#endif
 			Buttons = CFont::ButtonsSlot != -1 ? XboxButtons : XboxButtons_noIcons;
@@ -2712,6 +2727,9 @@ void CControllerConfigManager::GetWideStringOfCommandKeys(uint16 action, wchar *
 		case CMenuManager::CONTROLLER_DUALSHOCK3:
 		case CMenuManager::CONTROLLER_DUALSHOCK4:
 			Buttons = PlayStationButtons_noIcons;
+			break;
+		case CMenuManager::CONTROLLER_NINTENDO_SWITCH:
+			Buttons = NintendoSwitchButtons_noIcons;
 			break;
 		default:
 			Buttons = XboxButtons_noIcons;
@@ -2791,7 +2809,7 @@ void CControllerConfigManager::UpdateJoyButtonState(int32 padnumber)
 #elif defined RW_GL3
 	if (m_NewState.isGamepad) {
 		for (int32 i = 0; i < MAX_BUTTONS; i++) {
-			if (i == GLFW_GAMEPAD_BUTTON_GUIDE)
+			if (i == SDL_CONTROLLER_BUTTON_GUIDE)
 				continue;
 
 			m_aButtonStates[MapIdToButtonId(i)-1] = m_NewState.mappedButtons[i];

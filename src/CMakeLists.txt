@@ -50,12 +50,17 @@ if(LIBRW_PLATFORM_D3D9)
 endif()
 
 target_compile_definitions(${EXECUTABLE} PRIVATE CMAKE_BUILD)
+target_compile_definitions(${EXECUTABLE} PRIVATE USE_OUR_VERSIONING)
 
 if(${PROJECT}_AUDIO STREQUAL "OAL")
     find_package(OpenAL REQUIRED)
-    target_include_directories(${EXECUTABLE} PRIVATE ${OPENAL_INCLUDE_DIR})
-    target_link_libraries(${EXECUTABLE} PRIVATE ${OPENAL_LIBRARY})
-    target_compile_definitions(${EXECUTABLE} PRIVATE ${OPENAL_DEFINITIONS})
+    if(TARGET OpenAL::OpenAL)
+        target_link_libraries(${EXECUTABLE} PRIVATE OpenAL::OpenAL)
+    else()
+        target_include_directories(${EXECUTABLE} PRIVATE ${OPENAL_INCLUDE_DIR})
+        target_link_libraries(${EXECUTABLE} PRIVATE ${OPENAL_LIBRARY})
+        target_compile_definitions(${EXECUTABLE} PRIVATE ${OPENAL_DEFINITIONS})
+    endif()
     target_compile_definitions(${EXECUTABLE} PRIVATE AUDIO_OAL)
 elseif(${PROJECT}_AUDIO STREQUAL "MSS")
     find_package(MilesSDK REQUIRED)
@@ -119,13 +124,35 @@ elseif(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
     )
 endif()
 
+if(NINTENDO_SWITCH)
+    set(${PROJECT}_C_CXX_EXTENSIONS ON)
+else()
+    set(${PROJECT}_C_CXX_EXTENSIONS OFF)
+endif()
+
+if(LIBRW_PLATFORM_GL3 AND LIBRW_GL3_GFXLIB STREQUAL "GLFW")
+	include(CheckSymbolExists)
+
+	set(CMAKE_REQUIRED_LIBRARIES glfw)
+	set(CMAKE_REQUIRED_DEFINITIONS -DGLFW_EXPOSE_NATIVE_X11)
+	check_symbol_exists(glfwGetX11Display "GLFW/glfw3.h;GLFW/glfw3native.h" GLFW_HAS_X11)
+	unset(CMAKE_REQUIRED_DEFINITIONS)
+	unset(CMAKE_REQUIRED_LIBRARIES)
+
+	if (GLFW_HAS_X11)
+		find_package(X11 REQUIRED)
+		target_link_libraries(${EXECUTABLE} PRIVATE X11::X11)
+		target_compile_definitions(${EXECUTABLE} PRIVATE GET_KEYBOARD_INPUT_FROM_X11)
+	endif (GLFW_HAS_X11)
+endif()
+
 set_target_properties(${EXECUTABLE}
     PROPERTIES
         C_STANDARD 11
-        C_EXTENSIONS OFF
+        C_EXTENSIONS ${${PROJECT}_C_CXX_EXTENSIONS}
         C_STANDARD_REQUIRED ON
         CXX_STANDARD 11
-        CXX_EXTENSIONS OFF
+        CXX_EXTENSIONS ${${PROJECT}_C_CXX_EXTENSIONS}
         CXX_STANDARD_REQUIRED ON
 )
 
@@ -139,3 +166,5 @@ if(${PROJECT}_INSTALL)
         install(FILES $<TARGET_PDB_FILE:${EXECUTABLE}> DESTINATION "." OPTIONAL)
     endif()
 endif()
+
+reVC_platform_target(${EXECUTABLE} INSTALL)

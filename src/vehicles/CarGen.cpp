@@ -17,6 +17,7 @@
 #include "World.h"
 #include "Zones.h"
 #include "Occlusion.h"
+#include "SaveBuf.h"
 
 uint8 CTheCarGenerators::ProcessCounter;
 uint32 CTheCarGenerators::NumOfCarGenerators;
@@ -201,7 +202,7 @@ bool CCarGenerator::CheckForBlockage(int32 mi)
 {
 	int16 entities;
 	CEntity* pEntities[8];
-	CColModel* pColModel = CModelInfo::GetModelInfo(mi)->GetColModel();
+	CColModel* pColModel = CModelInfo::GetColModel(mi);
 	CWorld::FindObjectsKindaColliding(CVector(m_vecPos), pColModel->boundingSphere.radius, 1, &entities, 8, pEntities, false, true, true, false, false);
 	for (int i = 0; i < entities; i++) {
 		if (m_vecPos.z + pColModel->boundingBox.min.z < pEntities[i]->GetPosition().z + pEntities[i]->GetColModel()->boundingBox.max.z + 1.0f &&
@@ -292,14 +293,17 @@ void CTheCarGenerators::LoadAllCarGenerators(uint8* buffer, uint32 size)
 	Init();
 INITSAVEBUF
 	CheckSaveHeader(buffer, 'C','G','N','\0', size - SAVE_HEADER_SIZE);
-	assert(ReadSaveBuf<uint32>(buffer) == nGeneralDataSize);
-	NumOfCarGenerators = ReadSaveBuf<uint32>(buffer);
-	CurrentActiveCount = ReadSaveBuf<uint32>(buffer);
-	ProcessCounter = ReadSaveBuf<uint8>(buffer);
-	GenerateEvenIfPlayerIsCloseCounter = ReadSaveBuf<uint8>(buffer);
-	ReadSaveBuf<int16>(buffer); // alignment
-	assert(ReadSaveBuf<uint32>(buffer) == sizeof(CarGeneratorArray));
+	uint32 tmp;
+	ReadSaveBuf(&tmp, buffer);
+	assert(tmp == nGeneralDataSize);
+	ReadSaveBuf(&NumOfCarGenerators, buffer);
+	ReadSaveBuf(&CurrentActiveCount, buffer);
+	ReadSaveBuf(&ProcessCounter, buffer);
+	ReadSaveBuf(&GenerateEvenIfPlayerIsCloseCounter, buffer);
+	SkipSaveBuf(buffer, 2);
+	ReadSaveBuf(&tmp, buffer);
+	assert(tmp == sizeof(CarGeneratorArray));
 	for (int i = 0; i < NUM_CARGENS; i++) 
-		CarGeneratorArray[i] = ReadSaveBuf<CCarGenerator>(buffer);
+		ReadSaveBuf(&CarGeneratorArray[i], buffer);
 VALIDATESAVEBUF(size)
 }

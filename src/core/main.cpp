@@ -379,7 +379,7 @@ DoRWStuffEndOfFrame(void)
 	}
 #else
 	if (CPad::GetPad(1)->GetLeftShockJustDown() || CPad::GetPad(0)->GetFJustDown(11)) {
-		sprintf(s, "screen_%11lld.png", time(nil));
+		sprintf(s, "screen_%011ld.png", time(nil));
 		RwGrabScreen(Scene.camera, s);
 	}
 #endif
@@ -1079,6 +1079,8 @@ DisplayGameDebugText()
 	sprintf(verA,
 #if defined _WIN32
 			"Win "
+#elif defined ANDROID
+			"Android"
 #elif defined __linux__
 		    "Linux "
 #elif defined __APPLE__
@@ -1131,11 +1133,14 @@ DisplayGameDebugText()
 #endif // #ifdef DRAW_GAME_VERSION_TEXT
 
 	FrameSamples++;
-#ifdef FIX_HIGH_FPS_BUGS_ON_FRONTEND
-	FramesPerSecondCounter += frameTime / 1000.f; // convert to seconds
+#ifdef FIX_BUGS
+	// this is inaccurate with over 1000 fps
+	static uint32 PreviousTimeInMillisecondsPauseMode = 0;
+	FramesPerSecondCounter += (CTimer::GetTimeInMillisecondsPauseMode() - PreviousTimeInMillisecondsPauseMode) / 1000.0f; // convert to seconds
+	PreviousTimeInMillisecondsPauseMode = CTimer::GetTimeInMillisecondsPauseMode();
 	FramesPerSecond = FrameSamples / FramesPerSecondCounter;
 #else
-	FramesPerSecondCounter += 1000.0f / (CTimer::GetTimeStepNonClippedInSeconds() * 1000.0f);	
+	FramesPerSecondCounter += 1000.0f / CTimer::GetTimeStepNonClippedInMilliseconds();
 	FramesPerSecond = FramesPerSecondCounter / FrameSamples;
 #endif
 	
@@ -1281,11 +1286,13 @@ void
 RenderEffects_new(void)
 {
 	PUSH_RENDERGROUP("RenderEffects_new");
+/*	// stupid to do this before the whole world is drawn!
 	CShadows::RenderStaticShadows();
 	// CRenderer::GenerateEnvironmentMap
 	CShadows::RenderStoredShadows();
 	CSkidmarks::Render();
 	CRubbish::Render();
+*/
 
 	// these aren't really effects
 	DefinedState();
@@ -1308,6 +1315,13 @@ if(gbRenderFadingInEntities)
 	CRenderer::RenderFadingInEntities();
 
 	// actual effects here
+
+	// from above
+	CShadows::RenderStaticShadows();
+	CShadows::RenderStoredShadows();
+	CSkidmarks::Render();
+	CRubbish::Render();
+
 	CGlass::Render();
 	// CMattRenderer::ResetRenderStates
 	DefinedState();

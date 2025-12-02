@@ -1724,7 +1724,13 @@ CStreaming::StreamVehiclesAndPeds(void)
 		for(i = 0; i < CCarCtrl::TOTAL_CUSTOM_CLASSES; i++){
 			if(CCarCtrl::NumRequestsOfCarRating[i] > maxReq &&
 				((i == 0 && zone.carThreshold[0] != 0) ||
+#ifdef FIX_BUGS
+				(i < CCarCtrl::NUM_CAR_CLASSES && zone.carThreshold[i] != zone.carThreshold[i-1]) ||
+				(i == CCarCtrl::NUM_CAR_CLASSES && zone.boatThreshold[i - CCarCtrl::NUM_CAR_CLASSES] != 0) ||
+				(i > CCarCtrl::NUM_CAR_CLASSES && i < CCarCtrl::TOTAL_CUSTOM_CLASSES && zone.boatThreshold[i - CCarCtrl::NUM_CAR_CLASSES] != zone.boatThreshold[i - CCarCtrl::NUM_CAR_CLASSES - 1]))) {
+#else
 				(i != 0 && zone.carThreshold[i] != zone.carThreshold[i-1]))) {
+#endif
 				maxReq = CCarCtrl::NumRequestsOfCarRating[i];
 				mostRequestedRating = i;
 			}
@@ -1867,8 +1873,7 @@ CStreaming::RemoveCurrentZonesModels(void)
 	if (ms_currentPedGrp != -1)
 		for (i = 0; i < NUMMODELSPERPEDGROUP; i++) {
 			ms_bIsPedFromPedGroupLoaded[i] = false;
-			if (CPopulation::ms_pPedGroups[ms_currentPedGrp].models[i] != -1 &&
-			    CPopulation::ms_pPedGroups[ms_currentPedGrp].models[i] != MI_MALE01) {
+			if (CPopulation::ms_pPedGroups[ms_currentPedGrp].models[i] != -1) {
 				SetModelIsDeletable(CPopulation::ms_pPedGroups[ms_currentPedGrp].models[i]);
 				SetModelTxdIsDeletable(CPopulation::ms_pPedGroups[ms_currentPedGrp].models[i]);
 			}

@@ -32,6 +32,7 @@
 #include "Timecycle.h"
 #include "Weather.h"
 #include "Coronas.h"
+#include "SaveBuf.h"
 
 bool CVehicle::bWheelsOnlyCheat;
 bool CVehicle::bAllDodosCheat;
@@ -50,10 +51,10 @@ bool CVehicle::bDisableRemoteDetonationOnContact;
 bool CVehicle::m_bDisplayHandlingInfo;
 #endif
 
-void *CVehicle::operator new(size_t sz) { return CPools::GetVehiclePool()->New();  }
-void *CVehicle::operator new(size_t sz, int handle) { return CPools::GetVehiclePool()->New(handle); }
-void CVehicle::operator delete(void *p, size_t sz) { CPools::GetVehiclePool()->Delete((CVehicle*)p); }
-void CVehicle::operator delete(void *p, int handle) { CPools::GetVehiclePool()->Delete((CVehicle*)p); }
+void *CVehicle::operator new(size_t sz) throw() { return CPools::GetVehiclePool()->New();  }
+void *CVehicle::operator new(size_t sz, int handle) throw() { return CPools::GetVehiclePool()->New(handle); }
+void CVehicle::operator delete(void *p, size_t sz) throw() { CPools::GetVehiclePool()->Delete((CVehicle*)p); }
+void CVehicle::operator delete(void *p, int handle) throw() { CPools::GetVehiclePool()->Delete((CVehicle*)p); }
 
 #ifdef FIX_BUGS
 // I think they meant that
@@ -151,7 +152,7 @@ CVehicle::CVehicle(uint8 CreatedBy)
 	m_fMapObjectHeightAhead = m_fMapObjectHeightBehind = 0.0f;
 	m_audioEntityId = DMAudio.CreateEntity(AUDIOTYPE_PHYSICAL, this);
 	if(m_audioEntityId >= 0)
-		DMAudio.SetEntityStatus(m_audioEntityId, true);
+		DMAudio.SetEntityStatus(m_audioEntityId, TRUE);
 	//m_nRadioStation = CGeneral::GetRandomNumber() % NUM_RADIOS;
 	switch(GetModelIndex()){
 	case MI_HUNTER:
@@ -478,11 +479,11 @@ CVehicle::FlyingControl(eFlightModel flightModel)
 		ApplyMoveForce(GRAVITY * GetUp() * fThrust * m_fMass * CTimer::GetTimeStep());
 
 		if (GetUp().z > 0.0f){
-			float upRight = clamp(GetRight().z, -flyingHandling->fFormLift, flyingHandling->fFormLift);
+			float upRight = Clamp(GetRight().z, -flyingHandling->fFormLift, flyingHandling->fFormLift);
 			float upImpulseRight = -upRight * flyingHandling->fAttackLift * m_fTurnMass * CTimer::GetTimeStep();
 			ApplyTurnForce(upImpulseRight * GetUp(), GetRight());
 
-			float upFwd = clamp(GetForward().z, -flyingHandling->fFormLift, flyingHandling->fFormLift);
+			float upFwd = Clamp(GetForward().z, -flyingHandling->fFormLift, flyingHandling->fFormLift);
 			float upImpulseFwd = -upFwd * flyingHandling->fAttackLift * m_fTurnMass * CTimer::GetTimeStep();
 			ApplyTurnForce(upImpulseFwd * GetUp(), GetForward());
 		}else{
@@ -521,8 +522,8 @@ CVehicle::FlyingControl(eFlightModel flightModel)
 			fPitch = -CPad::GetPad(0)->GetCarGunUpDown() / 128.0f;
 		if (CPad::GetPad(0)->GetHorn()) {
 			fYaw = 0.0f;
-			fPitch = clamp(flyingHandling->fPitchStab * DotProduct(m_vecMoveSpeed, GetForward()), -200.0f, 1.3f);
-			fRoll = clamp(flyingHandling->fRollStab * DotProduct(m_vecMoveSpeed, GetRight()), -200.0f, 1.3f);
+			fPitch = Clamp(flyingHandling->fPitchStab * DotProduct(m_vecMoveSpeed, GetForward()), -200.0f, 1.3f);
+			fRoll = Clamp(flyingHandling->fRollStab * DotProduct(m_vecMoveSpeed, GetRight()), -200.0f, 1.3f);
 		}
 		ApplyTurnForce(fPitch * GetUp() * flyingHandling->fPitch * m_fTurnMass * CTimer::GetTimeStep(), GetForward());
 		ApplyTurnForce(fRoll * GetUp() * flyingHandling->fRoll * m_fTurnMass * CTimer::GetTimeStep(), GetRight());
@@ -811,11 +812,12 @@ CVehicle::ProcessWheel(CVector &wheelFwd, CVector &wheelRight, CVector &wheelCon
 	if(contactSpeedRight != 0.0f){
 		// exert opposing force
 		right = -contactSpeedRight/wheelsOnGround;
-#ifdef FIX_BUGS
+		// BUG?
 		// contactSpeedRight is independent of framerate but right has timestep as a factor
 		// so we probably have to fix this
-		right *= CTimer::GetTimeStepFix();
-#endif
+		// fixing this causes jittery cars at 15fps, and causes the car to move backwards slowly at 18fps
+		// at 19fps, the effects are gone ...
+		//right *= CTimer::GetTimeStepFix();
 
 		if(wheelStatus == WHEEL_STATUS_BURST){
 			float fwdspeed = Min(contactSpeedFwd, fBurstSpeedMax);
@@ -839,7 +841,8 @@ CVehicle::ProcessWheel(CVector &wheelFwd, CVector &wheelRight, CVector &wheelCon
 #ifdef FIX_BUGS
 		// contactSpeedFwd is independent of framerate but fwd has timestep as a factor
 		// so we probably have to fix this
-		fwd *= CTimer::GetTimeStepFix();
+		// better get rid of it here too
+		//fwd *= CTimer::GetTimeStepFix();
 #endif
 
 		if(!bBraking){
@@ -975,7 +978,8 @@ CVehicle::ProcessBikeWheel(CVector &wheelFwd, CVector &wheelRight, CVector &whee
 #ifdef FIX_BUGS
 		// contactSpeedRight is independent of framerate but right has timestep as a factor
 		// so we probably have to fix this
-		right *= CTimer::GetTimeStepFix();
+		// see above
+		//right *= CTimer::GetTimeStepFix();
 #endif
 
 		if(wheelStatus == WHEEL_STATUS_BURST){
@@ -1000,7 +1004,8 @@ CVehicle::ProcessBikeWheel(CVector &wheelFwd, CVector &wheelRight, CVector &whee
 #ifdef FIX_BUGS
 		// contactSpeedFwd is independent of framerate but fwd has timestep as a factor
 		// so we probably have to fix this
-		fwd *= CTimer::GetTimeStepFix();
+		// see above
+		//fwd *= CTimer::GetTimeStepFix();
 #endif
 
 		if(!bBraking){
@@ -1512,9 +1517,8 @@ CVehicle::MakeNonDraggedPedsLeaveVehicle(CPed *ped1, CPed *ped2, CPlayerPed *&pl
 		if(p && p != ped1 && !p->bStayInCarOnJack){
 			peds[numPeds++] = p;
 			// uhh what?
-			if(i < 1 && !ped1IsDriver)
-				continue;
-			peds2[numPeds2++] = p;
+			if(i > 0 || ped1IsDriver)
+				peds2[numPeds2++] = p;
 		}
 	}
 
@@ -1564,10 +1568,8 @@ CVehicle::ProcessDelayedExplosion(void)
 	if(IsCar() && ((CAutomobile*)this)->m_bombType == CARBOMB_TIMEDACTIVE && (m_nBombTimer & 0xFE00) != (prev & 0xFE00))
 		DMAudio.PlayOneShot(m_audioEntityId, SOUND_CAR_BOMB_TICK, 0.0f);
 
-	if (m_nBombTimer != 0)
-		return;
-
-	BlowUpCar(m_pBlowUpEntity);
+	if (m_nBombTimer == 0)
+		BlowUpCar(m_pBlowUpEntity);
 }
 
 bool
@@ -1688,7 +1690,7 @@ CVehicle::CanPedOpenLocks(CPed *ped)
 	if(m_nDoorLock == CARLOCK_LOCKED ||
 	   m_nDoorLock == CARLOCK_LOCKED_INITIALLY ||
 	   m_nDoorLock == CARLOCK_LOCKED_PLAYER_INSIDE ||
-	   m_nDoorLock == CARLOCK_SKIP_SHUT_DOORS)
+	   m_nDoorLock == CARLOCK_LOCKED_BUT_CAN_BE_DAMAGED)
 		return false;
 	if(ped->IsPlayer() && m_nDoorLock == CARLOCK_LOCKOUT_PLAYER_ONLY)
 		return false;
@@ -1700,7 +1702,7 @@ CVehicle::CanDoorsBeDamaged(void)
 {
 	return m_nDoorLock == CARLOCK_NOT_USED ||
 		m_nDoorLock == CARLOCK_UNLOCKED ||
-		m_nDoorLock == CARLOCK_SKIP_SHUT_DOORS;
+		m_nDoorLock == CARLOCK_LOCKED_BUT_CAN_BE_DAMAGED;
 }
 
 bool
@@ -1973,9 +1975,7 @@ CVehicle::RemovePassenger(CPed *p)
 bool
 CVehicle::IsDriver(CPed *ped)
 {
-	if(ped == nil)
-		return false;
-	return ped == pDriver;
+	return ped && ped == pDriver;
 }
 
 bool
@@ -2026,7 +2026,7 @@ CVehicle::ProcessCarAlarm(void)
 {
 	uint32 step;
 
-	if(!IsAlarmOn())
+	if(m_nAlarmState == 0 || m_nAlarmState == -1)
 		return;
 
 	step = CTimer::GetTimeStepInMilliseconds();
@@ -2161,9 +2161,9 @@ CVehicle::HeliDustGenerate(CEntity *heli, float radius, float ground, int rnd)
 				float red = (0.3*CTimeCycle::GetDirectionalRed() + CTimeCycle::GetAmbientRed_Obj())*255.0f/4.0f;
 				float green = (0.3*CTimeCycle::GetDirectionalGreen() + CTimeCycle::GetAmbientGreen_Obj())*255.0f/4.0f;
 				float blue = (0.3*CTimeCycle::GetDirectionalBlue() + CTimeCycle::GetAmbientBlue_Obj())*255.0f/4.0f;
-				r = clamp(red, 0.0f, 255.0f);
-				g = clamp(green, 0.0f, 255.0f);
-				b = clamp(blue, 0.0f, 255.0f);
+				r = Clamp(red, 0.0f, 255.0f);
+				g = Clamp(green, 0.0f, 255.0f);
+				b = Clamp(blue, 0.0f, 255.0f);
 				RwRGBA col1 = { r, g, b, (RwUInt8)CGeneral::GetRandomNumberInRange(8, 32) };
 				RwRGBA col2 = { 255, 255, 255, 32 };
 
@@ -2363,42 +2363,42 @@ DestroyVehicleAndDriverAndPassengers(CVehicle* pVehicle)
 void
 CVehicle::Save(uint8*& buf)
 {
-	SkipSaveBuf(buf, 4);
-	WriteSaveBuf<float>(buf, GetRight().x);
-	WriteSaveBuf<float>(buf, GetRight().y);
-	WriteSaveBuf<float>(buf, GetRight().z);
-	SkipSaveBuf(buf, 4);
-	WriteSaveBuf<float>(buf, GetForward().x);
-	WriteSaveBuf<float>(buf, GetForward().y);
-	WriteSaveBuf<float>(buf, GetForward().z);
-	SkipSaveBuf(buf, 4);
-	WriteSaveBuf<float>(buf, GetUp().x);
-	WriteSaveBuf<float>(buf, GetUp().y);
-	WriteSaveBuf<float>(buf, GetUp().z);
-	SkipSaveBuf(buf, 4);
-	WriteSaveBuf<float>(buf, GetPosition().x);
-	WriteSaveBuf<float>(buf, GetPosition().y);
-	WriteSaveBuf<float>(buf, GetPosition().z);
-	SkipSaveBuf(buf, 16);
+	ZeroSaveBuf(buf, 4);
+	WriteSaveBuf(buf, GetRight().x);
+	WriteSaveBuf(buf, GetRight().y);
+	WriteSaveBuf(buf, GetRight().z);
+	ZeroSaveBuf(buf, 4);
+	WriteSaveBuf(buf, GetForward().x);
+	WriteSaveBuf(buf, GetForward().y);
+	WriteSaveBuf(buf, GetForward().z);
+	ZeroSaveBuf(buf, 4);
+	WriteSaveBuf(buf, GetUp().x);
+	WriteSaveBuf(buf, GetUp().y);
+	WriteSaveBuf(buf, GetUp().z);
+	ZeroSaveBuf(buf, 4);
+	WriteSaveBuf(buf, GetPosition().x);
+	WriteSaveBuf(buf, GetPosition().y);
+	WriteSaveBuf(buf, GetPosition().z);
+	ZeroSaveBuf(buf, 16);
 	SaveEntityFlags(buf);
-	SkipSaveBuf(buf, 208);
+	ZeroSaveBuf(buf, 208);
 	AutoPilot.Save(buf);
-	WriteSaveBuf<int8>(buf, m_currentColour1);
-	WriteSaveBuf<int8>(buf, m_currentColour2);
-	SkipSaveBuf(buf, 2);
-	WriteSaveBuf<int16>(buf, m_nAlarmState);
-	SkipSaveBuf(buf, 42);
-	WriteSaveBuf<uint8>(buf, m_nNumMaxPassengers);
-	SkipSaveBuf(buf, 3);
-	WriteSaveBuf<float>(buf, field_1D0[0]);
-	WriteSaveBuf<float>(buf, field_1D0[1]);
-	WriteSaveBuf<float>(buf, field_1D0[2]);
-	WriteSaveBuf<float>(buf, field_1D0[3]);
-	SkipSaveBuf(buf, 8);
-	WriteSaveBuf<float>(buf, m_fSteerAngle);
-	WriteSaveBuf<float>(buf, m_fGasPedal);
-	WriteSaveBuf<float>(buf, m_fBrakePedal);
-	WriteSaveBuf<uint8>(buf, VehicleCreatedBy);
+	WriteSaveBuf(buf, m_currentColour1);
+	WriteSaveBuf(buf, m_currentColour2);
+	ZeroSaveBuf(buf, 2);
+	WriteSaveBuf(buf, m_nAlarmState);
+	ZeroSaveBuf(buf, 42);
+	WriteSaveBuf(buf, m_nNumMaxPassengers);
+	ZeroSaveBuf(buf, 3);
+	WriteSaveBuf(buf, field_1D0[0]);
+	WriteSaveBuf(buf, field_1D0[1]);
+	WriteSaveBuf(buf, field_1D0[2]);
+	WriteSaveBuf(buf, field_1D0[3]);
+	ZeroSaveBuf(buf, 8);
+	WriteSaveBuf(buf, m_fSteerAngle);
+	WriteSaveBuf(buf, m_fGasPedal);
+	WriteSaveBuf(buf, m_fBrakePedal);
+	WriteSaveBuf(buf, VehicleCreatedBy);
 	uint8 flags = 0;
 	if (bIsLawEnforcer) flags |= BIT(0);
 	if (bIsLocked) flags |= BIT(3);
@@ -2406,19 +2406,19 @@ CVehicle::Save(uint8*& buf)
 	if (bIsHandbrakeOn) flags |= BIT(5);
 	if (bLightsOn) flags |= BIT(6);
 	if (bFreebies) flags |= BIT(7);
-	WriteSaveBuf<uint8>(buf, flags);
-	SkipSaveBuf(buf, 10);
-	WriteSaveBuf<float>(buf, m_fHealth);
-	WriteSaveBuf<uint8>(buf, m_nCurrentGear);
-	SkipSaveBuf(buf, 3);
-	WriteSaveBuf<float>(buf, m_fChangeGearTime);
-	SkipSaveBuf(buf, 12);
-	WriteSaveBuf<uint32>(buf, m_nTimeOfDeath);
-	SkipSaveBuf(buf, 2);
-	WriteSaveBuf<int16>(buf, m_nBombTimer);
-	SkipSaveBuf(buf, 12);
-	WriteSaveBuf<int8>(buf, m_nDoorLock);
-	SkipSaveBuf(buf, 111);
+	WriteSaveBuf(buf, flags);
+	ZeroSaveBuf(buf, 10);
+	WriteSaveBuf(buf, m_fHealth);
+	WriteSaveBuf(buf, m_nCurrentGear);
+	ZeroSaveBuf(buf, 3);
+	WriteSaveBuf(buf, m_fChangeGearTime);
+	ZeroSaveBuf(buf, 12);
+	WriteSaveBuf(buf, m_nTimeOfDeath);
+	ZeroSaveBuf(buf, 2);
+	WriteSaveBuf(buf, m_nBombTimer);
+	ZeroSaveBuf(buf, 12);
+	WriteSaveBuf(buf, m_nDoorLock);
+	ZeroSaveBuf(buf, 108);
 }
 
 void
@@ -2426,43 +2426,44 @@ CVehicle::Load(uint8*& buf)
 {
 	CMatrix tmp;
 	SkipSaveBuf(buf, 4);
-	tmp.GetRight().x = ReadSaveBuf<float>(buf);
-	tmp.GetRight().y = ReadSaveBuf<float>(buf);
-	tmp.GetRight().z = ReadSaveBuf<float>(buf);
+	ReadSaveBuf(&tmp.GetRight().x, buf);
+	ReadSaveBuf(&tmp.GetRight().y, buf);
+	ReadSaveBuf(&tmp.GetRight().z, buf);
 	SkipSaveBuf(buf, 4);
-	tmp.GetForward().x = ReadSaveBuf<float>(buf);
-	tmp.GetForward().y = ReadSaveBuf<float>(buf);
-	tmp.GetForward().z = ReadSaveBuf<float>(buf);
+	ReadSaveBuf(&tmp.GetForward().x, buf);
+	ReadSaveBuf(&tmp.GetForward().y, buf);
+	ReadSaveBuf(&tmp.GetForward().z, buf);
 	SkipSaveBuf(buf, 4);
-	tmp.GetUp().x = ReadSaveBuf<float>(buf);
-	tmp.GetUp().y = ReadSaveBuf<float>(buf);
-	tmp.GetUp().z = ReadSaveBuf<float>(buf);
+	ReadSaveBuf(&tmp.GetUp().x, buf);
+	ReadSaveBuf(&tmp.GetUp().y, buf);
+	ReadSaveBuf(&tmp.GetUp().z, buf);
 	SkipSaveBuf(buf, 4);
-	tmp.GetPosition().x = ReadSaveBuf<float>(buf);
-	tmp.GetPosition().y = ReadSaveBuf<float>(buf);
-	tmp.GetPosition().z = ReadSaveBuf<float>(buf);
+	ReadSaveBuf(&tmp.GetPosition().x, buf);
+	ReadSaveBuf(&tmp.GetPosition().y, buf);
+	ReadSaveBuf(&tmp.GetPosition().z, buf);
 	m_matrix = tmp;
 	SkipSaveBuf(buf, 16);
 	LoadEntityFlags(buf);
 	SkipSaveBuf(buf, 208);
 	AutoPilot.Load(buf);
-	m_currentColour1 = ReadSaveBuf<int8>(buf);
-	m_currentColour2 = ReadSaveBuf<int8>(buf);
+	ReadSaveBuf(&m_currentColour1, buf);
+	ReadSaveBuf(&m_currentColour2, buf);
 	SkipSaveBuf(buf, 2);
-	m_nAlarmState = ReadSaveBuf<int16>(buf);
+	ReadSaveBuf(&m_nAlarmState, buf);
 	SkipSaveBuf(buf, 42);
-	m_nNumMaxPassengers = ReadSaveBuf<int8>(buf);
+	ReadSaveBuf(&m_nNumMaxPassengers, buf);
 	SkipSaveBuf(buf, 3);
-	field_1D0[0] = ReadSaveBuf<float>(buf);
-	field_1D0[1] = ReadSaveBuf<float>(buf);
-	field_1D0[2] = ReadSaveBuf<float>(buf);
-	field_1D0[3] = ReadSaveBuf<float>(buf);
+	ReadSaveBuf(&field_1D0[0], buf);
+	ReadSaveBuf(&field_1D0[1], buf);
+	ReadSaveBuf(&field_1D0[2], buf);
+	ReadSaveBuf(&field_1D0[3], buf);
 	SkipSaveBuf(buf, 8);
-	m_fSteerAngle = ReadSaveBuf<float>(buf);
-	m_fGasPedal = ReadSaveBuf<float>(buf);
-	m_fBrakePedal = ReadSaveBuf<float>(buf);
-	VehicleCreatedBy = ReadSaveBuf<uint8>(buf);
-	uint8 flags = ReadSaveBuf<uint8>(buf);
+	ReadSaveBuf(&m_fSteerAngle, buf);
+	ReadSaveBuf(&m_fGasPedal, buf);
+	ReadSaveBuf(&m_fBrakePedal, buf);
+	ReadSaveBuf(&VehicleCreatedBy, buf);
+	uint8 flags;
+	ReadSaveBuf(&flags, buf);
 	bIsLawEnforcer = !!(flags & BIT(0));
 	bIsLocked = !!(flags & BIT(3));
 	bEngineOn = !!(flags & BIT(4));
@@ -2470,17 +2471,17 @@ CVehicle::Load(uint8*& buf)
 	bLightsOn = !!(flags & BIT(6));
 	bFreebies = !!(flags & BIT(7));
 	SkipSaveBuf(buf, 10);
-	m_fHealth = ReadSaveBuf<float>(buf);
-	m_nCurrentGear = ReadSaveBuf<uint8>(buf);
+	ReadSaveBuf(&m_fHealth, buf);
+	ReadSaveBuf(&m_nCurrentGear, buf);
 	SkipSaveBuf(buf, 3);
-	m_fChangeGearTime = ReadSaveBuf<float>(buf);
+	ReadSaveBuf(&m_fChangeGearTime, buf);
 	SkipSaveBuf(buf, 12);
-	m_nTimeOfDeath = ReadSaveBuf<uint32>(buf);
+	ReadSaveBuf(&m_nTimeOfDeath, buf);
 	SkipSaveBuf(buf, 2);
-	m_nBombTimer = ReadSaveBuf<int16>(buf);
+	ReadSaveBuf(&m_nBombTimer, buf);
 	SkipSaveBuf(buf, 12);
-	m_nDoorLock = (eCarLock)ReadSaveBuf<int8>(buf);
-	SkipSaveBuf(buf, 111);
+	ReadSaveBuf(&m_nDoorLock, buf);
+	SkipSaveBuf(buf, 108);
 }
 #endif
 

@@ -13,6 +13,7 @@
 #include "main.h"
 #include "MemoryHeap.h"
 
+
 static RwBool               DefaultVideoMode = TRUE;
 
 RsGlobalType                RsGlobal;

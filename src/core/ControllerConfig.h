@@ -13,6 +13,7 @@ enum eControllerType
 	OPTIONAL_EXTRA,
 	MOUSE,
 	JOYSTICK,
+	TOUCH,
 	MAX_CONTROLLERTYPES,
 };
 

@@ -245,10 +245,16 @@ CGame::InitialiseRenderWare(void)
 
 #ifdef LIBRW
 #ifdef PS2_MATFX
-	rw::MatFX::modulateEnvMap = true;
+	rw::MatFX::envMapApplyLight = true;
+	rw::MatFX::envMapUseMatColor = true;
+	rw::MatFX::envMapFlipU = true;
 #else
-	rw::MatFX::modulateEnvMap = false;
+	rw::MatFX::envMapApplyLight = false;
+	rw::MatFX::envMapUseMatColor = false;
+	rw::MatFX::envMapFlipU = false;
 #endif
+	rw::RGBA envcol = { 64, 64, 64, 255 };
+	rw::MatFX::envMapColor = envcol;
 #else
 #ifdef PS2_MATFX
 	ReplaceMatFxCallback();
@@ -327,6 +333,7 @@ bool CGame::InitialiseOnceAfterRW(void)
 	DMAudio.Initialise();
 
 #ifndef GTA_PS2
+#ifdef EXTERNAL_3D_SOUND
 	if ( DMAudio.GetNum3DProvidersAvailable() == 0 )
 		FrontEndMenuManager.m_nPrefsAudio3DProviderIndex = NO_AUDIO_PROVIDER;
 
@@ -338,6 +345,7 @@ bool CGame::InitialiseOnceAfterRW(void)
 
 	DMAudio.SetCurrent3DProvider(FrontEndMenuManager.m_nPrefsAudio3DProviderIndex);
 	DMAudio.SetSpeakerConfig(FrontEndMenuManager.m_PrefsSpeakers);
+#endif
 	DMAudio.SetDynamicAcousticModelingStatus(FrontEndMenuManager.m_PrefsDMA);
 	DMAudio.SetMusicMasterVolume(FrontEndMenuManager.m_PrefsMusicVolume);
 	DMAudio.SetEffectsMasterVolume(FrontEndMenuManager.m_PrefsSfxVolume);
@@ -367,7 +375,11 @@ bool CGame::Initialise(const char* datFile)
 	CPools::Initialise();
 
 #ifndef GTA_PS2
-	CIniFile::LoadIniFile();
+#ifdef PED_CAR_DENSITY_SLIDERS
+	// Load density values from gta3.ini only if our reVC.ini have them 0.6f
+	if (CIniFile::PedNumberMultiplier == 0.6f && CIniFile::CarNumberMultiplier == 0.6f)
+#endif
+		CIniFile::LoadIniFile();
 #endif
 #ifdef USE_TEXTURE_POOL
 	_TexturePoolsUnknown(false);
@@ -571,7 +583,7 @@ bool CGame::Initialise(const char* datFile)
 #endif
 
 
-	DMAudio.SetStartingTrackPositions(true);
+	DMAudio.SetStartingTrackPositions(TRUE);
 	DMAudio.ChangeMusicMode(MUSICMODE_GAME);
 	return true;
 }
@@ -893,7 +905,13 @@ void CGame::Process(void)
 		CEventList::Update();
 		CParticle::Update();
 		gFireManager.Update();
+
+		// Otherwise even on 30 fps most probably you won't see any peds around Ocean View Hospital
+#if defined FIX_BUGS && !defined SQUEEZE_PERFORMANCE
+		if (processTime > 2) {
+#else
 		if (processTime >= 2) {
+#endif
 			CPopulation::Update(false);
 		} else {
 			uint32 startTime = CTimer::GetCurrentTimeInCycles() / CTimer::GetCyclesPerMillisecond();

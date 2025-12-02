@@ -1,3 +1,4 @@
+//1sh0zer: TODO Maybe move here android touch handling
 #include "common.h"
 #include "Pad.h"
 #include "ControllerConfig.h"
@@ -821,7 +822,9 @@ PadHandler(RsEvent event, void *param)
 RwBool
 AttachInputDevices(void)
 {
+#ifndef IGNORE_MOUSE_KEYBOARD
 	RsInputDeviceAttach(rsKEYBOARD, KeyboardHandler);
+#endif
 
 	RsInputDeviceAttach(rsPAD, PadHandler);
 

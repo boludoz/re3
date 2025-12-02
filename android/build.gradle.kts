@@ -1,0 +1,8 @@
+// Top-level build file
+plugins {
+    id("com.android.application") version "8.7.3" apply false
+}
+
+tasks.register("clean", Delete::class) {
+    delete(rootProject.layout.buildDirectory)
+}

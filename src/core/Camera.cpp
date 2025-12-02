@@ -69,7 +69,7 @@ enum
 // NB: removed explicit TheCamera from all functions
 
 CCamera TheCamera;
-#ifdef PC_PLAYER_CONTROLS
+#if defined(PC_PLAYER_CONTROLS) || defined (ANDROID) //HACK we need a special function for touch, right?
 bool CCamera::m_bUseMouse3rdPerson = true;
 #else
 bool CCamera::m_bUseMouse3rdPerson = false;
@@ -213,7 +213,7 @@ CCamera::Init(void)
 	m_iModeToGoTo = CCam::MODE_FOLLOWPED;
 	m_bJust_Switched = false;
 	m_bUseTransitionBeta = false;
-	m_matrix.SetScale(1.0f);
+	GetMatrix().SetScale(1.0f);
 	m_bTargetJustBeenOnTrain = false;
 	m_bInitialNoNodeStaticsSet = false;
 	m_uiLongestTimeInMill = 5000;
@@ -347,7 +347,7 @@ CCamera::Process(void)
 			currentTime = m_uiTransitionDuration;
 		float fractionInter = (float) currentTime / m_uiTransitionDuration;
 		float fractionInterTarget = (float) currentTime / m_uiTransitionDurationTargetCoors;
-		fractionInterTarget = clamp(fractionInterTarget, 0.0f, 1.0f);
+		fractionInterTarget = Clamp(fractionInterTarget, 0.0f, 1.0f);
 
 		// Interpolate target separately
 		if(fractionInterTarget <= m_fFractionInterToStopMovingTarget){
@@ -551,7 +551,7 @@ CCamera::Process(void)
 
 	// Process Shake
 	float shakeStrength = m_fCamShakeForce - 0.28f*(CTimer::GetTimeInMilliseconds()-m_uiCamShakeStart)/1000.0f;
-	shakeStrength = clamp(shakeStrength, 0.0f, 2.0f);
+	shakeStrength = Clamp(shakeStrength, 0.0f, 2.0f);
 	int shakeRand = CGeneral::GetRandomNumber();
 	float shakeOffset = shakeStrength*0.1f;
 	GetMatrix().GetPosition().x += shakeOffset * ((shakeRand & 0xF) - 7);
@@ -1913,7 +1913,7 @@ CCamera::CamShake(float strength, float x, float y, float z)
 
 	float curForce = mult*(m_fCamShakeForce - (CTimer::GetTimeInMilliseconds() - m_uiCamShakeStart)/1000.0f);
 	strength = mult*strength;
-	if(clamp(curForce, 0.0f, 2.0f) < strength){
+	if(Clamp(curForce, 0.0f, 2.0f) < strength){
 		m_fCamShakeForce = strength;
 		m_uiCamShakeStart = CTimer::GetTimeInMilliseconds();
 	}
@@ -1924,7 +1924,7 @@ void
 CamShakeNoPos(CCamera *cam, float strength)
 {
 	float curForce = cam->m_fCamShakeForce - (CTimer::GetTimeInMilliseconds() - cam->m_uiCamShakeStart)/1000.0f;
-	if(clamp(curForce, 0.0f, 2.0f) < strength){
+	if(Clamp(curForce, 0.0f, 2.0f) < strength){
 		cam->m_fCamShakeForce = strength;
 		cam->m_uiCamShakeStart = CTimer::GetTimeInMilliseconds();
 	}
@@ -3985,7 +3985,7 @@ CCamera::Find3rdPersonCamTargetVector(float dist, CVector pos, CVector &source, 
 float
 CCamera::Find3rdPersonQuickAimPitch(void)
 {
-	float clampedFrontZ = clamp(Cams[ActiveCam].Front.z, -1.0f, 1.0f);
+	float clampedFrontZ = Clamp(Cams[ActiveCam].Front.z, -1.0f, 1.0f);
 
 	float rot = Asin(clampedFrontZ);
 
@@ -4017,7 +4017,7 @@ CCamera::SetRwCamera(RwCamera *cam)
 void
 CCamera::CalculateDerivedValues(void)
 {
-	m_cameraMatrix = Invert(m_matrix);
+	m_cameraMatrix = Invert(GetMatrix());
 
 	float hfov = DEGTORAD(CDraw::GetScaledFOV()/2.0f);
 	float c = Cos(hfov);
@@ -4101,16 +4101,11 @@ CCamera::IsSphereVisible(const CVector &center, float radius, const CMatrix *mat
 bool
 CCamera::IsSphereVisible(const CVector &center, float radius)
 {
-	CMatrix mat = m_cameraMatrix;
-	return IsSphereVisible(center, radius, &mat);
+	return IsSphereVisible(center, radius, &GetCameraMatrix());
 }
 
 bool
-#ifdef GTA_PS2
-CCamera::IsBoxVisible(CVuVector *box, const CMatrix *mat)
-#else
-CCamera::IsBoxVisible(CVector *box, const CMatrix *mat)
-#endif
+CCamera::IsBoxVisible(CVUVECTOR *box, const CMatrix *mat)
 {
 	int i;
 	int frustumTests[6] = { 0 };

@@ -1,4 +1,4 @@
-﻿[IN_VEH]
+[IN_VEH]
 ~g~Hey! Get back in the vehicle!
 
 [HEY]
@@ -14414,6 +14414,9 @@ XBOX 360 CONTROLLER
 [FEC_ONE]
 XBOX ONE CONTROLLER
 
+[FEC_NSW]
+NINTENDO SWITCH CONTROLLER
+
 [FEC_TYP]
 GAMEPAD TYPE
 
@@ -14422,6 +14425,12 @@ GAMEPAD SETTINGS
 
 [FEM_AUT] { aspect ratio related }
 AUTO
+
+[FEM_PED]
+PED DENSITY
+
+[FEM_CAR]
+CAR DENSITY
 
 { end of file }
 [DUMMY]
