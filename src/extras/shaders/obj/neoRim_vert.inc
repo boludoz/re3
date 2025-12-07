@@ -32,5 +32,5 @@ const char *neoRim_vert_src =
 "	v_color *= u_matColor;\n"
 
 "	v_fog = DoFog(gl_Position.w);\n"
-"}\n"
-;
+"}\n";
+

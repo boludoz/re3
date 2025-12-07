@@ -24,5 +24,5 @@ const char *neoGloss_frag_src =
 
 "	FRAGCOLOR(color);\n"
 "}\n"
-
 ;
+

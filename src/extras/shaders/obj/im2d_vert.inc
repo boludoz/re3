@@ -17,5 +17,5 @@ const char *im2d_vert_src =
 "	gl_Position.xyz *= gl_Position.w;\n"
 "	v_color = in_color;\n"
 "	v_tex0 = in_tex0;\n"
-"}\n"
-;
+"}\n";
+

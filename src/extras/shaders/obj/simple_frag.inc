@@ -15,5 +15,5 @@ const char *simple_frag_src =
 
 "	FRAGCOLOR(color);\n"
 "}\n"
-
 ;
+

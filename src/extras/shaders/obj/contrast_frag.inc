@@ -17,5 +17,5 @@ const char *contrast_frag_src =
 
 "	FRAGCOLOR(color);\n"
 "}\n"
-
 ;
+

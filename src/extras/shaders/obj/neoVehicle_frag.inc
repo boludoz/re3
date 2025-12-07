@@ -27,5 +27,5 @@ const char *neoVehicle_frag_src =
 "	DoAlphaTest(color.a);\n"
 
 "	FRAGCOLOR(color);\n"
-"}\n"
-;
+"}\n";
+

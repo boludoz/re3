@@ -41,5 +41,5 @@ const char *neoRimSkin_vert_src =
 "	v_color *= u_matColor;\n"
 
 "	v_fog = DoFog(gl_Position.z);\n"
-"}\n"
-;
+"}\n";
+

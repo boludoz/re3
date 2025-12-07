@@ -19,5 +19,5 @@ const char *im2d_UV2_vert_src =
 "	v_color = in_color;\n"
 "	v_tex0 = in_tex0;\n"
 "	v_tex1 = in_tex1;\n"
-"}\n"
-;
+"}\n";
+

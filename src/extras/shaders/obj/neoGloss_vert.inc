@@ -23,5 +23,5 @@ const char *neoGloss_vert_src =
 "	v_light  = 0.5*(1.0 + Light);                  //\n"
 
 "	v_fog = DoFog(gl_Position.w);\n"
-"}\n"
-;
+"}\n";
+

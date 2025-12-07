@@ -16,5 +16,5 @@ const char *screenDroplet_frag_src =
 
 "	FRAGCOLOR(color);\n"
 "}\n"
-
 ;
+
