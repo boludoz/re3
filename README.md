@@ -1,8 +1,10 @@
 ## About
 
-The repo is based on https://github.com/Cai1Hsu/re3
+The repo is based on https://github.com/Cai1Hsu/re3 and @klaymen1n 
 
 All rights reserved to Rockstar Games and original people who reversed it
+
+Special thanks @klaymen1n 
 
 ## License
 
