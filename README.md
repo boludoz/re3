@@ -13,4 +13,4 @@ Please keep derivate work open source and give proper credit.
 
 ## Build
 
-Execute ./android/build_android.bat (Windows) or build_android.sh (Unix based systems)
+Execute `./android/build_android.bat` (Windows) or `./android/build_android.sh` (Unix based systems)
