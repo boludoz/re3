@@ -13,4 +13,5 @@ Please keep derivate work open source and give proper credit.
 
 ## Build
 
-Execute `./android/build_android.bat` (Windows) or `./android/build_android.sh` (Unix based systems)
+1. Download Java JDK 17+ `https://www.oracle.com/java/technologies/downloads/`
+2. Execute `./android/build_android.bat` (Windows) or `./android/build_android.sh` (Unix based systems)
