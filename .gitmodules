@@ -26,3 +26,7 @@
 	path = vendor/SDL3
 	url = https://github.com/libsdl-org/SDL.git
 	branch = main
+[submodule "vendor/librw"]
+	path = vendor/librw
+	url = https://github.com/boludoz/librw.git
+	branch = master

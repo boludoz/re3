@@ -802,6 +802,30 @@ psSelectDevice()
 		FrontEndMenuManager.m_nPrefsVideoMode = FrontEndMenuManager.m_nDisplayVideoMode;
 
 		FrontEndMenuManager.m_nSelectedScreenMode = FrontEndMenuManager.m_nPrefsWindowed;
+					// {
+						bestWidth = vm.width;
+						bestHeight = vm.height;
+						bestDepth = vm.depth;
+						bestFsMode = GcurSelVM;
+						debug("Found resolution is w:%d h:%d\n", bestWidth, bestHeight);
+					// }
+					// else{
+					// 	debug("Prefs resolution is smaller, than we have!\n");
+					// }
+				}
+			}
+		}
+
+		if(bestFsMode < 0){
+			debug("WARNING: Cannot find desired video mode, selecting device cancelled\n %d", bestFsMode);
+			return FALSE;
+		}
+		GcurSelVM = bestFsMode;
+
+		FrontEndMenuManager.m_nDisplayVideoMode = GcurSelVM;
+		FrontEndMenuManager.m_nPrefsVideoMode = FrontEndMenuManager.m_nDisplayVideoMode;
+
+		FrontEndMenuManager.m_nSelectedScreenMode = FrontEndMenuManager.m_nPrefsWindowed;
 	}
 #endif
 

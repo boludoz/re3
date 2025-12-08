@@ -7,8 +7,8 @@
 #include "Pad.h"
 #include <cmath>
 
-// TouchInfo está definido en sdl2.cpp
-#ifndef LIBRW_SDL2
+// TouchInfo está definido en sdl3.cpp
+#ifndef LIBRW_SDL3
 struct TouchInfo {
 	float x, y;
 	float dx, dy;

@@ -66,12 +66,12 @@ def check_deps(conf):
 
 	if conf.env.DEST_OS != 'android':
 		if conf.env.DEST_OS != 'win32':
-			conf.check_cfg(package='sdl2', uselib_store='SDL2', args=['--cflags', '--libs'])
+			conf.check_cfg(package='sdl3', uselib_store='SDL3', args=['--cflags', '--libs'])
 			conf.check_cfg(package='openal', uselib_store='OPENAL', args=['--cflags', '--libs'])
 			conf.check_cfg(package='libmpg123', uselib_store='MPG123', args=['--cflags', '--libs'])
 			conf.check_cfg(package='sndfile', uselib_store='SNDFILE', args=['--cflags', '--libs'])
 	else:
-		conf.check(lib='SDL2', uselib_store='SDL2')
+		conf.check(lib='SDL3', uselib_store='SDL3')
 		if conf.env.DEST_CPU != 'aarch64':
 			conf.check(lib='unwind', uselib_store='UNWIND')
 			conf.check(lib='crypto', uselib_store='CRYPTO')
@@ -184,6 +184,6 @@ def configure(conf):
 
 def build(bld):
 	if bld.env.DEST_OS == 'android':
-		sdl_path = os.path.join('lib', bld.env.DEST_OS, bld.env.DEST_CPU, 'libSDL2.so')
+		sdl_path = os.path.join('lib', bld.env.DEST_OS, bld.env.DEST_CPU, 'libSDL3.so')
 		bld.install_files(bld.env.LIBDIR, [sdl_path])
 	bld.add_subproject(projects)

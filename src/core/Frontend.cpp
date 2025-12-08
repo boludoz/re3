@@ -5023,10 +5023,10 @@ CMenuManager::ProcessUserInput(uint8 goDown, uint8 goUp, uint8 optionSelected, u
 						PSGLOBAL(joy1)->GetCapabilities(&devCaps);
 						ControlsManager.InitDefaultControlConfigJoyPad(devCaps.dwButtons);
 					}
-#else
+#elif defined(LIBRW_SDL3)
 					if (PSGLOBAL(joy1) != NULL) {
 						int count;
-						count = SDL_JoystickNumButtons(PSGLOBAL(joy1));
+						count = SDL_GetNumJoystickButtons(PSGLOBAL(joy1));
 						ControlsManager.InitDefaultControlConfigJoyPad(count);
 					}
 #endif

@@ -37,13 +37,16 @@ list(INSERT CMAKE_MODULE_PATH 0 "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 # Submodules - Usar dependencias locales en vendor/
 # ============================================================================
 
-# --- SDL2 ---
-message(STATUS "Configuring SDL2 from submodule...")
-set(SDL2_DIR "${REVC_VENDOR_DIR}/SDL2")
-set(SDL2_DISABLE_SDL2MAIN ON CACHE BOOL "" FORCE)
+# --- SDL3 ---
+message(STATUS "Configuring SDL3 from submodule...")
+set(SDL3_DIR "${REVC_VENDOR_DIR}/SDL3")
 set(SDL_SHARED ON CACHE BOOL "" FORCE)
 set(SDL_STATIC OFF CACHE BOOL "" FORCE)
-set(SDL_TEST OFF CACHE BOOL "" FORCE)
+set(SDL_TEST_LIBRARY OFF CACHE BOOL "" FORCE)
+set(SDL_DISABLE_INSTALL ON CACHE BOOL "" FORCE)
+set(SDL_DISABLE_UNINSTALL ON CACHE BOOL "" FORCE)
+
+# SDL3 Subsystems (Enable as needed)
 set(SDL_AUDIO ON CACHE BOOL "" FORCE)
 set(SDL_VIDEO ON CACHE BOOL "" FORCE)
 set(SDL_RENDER ON CACHE BOOL "" FORCE)
@@ -52,16 +55,10 @@ set(SDL_JOYSTICK ON CACHE BOOL "" FORCE)
 set(SDL_HAPTIC ON CACHE BOOL "" FORCE)
 set(SDL_HIDAPI ON CACHE BOOL "" FORCE)
 set(SDL_POWER ON CACHE BOOL "" FORCE)
-set(SDL_THREADS ON CACHE BOOL "" FORCE)
-set(SDL_TIMERS ON CACHE BOOL "" FORCE)
-set(SDL_FILE ON CACHE BOOL "" FORCE)
-set(SDL_LOADSO ON CACHE BOOL "" FORCE)
-set(SDL_CPUINFO ON CACHE BOOL "" FORCE)
-set(SDL_FILESYSTEM ON CACHE BOOL "" FORCE)
-set(SDL_SENSOR ON CACHE BOOL "" FORCE)
-set(SDL_LOCALE ON CACHE BOOL "" FORCE)
-set(SDL_MISC ON CACHE BOOL "" FORCE)
-add_subdirectory(${SDL2_DIR} ${CMAKE_CURRENT_BINARY_DIR}/SDL2)
+# SDL3 usually auto-detects threads/timers, but we can force if needed
+# set(SDL_THREADS ON CACHE BOOL "" FORCE) 
+
+add_subdirectory(${SDL3_DIR} ${CMAKE_CURRENT_BINARY_DIR}/SDL3)
 
 # --- OpenAL Soft ---
 message(STATUS "Configuring OpenAL Soft from submodule...")
@@ -99,14 +96,14 @@ add_subdirectory(${MPG123_DIR} ${CMAKE_CURRENT_BINARY_DIR}/mpg123)
 message(STATUS "Configuring librw from submodule...")
 set(LIBRW_DIR "${REVC_VENDOR_DIR}/librw")
 set(LIBRW_PLATFORM "GL3" CACHE STRING "" FORCE)
-set(LIBRW_GL3_GFXLIB "SDL2" CACHE STRING "" FORCE)
+set(LIBRW_GL3_GFXLIB "SDL3" CACHE STRING "" FORCE)
 set(LIBRW_INSTALL OFF CACHE BOOL "" FORCE)
 set(LIBRW_EXAMPLES OFF CACHE BOOL "" FORCE)
 add_subdirectory(${LIBRW_DIR} ${CMAKE_CURRENT_BINARY_DIR}/librw)
 
-# Agregar includes de SDL2 a librw (necesario para gl3device.cpp)
+# Agregar includes de SDL3 a librw (necesario para gl3device.cpp)
 target_include_directories(librw PUBLIC 
-    ${SDL2_DIR}/include
+    ${SDL3_DIR}/include
 )
 
 # ============================================================================
@@ -152,10 +149,10 @@ target_include_directories(${EXECUTABLE} PRIVATE
     ${INCLUDE_DIRS}
     ${REVC_SRC_DIR}/fakerw
     ${LIBRW_DIR}
-    ${SDL2_DIR}/include
-    ${CMAKE_CURRENT_BINARY_DIR}/SDL2/include
-    ${CMAKE_CURRENT_BINARY_DIR}/SDL2/include/SDL2
-    ${CMAKE_CURRENT_BINARY_DIR}/SDL2/include-config-$<LOWER_CASE:$<CONFIG>>/SDL2
+    ${SDL3_DIR}/include
+    ${CMAKE_CURRENT_BINARY_DIR}/SDL3/include
+    ${CMAKE_CURRENT_BINARY_DIR}/SDL3/include/SDL3
+    ${CMAKE_CURRENT_BINARY_DIR}/SDL3/include-config-$<LOWER_CASE:$<CONFIG>>/SDL3
     ${OPENAL_DIR}/include
     ${OPENAL_DIR}/include/AL
     ${MPG123_DIR}/src/include
@@ -169,7 +166,7 @@ target_compile_definitions(${EXECUTABLE} PRIVATE
     _LINUX=1
     POSIX=1
     LIBRW
-    LIBRW_SDL2
+    LIBRW_SDL3
     AUDIO_OAL
     AUDIO_OAL_USE_MPG123
     RW_GL3
@@ -194,7 +191,7 @@ find_library(GLESv3-lib GLESv3)
 find_library(EGL-lib EGL)
 
 target_link_libraries(${EXECUTABLE}
-    SDL2
+    SDL3::SDL3
     OpenAL
     libmpg123
     librw

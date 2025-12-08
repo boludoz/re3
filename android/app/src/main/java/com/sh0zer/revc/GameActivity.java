@@ -13,7 +13,7 @@ public class GameActivity extends SDLActivity {
     @Override
     protected String[] getLibraries() {
         return new String[] {
-            "SDL2",
+            "SDL3",
             "openal",
             "mpg123",
             "revc"

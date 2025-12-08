@@ -1,9 +1,11 @@
 #include <jni.h>
 #include <unistd.h>
 #include <cstdlib>
-#include <SDL_main.h>
-#include <SDL_hints.h>
 #include <android/log.h>
+#if defined(LIBRW_SDL3)
+#include <SDL3/SDL_main.h>
+#include <SDL3/SDL_hints.h>
+#endif
 #include "android.h"
 #define JNI_WRAPPER extern "C" __attribute__ ((visibility("default")))
 FILE* logfile = nullptr;
