@@ -802,30 +802,6 @@ psSelectDevice()
 		FrontEndMenuManager.m_nPrefsVideoMode = FrontEndMenuManager.m_nDisplayVideoMode;
 
 		FrontEndMenuManager.m_nSelectedScreenMode = FrontEndMenuManager.m_nPrefsWindowed;
-					// {
-						bestWidth = vm.width;
-						bestHeight = vm.height;
-						bestDepth = vm.depth;
-						bestFsMode = GcurSelVM;
-						debug("Found resolution is w:%d h:%d\n", bestWidth, bestHeight);
-					// }
-					// else{
-					// 	debug("Prefs resolution is smaller, than we have!\n");
-					// }
-				}
-			}
-		}
-
-		if(bestFsMode < 0){
-			debug("WARNING: Cannot find desired video mode, selecting device cancelled\n %d", bestFsMode);
-			return FALSE;
-		}
-		GcurSelVM = bestFsMode;
-
-		FrontEndMenuManager.m_nDisplayVideoMode = GcurSelVM;
-		FrontEndMenuManager.m_nPrefsVideoMode = FrontEndMenuManager.m_nDisplayVideoMode;
-
-		FrontEndMenuManager.m_nSelectedScreenMode = FrontEndMenuManager.m_nPrefsWindowed;
 	}
 #endif
 
@@ -937,7 +913,7 @@ void _InputInitialiseJoys()
 
 
 bool lastCursorMode = false;  // SDL3: false = hidden, true = visible
-int keymap[SDL_NUM_SCANCODES];
+int keymap[SDL_SCANCODE_COUNT];
 bool lshiftStatus = false;
 bool rshiftStatus = false;
 
@@ -945,7 +921,7 @@ bool rshiftStatus = false;
 static void
 initkeymap(void)
 {
-    for (int i = 0; i < SDL_NUM_SCANCODES; ++i)
+    for (int i = 0; i < SDL_SCANCODE_COUNT; ++i)
         keymap[i] = rsNULL;
 
     keymap[SDL_SCANCODE_SPACE] = ' ';
@@ -1082,8 +1058,8 @@ void SDL_Events(SDL_Event *event)
 		case SDL_EVENT_MOUSE_MOTION:
 			if (FrontEndMenuManager.m_bMenuActive && WindowFocused)
 			{
-				if(SDL_GetRelativeMouseMode())
-					SDL_SetRelativeMouseMode(SDL_FALSE);
+				if(SDL_GetWindowRelativeMouseMode(PSGLOBAL(window)))
+					SDL_SetWindowRelativeMouseMode(PSGLOBAL(window), false);
 				int winw, winh;
 				SDL_GetWindowSize(PSGLOBAL(window), &winw, &winh);
 				
@@ -1097,8 +1073,8 @@ void SDL_Events(SDL_Event *event)
 			{
 				if(!WindowFocused)
 					break;
-				if(!SDL_GetRelativeMouseMode())
-					SDL_SetRelativeMouseMode(SDL_TRUE);
+				if(!SDL_GetWindowRelativeMouseMode(PSGLOBAL(window)))
+					SDL_SetWindowRelativeMouseMode(PSGLOBAL(window), true);
 				static int xposabs;
 				static int yposabs;
 				xposabs+= event->motion.xrel;
@@ -1121,7 +1097,7 @@ void SDL_Events(SDL_Event *event)
 					mouse2 = false;
 			break;
 		case SDL_EVENT_KEY_DOWN:
-        if (event->key.scancode >= 0 && event->key.scancode < SDL_NUM_SCANCODES) 
+        if (event->key.scancode >= 0 && event->key.scancode < SDL_SCANCODE_COUNT) 
 		{
 			RsKeyCodes ks = (RsKeyCodes)keymap[event->key.scancode];
 
@@ -1139,7 +1115,7 @@ void SDL_Events(SDL_Event *event)
         }
         break;
 		case SDL_EVENT_KEY_UP:
-                if (event->key.scancode >= 0 && event->key.scancode < SDL_NUM_SCANCODES) 
+                if (event->key.scancode >= 0 && event->key.scancode < SDL_SCANCODE_COUNT) 
 				{
 					RsKeyCodes ks = (RsKeyCodes)keymap[event->key.scancode];
 					
@@ -1693,7 +1669,7 @@ main(int argc, char *argv[])
 	{
 		printf("Failed to initialize SDL GameController API: %s\n", SDL_GetError());
 	}
-	SDL_GameControllerAddMappingsFromFile( "gamecontrollerdb.txt" );
+	SDL_AddGamepadMappingsFromFile( "gamecontrollerdb.txt" );
 	_InputInitialiseJoys();
 	initkeymap();
 
