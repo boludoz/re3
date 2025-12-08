@@ -10,10 +10,6 @@
 	path = vendor/opusfile
 	url = https://github.com/xiph/opusfile.git
 	branch = master
-[submodule "vendor/librw"]
-	path = vendor/librw
-	url = https://github.com/boludoz/librw.git
-	branch = master
 [submodule "lib"]
 	path = lib
 	url = https://github.com/klaymen1n/revc-android-3rdparty-libs
