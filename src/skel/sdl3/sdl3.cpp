@@ -1,6 +1,5 @@
-#include "SDL.h"
-#include "SDL_gamecontroller.h"
-#include "SDL_joystick.h"
+#include <SDL3/SDL.h>
+#include <SDL3/SDL_main.h>
 #ifdef _WIN32
 #include <shlobj.h>
 #include <basetsd.h>
@@ -89,6 +88,9 @@ bool mouse2 = false;
 
 float mousePosX = 0.f;
 float mousePosY = 0.f;
+
+// Direct polling states
+bool gJoystickConnected = false;  // True when joystick connected - hide touch UI
 
 TouchInfo touchInfo[10] = {0};
 /*
@@ -312,7 +314,25 @@ psNativeTextureSupport(void)
 #define CMDSTR	LPSTR
 #endif
 
-static void _psInitializeVibration() {}
+static SDL_Haptic* g_haptic = NULL;  // Haptic device for rumble fallback (issue #7847)
+
+static void _psInitializeVibration() 
+{
+	// Try to open haptic device for joystick (fallback for Bluetooth controllers like PS5)
+	if (PSGLOBAL(joy1) != NULL && g_haptic == NULL) {
+		g_haptic = SDL_OpenHapticFromJoystick(PSGLOBAL(joy1));
+		if (g_haptic) {
+			// Initialize rumble effect
+			if (!SDL_InitHapticRumble(g_haptic)) {
+				SDL_CloseHaptic(g_haptic);
+				g_haptic = NULL;
+			} else {
+				printf("Haptic rumble initialized for joystick (Bluetooth fallback)\n");
+			}
+		}
+	}
+}
+
 static void _psHandleVibration() 
 {
 	CPad* pad = CPad::GetPad(0);
@@ -325,10 +345,17 @@ static void _psHandleVibration()
 
 	uint16 freq_low = pad->ShakeFreq == 0.0 ? 160.0f : pad->ShakeFreq * 3;
 	uint16 freq_high = pad->ShakeFreq == 0.0 ? 320.0f : pad->ShakeFreq * 3;
-	printf("pad->ShakeFreq: %d, pad->ShakeDur: %d\n",freq_low, freq_high);
-	if(pad->ShakeFreq > 0)
-		SDL_JoystickRumble(PSGLOBAL(joy1),freq_low,freq_high, 1);
-
+	
+	if(pad->ShakeFreq > 0) {
+		// Try joystick rumble first
+		if (PSGLOBAL(joy1) && !SDL_RumbleJoystick(PSGLOBAL(joy1), freq_low, freq_high, 1)) {
+			// Joystick rumble failed - try haptic fallback (issue #7847: PS5 via Bluetooth)
+			if (g_haptic) {
+				float strength = (float)(freq_low + freq_high) / (float)(0xFFFF * 2);
+				SDL_PlayHapticRumble(g_haptic, strength, 100);
+			}
+		}
+	}
 }
 
 RwBool
@@ -726,11 +753,11 @@ psSelectDevice()
 		
 		if(noPrefs || !fitsPrefs) { //help me
 			// Defaults if nothing specified or we are bigger
-			SDL_DisplayMode mode;
-			SDL_GetDesktopDisplayMode(0, &mode);
-			FrontEndMenuManager.m_nPrefsWidth = mode.w;
-			FrontEndMenuManager.m_nPrefsHeight = mode.h;
-			debug("Resolution set to default w:%d h:%d\n", mode.w, mode.h);
+			SDL_DisplayID display = SDL_GetPrimaryDisplay();
+			const SDL_DisplayMode *mode = SDL_GetDesktopDisplayMode(display);
+			FrontEndMenuManager.m_nPrefsWidth = mode->w;
+			FrontEndMenuManager.m_nPrefsHeight = mode->h;
+			debug("Resolution set to default w:%d h:%d\n", mode->w, mode->h);
 			FrontEndMenuManager.m_nPrefsDepth = 32;
 			FrontEndMenuManager.m_nPrefsWindowed = 0;
 		}
@@ -842,34 +869,50 @@ psSelectDevice()
 
 void _InputInitialiseJoys()
 {
+	// Close existing haptic if reinitializing
+	extern SDL_Haptic* g_haptic;
+	if (g_haptic) {
+		SDL_CloseHaptic(g_haptic);
+		g_haptic = NULL;
+	}
+	
 	PSGLOBAL(joy1) = NULL;
 	PSGLOBAL(joy2) = NULL;
+	gJoystickConnected = false;
 	
-	printf("SDL_NumJoysticks : %d\n", SDL_NumJoysticks());
-	for(int i = 0; i < SDL_NumJoysticks(); i++)
-	{
-		if(SDL_IsGameController(i)){
-			if(PSGLOBAL(joy1) == NULL)
-				PSGLOBAL(joy1) = SDL_JoystickOpen(i);
-			else if (PSGLOBAL(joy2) == NULL)
-				PSGLOBAL(joy2) = SDL_JoystickOpen(i);
-			else
-				break;
-			
+	int num_joysticks = 0;
+	SDL_JoystickID *joysticks = SDL_GetJoysticks(&num_joysticks);
+	printf("SDL_GetJoysticks : %d\n", num_joysticks);
+	if (joysticks) {
+		for(int i = 0; i < num_joysticks; i++)
+		{
+			SDL_JoystickID id = joysticks[i];
+			if(SDL_IsGamepad(id)){
+				if(PSGLOBAL(joy1) == NULL)
+					PSGLOBAL(joy1) = SDL_OpenJoystick(id);
+				else if (PSGLOBAL(joy2) == NULL)
+					PSGLOBAL(joy2) = SDL_OpenJoystick(id);
+				else
+					break;
+			}
 		}
+		SDL_free(joysticks);
 	}
 	if (PSGLOBAL(joy1) != NULL) {
 		int count;
-		count = SDL_JoystickNumButtons(PSGLOBAL(joy1));
+		count = SDL_GetNumJoystickButtons(PSGLOBAL(joy1));
 // #ifdef DETECT_JOYSTICK_MENU
 // 		strcpy(gSelectedJoystickName, glfwGetJoystickName(PSGLOBAL(joy1)));
 // #endif
 		ControlsManager.InitDefaultControlConfigJoyPad(count);
+		gJoystickConnected = true;
+		_psInitializeVibration();  // Initialize haptic for this joystick
+		printf("Joystick connected - touch UI will be hidden\n");
 	}
 }
 
 
-int lastCursorMode = SDL_DISABLE;
+bool lastCursorMode = false;  // SDL3: false = hidden, true = visible
 int keymap[SDL_NUM_SCANCODES];
 bool lshiftStatus = false;
 bool rshiftStatus = false;
@@ -981,17 +1024,17 @@ void Joy_Events(SDL_Event *event)
 	bs.padID = 0;
 	switch(event->type)
 	{
-		case SDL_CONTROLLERDEVICEADDED:
+		case SDL_EVENT_GAMEPAD_ADDED:
 			_InputInitialiseJoys();
 			break;
-		case SDL_CONTROLLERDEVICEREMOVED:
+		case SDL_EVENT_GAMEPAD_REMOVED:
 			_InputInitialiseJoys();
 			break;
-		case SDL_JOYBUTTONDOWN:
-		case SDL_JOYBUTTONUP:
-			if (PSGLOBAL(joy1) && event->cdevice.which == SDL_JoystickInstanceID(PSGLOBAL(joy1))) {
+		case SDL_EVENT_JOYSTICK_BUTTON_DOWN:
+		case SDL_EVENT_JOYSTICK_BUTTON_UP:
+			if (PSGLOBAL(joy1) && event->cdevice.which == SDL_GetJoystickID(PSGLOBAL(joy1))) {
 				memcpy(&ControlsManager.m_OldState, &ControlsManager.m_NewState, sizeof(ControlsManager.m_NewState));
-				if(event->type == SDL_JOYBUTTONUP){
+				if(event->type == SDL_EVENT_JOYSTICK_BUTTON_UP){
 					RsPadEventHandler(rsPADBUTTONUP,   (void *)&bs);	
 					ControlsManager.m_NewState.mappedButtons[event->jbutton.button] = false;	
 				}
@@ -1009,10 +1052,10 @@ void SDL_Events(SDL_Event *event)
 	Joy_Events(event);
 	switch (event->type) 
 	{
-		case SDL_QUIT:
+		case SDL_EVENT_QUIT:
 			RsGlobal.quit = true;
 			break;
-		case SDL_MOUSEMOTION:
+		case SDL_EVENT_MOUSE_MOTION:
 			if (FrontEndMenuManager.m_bMenuActive && WindowFocused)
 			{
 				if(SDL_GetRelativeMouseMode())
@@ -1020,7 +1063,7 @@ void SDL_Events(SDL_Event *event)
 				int winw, winh;
 				SDL_GetWindowSize(PSGLOBAL(window), &winw, &winh);
 				
-				int xpos, ypos;
+				float xpos, ypos;
 				SDL_GetMouseState(&xpos, &ypos);
 				FrontEndMenuManager.m_nMouseTempPosX = xpos * (RsGlobal.maximumWidth / winw);
 				FrontEndMenuManager.m_nMouseTempPosY = ypos * (RsGlobal.maximumHeight / winh);
@@ -1040,54 +1083,58 @@ void SDL_Events(SDL_Event *event)
 				mousePosX = xposabs;
 				mousePosY = yposabs;
 				}
-		case SDL_MOUSEBUTTONDOWN:
+		case SDL_EVENT_MOUSE_BUTTON_DOWN:
 			if(event->button.button == SDL_BUTTON_LEFT)
 				mouse1 = true;
 			else if(event->button.button == SDL_BUTTON_RIGHT)
 				mouse2 = true;
 			break;
-		case SDL_MOUSEBUTTONUP:
+		case SDL_EVENT_MOUSE_BUTTON_UP:
 			if(event->button.button == SDL_BUTTON_LEFT)
 					mouse1 = false;
 
 			else if(event->button.button == SDL_BUTTON_RIGHT)
 					mouse2 = false;
 			break;
-		case SDL_KEYDOWN:
-        if (event->key.keysym.scancode >= 0 && event->key.keysym.scancode < SDL_NUM_SCANCODES) 
+		case SDL_EVENT_KEY_DOWN:
+        if (event->key.scancode >= 0 && event->key.scancode < SDL_NUM_SCANCODES) 
 		{
-			RsKeyCodes ks = (RsKeyCodes)keymap[event->key.keysym.scancode];
+			RsKeyCodes ks = (RsKeyCodes)keymap[event->key.scancode];
 
-			if (event->key.keysym.scancode == SDL_SCANCODE_LSHIFT)
+			// Android Back button → ESC
+			if (event->key.scancode == SDL_SCANCODE_AC_BACK) {
+				ks = rsESC;
+			}
+
+			if (event->key.scancode == SDL_SCANCODE_LSHIFT)
 				lshiftStatus = true;
-			if (event->key.keysym.scancode == SDL_SCANCODE_RSHIFT)
+			if (event->key.scancode == SDL_SCANCODE_RSHIFT)
 				rshiftStatus = true;
 
 			RsKeyboardEventHandler(rsKEYDOWN, &ks);
         }
         break;
-		case SDL_KEYUP:
-                if (event->key.keysym.scancode >= 0 && event->key.keysym.scancode < SDL_NUM_SCANCODES) 
+		case SDL_EVENT_KEY_UP:
+                if (event->key.scancode >= 0 && event->key.scancode < SDL_NUM_SCANCODES) 
 				{
-					RsKeyCodes ks = (RsKeyCodes)keymap[event->key.keysym.scancode];
+					RsKeyCodes ks = (RsKeyCodes)keymap[event->key.scancode];
 					
-					if (event->key.keysym.scancode == SDL_SCANCODE_LSHIFT)
+					if (event->key.scancode == SDL_SCANCODE_LSHIFT)
 						lshiftStatus = false;
-					if (event->key.keysym.scancode == SDL_SCANCODE_RSHIFT)
+					if (event->key.scancode == SDL_SCANCODE_RSHIFT)
 						rshiftStatus = false;
 					
 					RsKeyboardEventHandler(rsKEYUP, &ks);
 				}
-                break;
-		case SDL_MOUSEWHEEL:
+		break;
+		case SDL_EVENT_MOUSE_WHEEL:
 			PSGLOBAL(mouseWheel) = event->wheel.y;
 			break;
 		
-		case SDL_WINDOWEVENT:
-			switch(event->window.event)
+		// SDL3: Window events are now top-level
+		case SDL_EVENT_WINDOW_RESIZED:
+		case SDL_EVENT_WINDOW_PIXEL_SIZE_CHANGED:
 			{
-			case SDL_WINDOWEVENT_RESIZED:
-			case SDL_WINDOWEVENT_SIZE_CHANGED:
 				int w,h;
 				SDL_GetWindowSize(PSGLOBAL(window),&w ,&h );
 				if (RwInitialised && gGameState == GS_PLAYING_GAME)
@@ -1108,40 +1155,30 @@ void SDL_Events(SDL_Event *event)
 
 				RsEventHandler(rsCAMERASIZE, &r);
 				}
-				break;
 			}
 			break;
-		case SDL_FINGERDOWN:
+		case SDL_EVENT_FINGER_DOWN:
 			if (FrontEndMenuManager.m_bMenuActive)
 			{
 				FrontEndMenuManager.m_nTouchTempPosX = event->tfinger.x * (float)RsGlobal.maximumWidth;
 				FrontEndMenuManager.m_nTouchTempPosY = event->tfinger.y * (float)RsGlobal.maximumHeight;
 			}
-			{
-				int idx = (int)(event->tfinger.fingerId % 10);
-				touchInfo[idx].pressed = true;
-				touchInfo[idx].x = event->tfinger.x * (float)RsGlobal.maximumWidth;
-				touchInfo[idx].y = event->tfinger.y * (float)RsGlobal.maximumHeight;
-			}
+			touchInfo[event->tfinger.fingerID].pressed = true;
+			touchInfo[event->tfinger.fingerID].x = event->tfinger.x * (float)RsGlobal.maximumWidth;
+			touchInfo[event->tfinger.fingerID].y = event->tfinger.y * (float)RsGlobal.maximumHeight;
 			break;
-		case SDL_FINGERUP:
-			{
-				int idx = (int)(event->tfinger.fingerId % 10);
-				touchInfo[idx].pressed = false;
-				touchInfo[idx].x = 0.0f;
-				touchInfo[idx].y = 0.0f;
-				touchInfo[idx].dx = 0.0f;
-				touchInfo[idx].dy = 0.0f;
-			}
+		case SDL_EVENT_FINGER_UP:
+			touchInfo[event->tfinger.fingerID].pressed = false;
+			touchInfo[event->tfinger.fingerID].x = 0.0f;
+			touchInfo[event->tfinger.fingerID].y = 0.0f;
+			touchInfo[event->tfinger.fingerID].dx = 0.0f;
+			touchInfo[event->tfinger.fingerID].dy = 0.0f;
 			break;
-		case SDL_FINGERMOTION:
-			{
-				int idx = (int)(event->tfinger.fingerId % 10);
-				touchInfo[idx].x  += event->tfinger.dx * (float)RsGlobal.maximumWidth;
-				touchInfo[idx].y  += event->tfinger.dy * (float)RsGlobal.maximumHeight;
-				touchInfo[idx].dx  = event->tfinger.dx * (float)RsGlobal.maximumWidth;
-				touchInfo[idx].dy  = event->tfinger.dy * (float)RsGlobal.maximumHeight;
-			}
+		case SDL_EVENT_FINGER_MOTION:
+			touchInfo[event->tfinger.fingerID].x  += event->tfinger.dx * (float)RsGlobal.maximumWidth;
+			touchInfo[event->tfinger.fingerID].y  += event->tfinger.dy * (float)RsGlobal.maximumHeight;
+			touchInfo[event->tfinger.fingerID].dx  = event->tfinger.dx * (float)RsGlobal.maximumWidth;
+			touchInfo[event->tfinger.fingerID].dy  = event->tfinger.dy * (float)RsGlobal.maximumHeight;
 	}
 }
 
@@ -1384,8 +1421,11 @@ void dummyHandler(int sig){
 long _InputInitialiseMouse(bool exclusive)
 {
 	// Disabled = keep cursor centered and hide
-	lastCursorMode = exclusive ? SDL_ENABLE : SDL_DISABLE;
-	SDL_ShowCursor(lastCursorMode);
+	lastCursorMode = !exclusive;  // SDL3: false = hidden
+	if (lastCursorMode)
+		SDL_ShowCursor();
+	else
+		SDL_HideCursor();
 	return 0;
 }
 
@@ -1674,7 +1714,7 @@ main(int argc, char *argv[])
 		while( !RsGlobal.quit && !FrontEndMenuManager.m_bWantToRestart /*&& !SDL_WindowShouldClose(PSGLOBAL(window))*/)
 #endif
 		{
-#ifndef LIBRW_SDL2			
+#ifndef LIBRW_SDL3			
 			//glfwPollEvents();
 #else	
 			SDL_Active();
@@ -2053,7 +2093,7 @@ void CapturePad(RwInt32 padID)
 	if ( glfwPad == NULL )
 		return;
 	
-	ControlsManager.m_NewState.isGamepad = SDL_IsGameController(SDL_JoystickInstanceID(glfwPad));
+	ControlsManager.m_NewState.isGamepad = SDL_IsGamepad(SDL_GetJoystickID(glfwPad));
 	
 // 	if (ControlsManager.m_bFirstCapture == false) {
 // 		memcpy(&ControlsManager.m_OldState, &ControlsManager.m_NewState, sizeof(ControlsManager.m_NewState));
@@ -2078,8 +2118,8 @@ void CapturePad(RwInt32 padID)
 	}
 	
 		
-	float lt =  SDL_JoystickGetAxis(glfwPad, SDL_CONTROLLER_AXIS_TRIGGERLEFT) / (float)SHRT_MAX;
-	float rt = SDL_JoystickGetAxis(glfwPad, SDL_CONTROLLER_AXIS_TRIGGERRIGHT) / (float)SHRT_MAX;
+	float lt =  SDL_GetJoystickAxis(glfwPad, SDL_GAMEPAD_AXIS_LEFT_TRIGGER) / (float)SHRT_MAX;
+	float rt = SDL_GetJoystickAxis(glfwPad, SDL_GAMEPAD_AXIS_RIGHT_TRIGGER) / (float)SHRT_MAX;
 		
 	if (lt != 0.0f)
 		ControlsManager.m_NewState.mappedButtons[15] = lt > -0.8f;
@@ -2087,13 +2127,13 @@ void CapturePad(RwInt32 padID)
 	if (rt != 0.0f)
 		ControlsManager.m_NewState.mappedButtons[16] = rt > -0.8f;
 
-	leftStickPos.y = SDL_JoystickGetAxis(glfwPad, SDL_CONTROLLER_AXIS_LEFTY) / (float)SHRT_MAX;
+	leftStickPos.y = SDL_GetJoystickAxis(glfwPad, SDL_GAMEPAD_AXIS_LEFTY) / (float)SHRT_MAX;
 		
-	leftStickPos.x = SDL_JoystickGetAxis(glfwPad, SDL_CONTROLLER_AXIS_LEFTX) / (float)SHRT_MAX;
+	leftStickPos.x = SDL_GetJoystickAxis(glfwPad, SDL_GAMEPAD_AXIS_LEFTX) / (float)SHRT_MAX;
  
-	rightStickPos.x =  SDL_JoystickGetAxis(glfwPad, SDL_CONTROLLER_AXIS_RIGHTX) / (float)SHRT_MAX;
+	rightStickPos.x =  SDL_GetJoystickAxis(glfwPad, SDL_GAMEPAD_AXIS_RIGHTX) / (float)SHRT_MAX;
 			
-	rightStickPos.y = SDL_JoystickGetAxis(glfwPad, SDL_CONTROLLER_AXIS_RIGHTY) / (float)SHRT_MAX;
+	rightStickPos.y = SDL_GetJoystickAxis(glfwPad, SDL_GAMEPAD_AXIS_RIGHTY) / (float)SHRT_MAX;
 		
 	{
 		if (CPad::m_bMapPadOneToPadTwo)
