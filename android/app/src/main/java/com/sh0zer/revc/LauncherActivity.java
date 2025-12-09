@@ -1,4 +1,4 @@
-package com.sh0zer.revc;
+package com.revc;
 
 import android.Manifest;
 import android.content.Intent;

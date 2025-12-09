@@ -1,4 +1,4 @@
-package com.sh0zer.revc;
+package com.revc;
 
 import android.os.Bundle;
 import org.libsdl.app.SDLActivity;

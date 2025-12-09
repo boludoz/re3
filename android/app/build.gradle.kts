@@ -3,12 +3,12 @@ plugins {
 }
 
 android {
-    namespace = "com.sh0zer.revc"
+    namespace = "com.revc"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.sh0zer.revc"
-        minSdk = 21
+        applicationId = "com.revc"
+        minSdk = 24
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
