@@ -1,5 +1,8 @@
 #include "common.h"
+
+#ifdef __ARM_NEON
 #include "NeonMath.h"
+#endif
 
 CMatrix::CMatrix(void)
 {

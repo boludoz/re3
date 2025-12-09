@@ -1,7 +1,10 @@
 #include "common.h"
 
 #include "VuVector.h"
+
+#ifdef __ARM_NEON
 #include "NeonMath.h"
+#endif
 
 // TODO: move more stuff into here
 
