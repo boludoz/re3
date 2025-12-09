@@ -1,6 +1,7 @@
 #include "common.h"
 
 #include "VuVector.h"
+#include "NeonMath.h"
 
 // TODO: move more stuff into here
 
@@ -20,10 +21,13 @@ void TransformPoint(CVuVector &out, const CMatrix &mat, const CVuVector &in)
 		vmaddw.xyz	vf06,vf05,vf00\n\
 		sqc2    vf06,0x0(%0)\n\
 		": : "r" (&out) , "r" (&mat) ,"r" (&in): "memory");
+#elif defined(__ARM_NEON)
+	NEON_TRANSFORM_POINT(&out.x, mat.f[0], &in.x);
 #else
 	out = mat * in;
 #endif
 }
+
 
 void TransformPoint(CVuVector &out, const CMatrix &mat, const RwV3d &in)
 {
@@ -44,6 +48,8 @@ void TransformPoint(CVuVector &out, const CMatrix &mat, const RwV3d &in)
 		vmaddw.xyz	vf06,vf05,vf00\n\
 		sqc2    vf06,0x0(%0)\n\
 		": : "r" (&out) , "r" (&mat) ,"r" (&in): "memory");
+#elif defined(__ARM_NEON)
+	NEON_TRANSFORM_POINT(&out.x, mat.f[0], &in.x);
 #else
 	out = mat * in;
 #endif
@@ -78,6 +84,12 @@ void TransformPoints(CVuVector *out, int n, const CMatrix &mat, const RwV3d *in,
 		sqc2    vf06,-0x10(%0)\n\
 		bnez	%1,1b\n\
 		": : "r" (out) , "r" (n), "r" (&mat), "r" (in), "r" (stride): "memory");
+#elif defined(__ARM_NEON)
+	while(n--){
+		NEON_TRANSFORM_POINT(&out->x, mat.f[0], &in->x);
+		in = (RwV3d*)((uint8*)in + stride);
+		out++;
+	}
 #else
 	while(n--){
 		*out = mat * *in;
@@ -108,6 +120,12 @@ void TransformPoints(CVuVector *out, int n, const CMatrix &mat, const CVuVector 
 		sqc2    vf06,-0x10(%0)\n\
 		bnez	%1,1b\n\
 		": : "r" (out) , "r" (n), "r" (&mat) ,"r" (in): "memory");
+#elif defined(__ARM_NEON)
+	while(n--){
+		NEON_TRANSFORM_POINT(&out->x, mat.f[0], &in->x);
+		in++;
+		out++;
+	}
 #else
 	while(n--){
 		*out = mat * *in;

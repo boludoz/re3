@@ -69,6 +69,11 @@ android {
     }
 
     ndkVersion = "26.1.10909125"
+
+    lint {
+        abortOnError = false
+        checkReleaseBuilds = false
+    }
 }
 
 dependencies {

@@ -1,4 +1,5 @@
 #include "common.h"
+#include "NeonMath.h"
 
 CMatrix::CMatrix(void)
 {
@@ -432,6 +433,11 @@ CMatrix::Reorthogonalise(void)
 CMatrix
 operator*(const CMatrix &m1, const CMatrix &m2)
 {
+#ifdef __ARM_NEON
+	CMatrix out;
+	NEON_MATRIX_MULTIPLY(out.f[0], m1.f[0], m2.f[0]);
+	return out;
+#else
 	// TODO: VU0 code
 	CMatrix out;
 	out.rx = m1.rx * m2.rx + m1.fx * m2.ry + m1.ux * m2.rz;
@@ -447,6 +453,7 @@ operator*(const CMatrix &m1, const CMatrix &m2)
 	out.py = m1.ry * m2.px + m1.fy * m2.py + m1.uy * m2.pz + m1.py;
 	out.pz = m1.rz * m2.px + m1.fz * m2.py + m1.uz * m2.pz + m1.pz;
 	return out;
+#endif
 }
 
 CMatrix &

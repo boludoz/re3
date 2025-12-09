@@ -183,6 +183,14 @@ target_compile_options(${EXECUTABLE} PRIVATE
     -frtti
     -fpermissive
     -funwind-tables
+    $<$<CONFIG:Release>:-O3>
+    $<$<CONFIG:Release>:-ffast-math>
+    $<$<CONFIG:Release>:-fno-finite-math-only>
+    $<$<CONFIG:Release>:-ftree-vectorize>
+    $<$<CONFIG:RelWithDebInfo>:-O3>
+    $<$<CONFIG:RelWithDebInfo>:-ffast-math>
+    $<$<CONFIG:RelWithDebInfo>:-fno-finite-math-only>
+    $<$<CONFIG:RelWithDebInfo>:-ftree-vectorize>
 )
 
 # Librerías del sistema Android
