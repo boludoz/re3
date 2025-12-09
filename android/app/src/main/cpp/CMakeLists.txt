@@ -142,6 +142,7 @@ list(REMOVE_DUPLICATES INCLUDE_DIRS)
 add_library(${EXECUTABLE} SHARED
     ${REVC_SOURCES}
     "${CMAKE_CURRENT_BINARY_DIR}/extras/GitSHA1.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/jni_bridge.cpp"
 )
 
 target_include_directories(${EXECUTABLE} PRIVATE
