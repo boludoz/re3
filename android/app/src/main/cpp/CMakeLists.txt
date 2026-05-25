@@ -76,11 +76,8 @@ set(LIBTYPE "SHARED" CACHE STRING "" FORCE)
 add_subdirectory(${OPENAL_DIR} ${CMAKE_CURRENT_BINARY_DIR}/openal-soft)
 
 # --- mpg123 ---
-message(STATUS "Configuring mpg123 from submodule...")
-set(MPG123_DIR "${REVC_VENDOR_DIR}/mpg123")
-set(BUILD_PROGRAMS OFF CACHE BOOL "" FORCE)
-set(BUILD_LIBOUT123 OFF CACHE BOOL "" FORCE)
-add_subdirectory(${MPG123_DIR} ${CMAKE_CURRENT_BINARY_DIR}/mpg123)
+# Disabled for Android: the vendored custom CMake file only configures mpg123
+# decoder/sample options for Windows, so keep OpenAL without mpg123 here.
 
 # --- GLFW no es necesario para Android - usamos SDL2 ---
 # message(STATUS "Configuring GLFW from submodule...")
@@ -95,8 +92,7 @@ add_subdirectory(${MPG123_DIR} ${CMAKE_CURRENT_BINARY_DIR}/mpg123)
 # --- librw ---
 message(STATUS "Configuring librw from submodule...")
 set(LIBRW_DIR "${REVC_VENDOR_DIR}/librw")
-set(LIBRW_PLATFORM "GL3" CACHE STRING "" FORCE)
-set(LIBRW_GL3_GFXLIB "SDL3" CACHE STRING "" FORCE)
+set(LIBRW_PLATFORM "VULKAN" CACHE STRING "" FORCE)
 set(LIBRW_INSTALL OFF CACHE BOOL "" FORCE)
 set(LIBRW_EXAMPLES OFF CACHE BOOL "" FORCE)
 add_subdirectory(${LIBRW_DIR} ${CMAKE_CURRENT_BINARY_DIR}/librw)
@@ -156,8 +152,6 @@ target_include_directories(${EXECUTABLE} PRIVATE
     ${CMAKE_CURRENT_BINARY_DIR}/SDL3/include-config-$<LOWER_CASE:$<CONFIG>>/SDL3
     ${OPENAL_DIR}/include
     ${OPENAL_DIR}/include/AL
-    ${MPG123_DIR}/src/include
-    ${MPG123_DIR}/src/libmpg123
 )
 
 target_compile_definitions(${EXECUTABLE} PRIVATE
@@ -169,8 +163,7 @@ target_compile_definitions(${EXECUTABLE} PRIVATE
     LIBRW
     LIBRW_SDL3
     AUDIO_OAL
-    AUDIO_OAL_USE_MPG123
-    RW_GL3
+    RW_VULKAN
     CMAKE_BUILD
     USE_OUR_VERSIONING
     $<$<CONFIG:DEBUG>:DEBUG>
@@ -196,18 +189,15 @@ target_compile_options(${EXECUTABLE} PRIVATE
 # Librerías del sistema Android
 find_library(log-lib log)
 find_library(android-lib android)
-find_library(GLESv3-lib GLESv3)
-find_library(EGL-lib EGL)
+find_library(vulkan-lib vulkan)
 
 target_link_libraries(${EXECUTABLE}
     SDL3::SDL3
     OpenAL
-    libmpg123
     librw
     ${log-lib}
     ${android-lib}
-    ${GLESv3-lib}
-    ${EGL-lib}
+    ${vulkan-lib}
 )
 
 message(STATUS "reVC Android build configured for ${ANDROID_ABI}")

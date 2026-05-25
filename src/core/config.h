@@ -317,9 +317,11 @@ enum Config {
 //#define USE_TEXTURE_POOL
 #ifdef LIBRW
 #define EXTENDED_COLOURFILTER		// more options for colour filter (replaces mblur)
+#ifndef RW_VULKAN
 #define EXTENDED_PIPELINES		// custom render pipelines (includes Neo)
 #define SCREEN_DROPLETS			// neo water droplets
 #define NEW_RENDERER		// leeds-like world rendering, needs librw
+#endif
 #endif
 
 #define FIX_SPRITES	// fix sprites aspect ratio(moon, coronas, particle etc)
@@ -446,7 +448,7 @@ static_assert(false, "SUPPORT_XBOX_SCRIPT and SUPPORT_MOBILE_SCRIPT are mutually
 #define PS2_AUDIO_CHANNELS // increases the maximum number of audio channels to PS2 value of 43 (PC has 28 originally)
 #define PS2_AUDIO_PATHS // changes audio paths for cutscenes and radio to PS2 paths (needs vbdec on MSS builds)
 //#define AUDIO_OAL_USE_SNDFILE // use libsndfile to decode WAVs instead of our internal decoder
-#define AUDIO_OAL_USE_MPG123 // use mpg123 to support mp3 files
+//#define AUDIO_OAL_USE_MPG123 // DISABLED - use mpg123 to support mp3 files - has POSIX issues on Windows
 #define PAUSE_RADIO_IN_FRONTEND // pause radio when game is paused
 #define ATTACH_RELEASING_SOUNDS_TO_ENTITIES // sounds would follow ped and vehicles coordinates if not being queued otherwise
 #define USE_TIME_SCALE_FOR_AUDIO // slow down/speed up sounds according to the speed of the game

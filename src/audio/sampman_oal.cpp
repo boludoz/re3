@@ -916,7 +916,8 @@ cSampleManager::Initialise(void)
 	FILE *cacheFile = fcaseopen("audio\\sound.cache", "rb");
 	if (cacheFile) {
 		debug("Loadind audio cache (If game crashes around here, then your cache is corrupted, remove audio/sound.cache)\n");
-		fread(nStreamLength, sizeof(uint32), TOTAL_STREAMED_SOUNDS, cacheFile);
+		size_t cachedEntries = fread(nStreamLength, sizeof(uint32), TOTAL_STREAMED_SOUNDS, cacheFile);
+		debug("Audio cache read %zu/%d entries\n", cachedEntries, TOTAL_STREAMED_SOUNDS);
 		fclose(cacheFile);
 	} else
 	{
@@ -942,7 +943,8 @@ cSampleManager::Initialise(void)
 		cacheFile = fcaseopen("audio\\sound.cache", "wb");
 		if(cacheFile) {
 			debug("Saving audio cache\n");
-			fwrite(nStreamLength, sizeof(uint32), TOTAL_STREAMED_SOUNDS, cacheFile);
+			size_t cachedEntries = fwrite(nStreamLength, sizeof(uint32), TOTAL_STREAMED_SOUNDS, cacheFile);
+			debug("Audio cache wrote %zu/%d entries\n", cachedEntries, TOTAL_STREAMED_SOUNDS);
 			fclose(cacheFile);
 		} else {
 			debug("Cannot save audio cache\n");
@@ -951,23 +953,29 @@ cSampleManager::Initialise(void)
 #endif
 
 	{
+		debug("InitialiseSampleBanks begin\n");
 		if ( !InitialiseSampleBanks() )
 		{
+			debug("InitialiseSampleBanks failed\n");
 			Terminate();
 			return FALSE;
 		}
+		debug("InitialiseSampleBanks ok: bank0=%u ped=%u\n", nSampleBankSize[SFX_BANK_0], nSampleBankSize[SFX_BANK_PED_COMMENTS]);
 		
 		nSampleBankMemoryStartAddress[SFX_BANK_0] = (uintptr)malloc(nSampleBankSize[SFX_BANK_0]);
 		ASSERT(nSampleBankMemoryStartAddress[SFX_BANK_0] != 0);
 		
 		if ( nSampleBankMemoryStartAddress[SFX_BANK_0] == 0 )
 		{
+			debug("SFX_BANK_0 malloc failed\n");
 			Terminate();
 			return FALSE;
 		}
+		debug("SFX_BANK_0 malloc ok\n");
 		
 		nSampleBankMemoryStartAddress[SFX_BANK_PED_COMMENTS] = (uintptr)malloc(PED_BLOCKSIZE*MAX_PEDSFX);
 		ASSERT(nSampleBankMemoryStartAddress[SFX_BANK_PED_COMMENTS] != 0);
+		debug("PED comments malloc ok\n");
 
 #ifdef FIX_BUGS
 		// Find biggest player comment
@@ -979,10 +987,13 @@ cSampleManager::Initialise(void)
 		ASSERT(gPlayerTalkData != 0);
 #endif
 
-		LoadSampleBank(SFX_BANK_0);
+		debug("LoadSampleBank 0 begin\n");
+		bool8 loadedBank0 = LoadSampleBank(SFX_BANK_0);
+		debug("LoadSampleBank 0 done: %d\n", loadedBank0);
 	}
 	
 	{
+		debug("Closing initial streams begin\n");
 		for ( int32 i = 0; i < MAX_STREAMS; i++ )
 		{
 			aStream[i]->Close();
@@ -990,6 +1001,7 @@ cSampleManager::Initialise(void)
 			nStreamVolume[i] = 100;
 			nStreamPan[i]    = 63;
 		}
+		debug("Closing initial streams done\n");
 	}
 
 	{
@@ -997,10 +1009,13 @@ cSampleManager::Initialise(void)
 		
 		if ( defaultProvider >= 0 && defaultProvider < m_nNumberOfProviders )
 		{
+			debug("set_new_provider begin: default=%d providers=%d\n", defaultProvider, m_nNumberOfProviders);
 			set_new_provider(defaultProvider);
+			debug("set_new_provider done\n");
 		}
 		else
 		{
+			debug("No valid audio provider: default=%d providers=%d\n", defaultProvider, m_nNumberOfProviders);
 			Terminate();
 			return FALSE;
 		}
@@ -1011,7 +1026,9 @@ cSampleManager::Initialise(void)
 		
 		_pMP3List = NULL;
 		
+		debug("_FindMP3s begin\n");
 		_FindMP3s();
+		debug("_FindMP3s done: %u tracks\n", nNumMP3s);
 		
 		if ( nNumMP3s != 0 )
 		{
@@ -1066,6 +1083,7 @@ cSampleManager::Initialise(void)
 		_bIsMp3Active = FALSE;
 	}
 	
+	debug("cSampleManager::Initialise done\n");
 	return TRUE;
 }
 

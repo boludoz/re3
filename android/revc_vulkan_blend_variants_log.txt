@@ -1,0 +1,1114 @@
+--------- beginning of main
+05-22 15:44:13.845 I/com.revc(29807): Late-enabling -Xcheck:jni
+05-22 15:44:13.857 I/com.revc(29807): Using CollectorTypeCMC GC.
+05-22 15:44:13.860 D/nativeloader(29807): Load libframework-connectivity-tiramisu-jni.so using APEX ns com_android_tethering for caller /apex/com.android.tethering/javalib/framework-connectivity-t.jar: ok
+05-22 15:44:13.861 D/ActivityThread(29807): setConscryptValidator
+05-22 15:44:13.861 D/ActivityThread(29807): setConscryptValidator - put
+05-22 15:44:13.866 D/CompatChangeReporter(29807): Compat change id reported: 242716250; UID 10510; state: ENABLED
+05-22 15:44:13.904 D/nativeloader(29807): Configuring clns-9 for other apk /data/app/~~pUnSbOVjQKIErh5MDkxvGA==/com.revc-8tKSH2FWm-qq2hj1Num8nA==/base.apk. target_sdk_version=34, uses_libraries=, library_path=/data/app/~~pUnSbOVjQKIErh5MDkxvGA==/com.revc-8tKSH2FWm-qq2hj1Num8nA==/lib/arm64:/data/app/~~pUnSbOVjQKIErh5MDkxvGA==/com.revc-8tKSH2FWm-qq2hj1Num8nA==/base.apk!/lib/arm64-v8a, permitted_path=/data:/mnt/expand:/data/user/0/com.revc
+05-22 15:44:13.907 V/GraphicsEnvironment(29807): Currently set values for:
+05-22 15:44:13.907 V/GraphicsEnvironment(29807):   angle_gl_driver_selection_pkgs=[]
+05-22 15:44:13.907 V/GraphicsEnvironment(29807):   angle_gl_driver_selection_values=[]
+05-22 15:44:13.907 V/GraphicsEnvironment(29807): com.revc is not listed in per-application setting
+05-22 15:44:13.907 V/GraphicsEnvironment(29807): ANGLE allowlist from config: 
+05-22 15:44:13.907 V/GraphicsEnvironment(29807): com.revc is not listed in ANGLE allowlist or settings, returning default
+05-22 15:44:13.907 V/GraphicsEnvironment(29807): App is not on the allowlist for updatable production driver.
+--------- beginning of system
+05-22 15:44:13.921 D/ActivityThread(29807): com.revc will use render engine as VK
+05-22 15:44:13.921 D/HWUI    (29807): HWUI - treat SMPTE_170M as sRGB
+05-22 15:44:13.922 I/DisplayManager(29807): Choreographer implicitly registered for the refresh rate.
+05-22 15:44:13.923 D/HWUI    (29807): CacheManager constructor. deviceInfo=(1080, 1920)
+05-22 15:44:13.923 D/vulkan  (29807): searching for layers in '/data/app/~~pUnSbOVjQKIErh5MDkxvGA==/com.revc-8tKSH2FWm-qq2hj1Num8nA==/lib/arm64'
+05-22 15:44:13.923 D/vulkan  (29807): searching for layers in '/data/app/~~pUnSbOVjQKIErh5MDkxvGA==/com.revc-8tKSH2FWm-qq2hj1Num8nA==/base.apk!/lib/arm64-v8a'
+05-22 15:44:13.923 D/vulkan  (29807): added global layer 'VK_LAYER_SAMSUNG_GpuWatch' from library '/system/lib64/libgfxgrab.so'
+05-22 15:44:13.927 D/vulkan  (29807): added global layer 'VK_LAYER_ADRENO_qprofiler' from library '/vendor/lib64/egl/libVkLayer_ADRENO_qprofiler.so'
+05-22 15:44:13.935 D/nativeloader(29807): Load /data/app/~~pUnSbOVjQKIErh5MDkxvGA==/com.revc-8tKSH2FWm-qq2hj1Num8nA==/lib/arm64/librevc.so using class loader ns clns-9 (caller=/data/app/~~pUnSbOVjQKIErh5MDkxvGA==/com.revc-8tKSH2FWm-qq2hj1Num8nA==/base.apk!classes3.dex): ok
+05-22 15:44:13.937 I/vulkan  (29807): Loaded layer VK_LAYER_SAMSUNG_GpuWatch
+05-22 15:44:13.938 D/AppCompatDelegate(29807): Checking for metadata for AppLocalesMetadataHolderService : Service not found
+05-22 15:44:13.940 E/ashmem  (29807): Pinning is deprecated since Android Q. Please use trim or other methods.
+05-22 15:44:13.941 E/Adreno-AppProfiles(29807): QSPM AIDL service doesn't exist
+05-22 15:44:13.941 I/AdrenoVK-0(29807): ===== BEGIN DUMP OF OVERRIDDEN SETTINGS =====
+05-22 15:44:13.941 I/AdrenoVK-0(29807): ===== END DUMP OF OVERRIDDEN SETTINGS =====
+05-22 15:44:13.943 D/qdgralloc(29807): Fetching IMapper5 from QtiMapper5
+05-22 15:44:13.948 D/DesktopModeFlags(29807): Toggle override initialized to: OVERRIDE_UNSET
+05-22 15:44:13.950 I/DecorView(29807): setWindowBackground: isPopOver=false color=ff1a1a2e d=android.graphics.drawable.ColorDrawable@cb31fa7
+05-22 15:44:13.950 I/SnapAlloc(29807): Graphics lib is available
+05-22 15:44:13.955 D/ActivityThread(29807): com.revc will use render engine as VK
+05-22 15:44:13.955 I/Adreno-UNKNOWN(29807): Using previously loaded IMapper library.
+05-22 15:44:13.956 V/SDL     (29807): Manufacturer: samsung
+05-22 15:44:13.956 V/SDL     (29807): Device: pa3q
+05-22 15:44:13.956 V/SDL     (29807): Model: SM-S938B
+05-22 15:44:13.956 V/SDL     (29807): onCreate()
+05-22 15:44:13.957 I/AdrenoVK-0(29807): QUALCOMM build          : e4a2ccdb56, Icac6f3510c
+05-22 15:44:13.957 I/AdrenoVK-0(29807): Build Date              : 07/21/25
+05-22 15:44:13.957 I/AdrenoVK-0(29807): Shader Compiler Version : E031.47.18.36
+05-22 15:44:13.957 I/AdrenoVK-0(29807): Local Branch            : 
+05-22 15:44:13.957 I/AdrenoVK-0(29807): Remote Branch           : refs/tags/AU_LINUX_ANDROID_LA.VENDOR.15.4.0.11.00.00.1088.743
+05-22 15:44:13.957 I/AdrenoVK-0(29807): Remote Branch           : NONE
+05-22 15:44:13.957 I/AdrenoVK-0(29807): Reconstruct Branch      : NOTHING
+05-22 15:44:13.957 I/AdrenoVK-0(29807): Build Config            : S P 18.0.0 AArch64
+05-22 15:44:13.957 D/nativeloader(29807): Load /data/app/~~pUnSbOVjQKIErh5MDkxvGA==/com.revc-8tKSH2FWm-qq2hj1Num8nA==/lib/arm64/libSDL3.so using class loader ns clns-9 (caller=/data/app/~~pUnSbOVjQKIErh5MDkxvGA==/com.revc-8tKSH2FWm-qq2hj1Num8nA==/base.apk!classes4.dex): ok
+05-22 15:44:13.957 I/AdrenoVK-0(29807): Driver Path             : /vendor/lib64/hw/vulkan.adreno.so
+05-22 15:44:13.957 I/AdrenoVK-0(29807): Driver Version          : 0800.40.1
+05-22 15:44:13.957 I/AdrenoVK-0(29807): PFP                     : 0x01500077
+05-22 15:44:13.957 I/AdrenoVK-0(29807): ME                      : 0x01500014
+05-22 15:44:13.957 I/AdrenoVK-0(29807): Application Name    : android framework
+05-22 15:44:13.957 I/AdrenoVK-0(29807): Application Version : 0x00000000
+05-22 15:44:13.957 I/AdrenoVK-0(29807): Engine Name         : android framework
+05-22 15:44:13.957 I/AdrenoVK-0(29807): Engine Version      : 0x00000000
+05-22 15:44:13.957 I/AdrenoVK-0(29807): Api Version         : 0x00401000
+05-22 15:44:13.957 D/nativeloader(29807): Load /data/app/~~pUnSbOVjQKIErh5MDkxvGA==/com.revc-8tKSH2FWm-qq2hj1Num8nA==/lib/arm64/libopenal.so using class loader ns clns-9 (caller=/data/app/~~pUnSbOVjQKIErh5MDkxvGA==/com.revc-8tKSH2FWm-qq2hj1Num8nA==/base.apk!classes4.dex): ok
+05-22 15:44:13.958 V/SDL     (29807): nativeSetupJNI()
+05-22 15:44:13.958 V/SDL     (29807): AUDIO nativeSetupJNI()
+05-22 15:44:13.958 V/SDL     (29807): CONTROLLER nativeSetupJNI()
+05-22 15:44:13.958 V/hidapi  (29807): HIDDeviceRegisterCallback()
+05-22 15:44:13.961 I/DecorView(29807): setWindowBackground: isPopOver=false color=ff010102 d=android.graphics.drawable.StateListDrawable@966f64c
+05-22 15:44:13.962 V/SDL     (29807): onStart()
+05-22 15:44:13.962 V/SDL     (29807): onResume()
+05-22 15:44:13.965 D/ViewRootImpl(29807): desktopMode is false
+05-22 15:44:13.965 I/ViewRootImpl(29807): dVRR is disabled
+05-22 15:44:13.965 D/HardwareRenderer(29807): onDisplayChanged. displayId=0 current wxh=1560x720 mLargest wxh=0x0
+05-22 15:44:13.966 D/HardwareRenderer(29807): Set largestWidth and largestHeight as logical resolution. (1560x720)
+05-22 15:44:13.966 D/HWUI    (29807): setMaxSurfaceArea requested wxh=(1560,720) requestedSurfaceArea(1123200) is smaller than defaultSurfaceArea(2073600). Use default.
+05-22 15:44:13.966 D/NativeCustomFrequencyManager(29807): [NativeCFMS] BpCustomFrequencyManager::BpCustomFrequencyManager()
+05-22 15:44:13.967 D/InsetsController(29807): Setting requestedVisibleTypes to -14 (was -9)
+05-22 15:44:13.967 I/InsetsController(29807): setRequestedVisibleTypes: visible=false, mask=statusBars captionBar, host=com.revc/com.revc.GameActivity, from=android.view.InsetsController.controlAnimationUnchecked:1604 android.view.InsetsController.applyAnimation:2416 android.view.InsetsController.applyAnimation:2343 android.view.InsetsController.hide:1540 android.view.InsetsController.hide:1450 android.view.ViewRootImpl.controlInsetsForCompatibility:4170 android.view.ViewRootImpl.setView:1970 android.view.WindowManagerGlobal.addView:604 android.view.WindowManagerImpl.addView:158 android.app.ActivityThread.handleResumeActivity:6395 
+05-22 15:44:13.967 E/perf_hint(29807): Session ID too large, must fit 32-bit integer
+05-22 15:44:13.968 D/InputTransport(29807): Input channel constructed: '7d9a600', fd=118
+05-22 15:44:13.968 I/InsetsController(29807): onStateChanged: host=com.revc/com.revc.GameActivity, from=android.view.ViewRootImpl.onInsetsStateChanged:3026, state=InsetsState: {mDisplayFrame=Rect(0, 0 - 1560, 720), mDisplayCutout=DisplayCutout{insets=Rect(57, 0 - 0, 0) waterfall=Insets{left=0, top=0, right=0, bottom=0} boundingRect={Bounds=[Rect(0, 342 - 57, 377), Rect(0, 0 - 0, 0), Rect(0, 0 - 0, 0), Rect(0, 0 - 0, 0)]} cutoutPathParserInfo={CutoutPathParserInfo{displayWidth=720 displayHeight=1560 physicalDisplayWidth=720 physicalDisplayHeight=1560 density={1.875} cutoutSpec={M 0,0 H -9.333333333333333 V 30.13333333333333 H 9.333333333333333 V 0 H 0 Z @dp} rotation={1} scale={1.0} physicalPixelDisplaySizeRatio={1.0}}} sideOverrides={}}, mRoundedCorners=RoundedCorners{[RoundedCorner{position=TopLeft, radius=28, center=Point(28, 28)}, RoundedCorner{position=TopRight, radius=28, center=Point(1532, 28)}, RoundedCorner{position=BottomRight, radius=28, center=Point(1532, 692)}, RoundedCorner{position=BottomLeft, radius=28, center=Point(28, 692)}]}  mRoundedCornerFrame=Rect(0, 0 - 1560, 720), mPrivacyIndicatorBounds=PrivacyIndicatorBounds {static bounds=Rect(1477, 0 - 1560, 56) rotation=1}, mDisplayShape=DisplayShape{ spec=-311912193 displayWidth=720 displayHeight=1560 physicalPixelDisplaySizeRatio=0.5 rotation=1 offsetX=0 offsetY=0 scale=1.0}, mSources= { InsetsSource: {3 mType=ime mFrame=[0,0][0,0] mVisible=false mFlags= mSideHint=NONE mBoundingRects=null}, InsetsSource: {7 mType=displayCutout mFrame=[0,0][57,720] mVisible=true mFlags= mSideHint=LEFT mBoundingRects=null}, InsetsSource: {14ca0001 mType=navigationBars mFrame=[0,692][1560,720] mVisible=true mFlags=SUPPRESS_SCRIM mSideHint=BOTTOM mBoundingRects=null}, InsetsSource: {14ca0004 mType=systemGestures mFrame=[0,0][131,720] mVisible=true mFlags= mSideHint=LEFT mBoundingRects=null}, InsetsSource: {14ca0005 mType=mandatorySystemGestures mFrame=[0,660][1560,720] mVisible=true mFlags= mSideHint=BOTTOM mBoundingRects=null}, InsetsSource: {14ca0006 mType=tappableElement mFrame=[0,0][0,0] mVisible=true mFlags= mSideHint=NONE mBoundingRects=null}, InsetsSource: {14ca0024 mType=systemGestures mFrame=[1486,0][1560,720] mVisible=true mFlags= mSideHint=RIGHT mBoundingRects=null}, InsetsSource: {2cb70000 mType=statusBars mFrame=[0,0][1560,56] mVisible=true mFlags= mSideHint=TOP mBoundingRects=null}, InsetsSource: {2cb70005 mType=mandatorySystemGestures mFrame=[0,0][1560,56] mVisible=true mFlags= mSideHint=TOP mBoundingRects=null}, InsetsSource: {2cb70006 mType=tappableElement mFrame=[0,0][1560,56] mVisible=true mFlags= mSideHint=TOP mBoundingRects=null} }
+05-22 15:44:13.968 I/VRI[GameActivity]@9486313(29807): synced displayState. AttachInfo displayState=2
+05-22 15:44:13.968 I/VRI[GameActivity]@9486313(29807): setView = com.android.internal.policy.DecorView@9cc1d6f IsHRR=false mFlingFrameRateChange=0 TM=true
+05-22 15:44:13.968 I/IDS_TAG (29807): Clearing training data of android.app.Application@a3f2819
+05-22 15:44:13.969 I/IDS_TAG (29807): Starting IDS observe window
+05-22 15:44:13.969 I/IDS_TAG (29807): Getting Shared Preference for android.app.Application@a3f2819 uid = 10510
+05-22 15:44:13.969 I/IDS_TAG (29807): App android.app.Application@a3f2819 has not finished training
+05-22 15:44:13.970 D/HWUI    (29807): HWUI - treat SMPTE_170M as sRGB
+05-22 15:44:13.970 I/IDS_TAG (29807): Closing IDS observe window
+05-22 15:44:13.970 I/IDS_TAG (29807): Getting Shared Preference for android.app.Application@a3f2819 uid = 10510
+05-22 15:44:13.970 I/IDS_TAG (29807): IDS count updated to 1 for android.app.Application@a3f2819
+05-22 15:44:13.971 I/SV[55995171 GameActivity](29807): onWindowVisibilityChanged(0) true org.libsdl.app.SDLSurface{3566b23 VFE...... .F....I. 0,0-0,0} of VRI[GameActivity]@9486313
+05-22 15:44:13.971 D/SurfaceView(29807): 55995171 updateSurface: has no frame
+05-22 15:44:13.971 D/InsetsController(29807): Setting requestedVisibleTypes to -9 (was -14)
+05-22 15:44:13.971 I/InsetsController(29807): setRequestedVisibleTypes: visible=true, mask=statusBars captionBar, host=com.revc/com.revc.GameActivity, from=android.view.InsetsController.controlAnimationUnchecked:1604 android.view.InsetsController.applyAnimation:2416 android.view.InsetsController.applyAnimation:2343 android.view.InsetsController.show:1422 android.view.InsetsController.show:1335 android.view.ViewRootImpl.controlInsetsForCompatibility:4173 android.view.ViewRootImpl.performTraversals:4757 android.view.ViewRootImpl.doTraversal:3924 android.view.ViewRootImpl$TraversalRunnable.run:12903 android.view.Choreographer$CallbackRecord.run:1901 
+05-22 15:44:13.973 E/com.revc(29807): Unable to open libpenguin.so: dlopen failed: library "libpenguin.so" not found.
+05-22 15:44:13.973 I/BufferQueueProducer(29807): [](id:746f00000000,api:0,p:-487683120,c:29807) setDequeueTimeout:2077252342
+05-22 15:44:13.973 I/BLASTBufferQueue_Java(29807): new BLASTBufferQueue, mName= VRI[GameActivity]@9486313 mNativeObject= 0xb4000072f2f23530 caller= android.view.ViewRootImpl.updateBlastSurfaceIfNeeded:3585 android.view.ViewRootImpl.relayoutWindow:11685 android.view.ViewRootImpl.performTraversals:4804 android.view.ViewRootImpl.doTraversal:3924 android.view.ViewRootImpl$TraversalRunnable.run:12903 android.view.Choreographer$CallbackRecord.run:1901 android.view.Choreographer$CallbackRecord.run:1910 android.view.Choreographer.doCallbacks:1367 android.view.Choreographer.doFrame:1292 android.view.Choreographer$FrameDisplayEventReceiver.run:1870 
+05-22 15:44:13.973 I/BLASTBufferQueue_Java(29807): update, w= 1503 h= 720 mName = VRI[GameActivity]@9486313 mNativeObject= 0xb4000072f2f23530 sc.mNativeObject= 0xb400007192eda010 format= -3 caller= android.view.ViewRootImpl.updateBlastSurfaceIfNeeded:3590 android.view.ViewRootImpl.relayoutWindow:11685 android.view.ViewRootImpl.performTraversals:4804 android.view.ViewRootImpl.doTraversal:3924 android.view.ViewRootImpl$TraversalRunnable.run:12903 android.view.Choreographer$CallbackRecord.run:1901 
+05-22 15:44:13.973 I/VRI[GameActivity]@9486313(29807): Relayout returned: old=(57,0,1560,720) new=(57,0,1560,720) relayoutAsync=false req=(1503,720)0 dur=2 res=0x3 s={true 0xb400007342ee6280} ch=true seqId=0
+05-22 15:44:13.973 I/VRI[GameActivity]@9486313(29807): performConfigurationChange setNightDimText nightDimLevel=0
+05-22 15:44:13.974 D/VRI[GameActivity]@9486313(29807): mThreadedRenderer.initialize() mSurface={isValid=true 0xb400007342ee6280} hwInitialized=true
+05-22 15:44:13.974 D/SurfaceView(29807): 55995171 updateSurface: has no frame
+05-22 15:44:13.974 I/SV[55995171 GameActivity](29807): windowStopped(false) true org.libsdl.app.SDLSurface{3566b23 VFE...... .F....ID 0,0-1503,636} of VRI[GameActivity]@9486313
+05-22 15:44:13.974 D/SurfaceView(29807): 55995171 updateSurface: has no frame
+05-22 15:44:13.974 D/VRI[GameActivity]@9486313(29807): reportNextDraw android.view.ViewRootImpl.performTraversals:5443 android.view.ViewRootImpl.doTraversal:3924 android.view.ViewRootImpl$TraversalRunnable.run:12903 android.view.Choreographer$CallbackRecord.run:1901 android.view.Choreographer$CallbackRecord.run:1910 
+05-22 15:44:13.974 I/SurfaceView(29807): 55995171 Changes: creating=true format=true size=true visible=true alpha=false hint=true left=true top=true z=false attached=true lifecycleStrategy=false
+05-22 15:44:13.975 I/BufferQueueProducer(29807): [](id:746f00000001,api:0,p:0,c:29807) setDequeueTimeout:2077252342
+05-22 15:44:13.975 I/BLASTBufferQueue_Java(29807): new BLASTBufferQueue, mName= 3566b23 SurfaceView[com.revc/com.revc.GameActivity]@0 mNativeObject= 0xb4000072f2f2b5b0 caller= android.view.SurfaceView.createBlastSurfaceControls:1781 android.view.SurfaceView.updateSurface:1450 android.view.SurfaceView.lambda$new$0:280 android.view.SurfaceView.$r8$lambda$NfZyM_TG8F8lqzaOVZ7noREFjzU:0 android.view.SurfaceView$$ExternalSyntheticLambda1.onPreDraw:0 android.view.ViewTreeObserver.dispatchOnPreDraw:1229 android.view.ViewRootImpl.performTraversals:5448 android.view.ViewRootImpl.doTraversal:3924 android.view.ViewRootImpl$TraversalRunnable.run:12903 android.view.Choreographer$CallbackRecord.run:1901 
+05-22 15:44:13.975 I/BLASTBufferQueue_Java(29807): update, w= 1503 h= 636 mName = 3566b23 SurfaceView[com.revc/com.revc.GameActivity]@0 mNativeObject= 0xb4000072f2f2b5b0 sc.mNativeObject= 0xb400007192edb210 format= 4 caller= android.view.SurfaceView.createBlastSurfaceControls:1782 android.view.SurfaceView.updateSurface:1450 android.view.SurfaceView.lambda$new$0:280 android.view.SurfaceView.$r8$lambda$NfZyM_TG8F8lqzaOVZ7noREFjzU:0 android.view.SurfaceView$$ExternalSyntheticLambda1.onPreDraw:0 android.view.ViewTreeObserver.dispatchOnPreDraw:1229 
+05-22 15:44:13.975 I/SurfaceView(29807): 55995171 Cur surface: Surface(name=null mNativeObject=0)/@0x227218b
+05-22 15:44:13.975 D/SurfaceComposerClient(29807): setCornerRadius ## 3566b23 SurfaceView[com.revc/com.revc.GameActivity]@0#199679 cornerRadius=0.000000
+05-22 15:44:13.975 I/SV[55995171 GameActivity](29807): pST: sr = Rect(0, 56 - 1503, 692) sw = 1503 sh = 636
+05-22 15:44:13.975 D/SurfaceView(29807): 55995171 performSurfaceTransaction RenderWorker position = [0, 56, 1503, 692] surfaceSize = 1503x636
+05-22 15:44:13.975 I/SV[55995171 GameActivity](29807): updateSurface: mVisible = true mSurface.isValid() = true
+05-22 15:44:13.975 I/SV[55995171 GameActivity](29807): updateSurface: mSurfaceCreated = false surfaceChanged = true visibleChanged = true
+05-22 15:44:13.975 I/SurfaceView(29807): 55995171 visibleChanged -- surfaceCreated
+05-22 15:44:13.975 I/SV[55995171 GameActivity](29807): surfaceCreated 1 #8 org.libsdl.app.SDLSurface{3566b23 VFE...... .F....ID 0,0-1503,636}
+05-22 15:44:13.975 V/SDL     (29807): surfaceCreated()
+05-22 15:44:13.975 I/SurfaceView(29807): 55995171 surfaceChanged -- format=4 w=1503 h=636
+05-22 15:44:13.975 I/SV[55995171 GameActivity](29807): surfaceChanged (1503,636) 1 #8 org.libsdl.app.SDLSurface{3566b23 VFE...... .F....ID 0,0-1503,636}
+05-22 15:44:13.975 V/SDL     (29807): surfaceChanged()
+05-22 15:44:13.975 V/SDL     (29807): Window size: 1503x636
+05-22 15:44:13.975 V/SDL     (29807): Device size: 1560x720
+05-22 15:44:13.978 D/SensorManager(29807): registerListener :: 11, lsm6dsv_0 Accelerometer Non-wakeup, 20000, 0, 
+05-22 15:44:13.978 D/SensorManager(29807): registerListener fail (2) :: 11, lsm6dsv_0 Accelerometer Non-wakeup, 20000, 0, org.libsdl.app.SDLSurface{3566b23 VFE...... .F....ID 0,0-1503,636}
+05-22 15:44:13.978 I/SurfaceView(29807): 55995171 surfaceRedrawNeeded
+05-22 15:44:13.978 V/SDL     (29807): nativeInitSDLThread() 1 time
+05-22 15:44:13.978 I/SurfaceView(29807): 55995171 finishedDrawing
+05-22 15:44:13.978 V/SDL     (29807): Running main function LaunchAndroid from library /data/app/~~pUnSbOVjQKIErh5MDkxvGA==/com.revc-8tKSH2FWm-qq2hj1Num8nA==/lib/arm64/librevc.so
+05-22 15:44:13.978 V/SurfaceView(29807): Layout: x=0 y=56 w=1503 h=636, frame=Rect(0, 0 - 1503, 636)
+05-22 15:44:13.978 D/VRI[GameActivity]@9486313(29807): Setup new sync=wmsSync-VRI[GameActivity]@9486313#1
+05-22 15:44:13.978 I/VRI[GameActivity]@9486313(29807): Creating new active sync group VRI[GameActivity]@9486313#2
+05-22 15:44:13.979 D/REVC    (29807): /storage/emulated/0/reVC/log.txt
+05-22 15:44:13.979 D/VRI[GameActivity]@9486313(29807): registerCallbacksForSync syncBuffer=false
+05-22 15:44:13.980 D/SurfaceView(29807): 55995171 updateSurfacePosition RenderWorker, frameNr = 1, position = [0, 56, 1503, 692] surfaceSize = 1503x636
+05-22 15:44:13.980 I/SV[55995171 GameActivity](29807): uSP: rtp = Rect(0, 56 - 1503, 692) rtsw = 1503 rtsh = 636
+05-22 15:44:13.980 I/SV[55995171 GameActivity](29807): onSSPAndSRT: pl = 0 pt = 56 sx = 1.0 sy = 1.0
+05-22 15:44:13.980 I/SV[55995171 GameActivity](29807): aOrMT: VRI[GameActivity]@9486313 t = android.view.SurfaceControl$Transaction@3d7ad14 fN = 1 android.view.SurfaceView.-$$Nest$mapplyOrMergeTransaction:0 android.view.SurfaceView$SurfaceViewPositionUpdateListener.positionChanged:1932 android.graphics.RenderNode$CompositePositionUpdateListener.positionChanged:401 
+05-22 15:44:13.980 I/VRI[GameActivity]@9486313(29807): mWNT: t=0xb400007292ef9790 mBlastBufferQueue=0xb4000072f2f23530 fn= 1 HdrRenderState mRenderHdrSdrRatio=1.0 caller= android.view.SurfaceView.applyOrMergeTransaction:1863 android.view.SurfaceView.-$$Nest$mapplyOrMergeTransaction:0 android.view.SurfaceView$SurfaceViewPositionUpdateListener.positionChanged:1932 
+05-22 15:44:13.980 D/VRI[GameActivity]@9486313(29807): Received frameDrawingCallback syncResult=0 frameNum=1.
+05-22 15:44:13.980 I/VRI[GameActivity]@9486313(29807): mWNT: t=0xb400007292ef95d0 mBlastBufferQueue=0xb4000072f2f23530 fn= 1 HdrRenderState mRenderHdrSdrRatio=1.0 caller= android.view.ViewRootImpl$12.onFrameDraw:15441 android.view.ThreadedRenderer$1.onFrameDraw:718 <bottom of call stack> 
+05-22 15:44:13.980 I/VRI[GameActivity]@9486313(29807): Setting up sync and frameCommitCallback
+05-22 15:44:13.980 I/AdrenoUtils(29807): <ReadGpuID:366>: Reading chip ID through GSL
+05-22 15:44:13.980 D/REVC    (29807): TRYING TO START
+05-22 15:44:13.981 D/REVC-DEBUG(29807): root dir is /storage/emulated/0/reVC/
+05-22 15:44:13.981 D/REVC-DEBUG(29807): Game files directory: /storage/emulated/0/reVC/
+05-22 15:44:13.981 D/REVC-DEBUG(29807): [CdStreamInit] Searching for gta3.img at: /storage/emulated/0/reVC/models/gta3.img
+05-22 15:44:13.981 D/REVC-DEBUG(29807): cdvd_stream: read info 0xb400007292efe810
+05-22 15:44:13.981 D/REVC-DEBUG(29807): Using one streaming thread for all channels
+05-22 15:44:13.981 D/REVC-DEBUG(29807): size of matrix 80
+05-22 15:44:13.981 D/REVC-DEBUG(29807): Created cdstream thread
+05-22 15:44:13.981 D/REVC-DEBUG(29807): size of placeable 80
+05-22 15:44:13.981 D/REVC-DEBUG(29807): size of entity 120
+05-22 15:44:13.981 D/REVC-DEBUG(29807): size of building 120
+05-22 15:44:13.981 D/REVC-DEBUG(29807): size of dummy 128
+05-22 15:44:13.981 D/REVC-DEBUG(29807): root dir is /storage/emulated/0/reVC/
+05-22 15:44:13.983 D/DBG-2   (29807): [F:/re3/src/skel/sdl3/sdl3.cpp.psInitialize:444]: gGameState = GS_START_UP
+05-22 15:44:13.984 I/AdrenoVK-0(29807): Unknown struct with type 0x3ba082d9 provided to vkQueueSubmit
+05-22 15:44:13.985 I/BLASTBufferQueue(29807): [VRI[GameActivity]@9486313#0](f:0,a:0,s:0) onFrameAvailable the first frame is available
+05-22 15:44:13.985 I/SurfaceComposerClient(29807): apply transaction with the first frame. layerId: 199675, bufferData(ID: 128020090191872, frameNumber: 1)
+05-22 15:44:13.985 I/VRI[GameActivity]@9486313(29807): Received frameCommittedCallback lastAttemptedDrawFrameNum=1 didProduceBuffer=true
+05-22 15:44:13.985 D/HWUI    (29807): CFMS:: SetUp Pid : 29807    Tid : 29824
+05-22 15:44:13.985 D/VRI[GameActivity]@9486313(29807): reportDrawFinished seqId=0
+05-22 15:44:13.985 V/VRI[GameActivity]@9486313(29807): updateAppliedLetterboxDirection, direction=1, Caller=android.view.ViewRootImpl.handleDispatchLetterboxDirectionChanged:15753
+05-22 15:44:13.986 I/View    (29807): RoundedCornerOffset Pair{0 0}
+05-22 15:44:13.988 I/AdrenoVK-0(29807): Unknown struct with type 0x3ba082d9 provided to vkQueueSubmit
+05-22 15:44:13.989 D/DBG-2   (29807): Default skin set as no other skins are available OR saved skin not found!
+05-22 15:44:13.989 D/REVC-DEBUG(29807): Physical memory size 3064541184
+05-22 15:44:13.989 D/REVC-DEBUG(29807): Available physical memory 1905848320
+05-22 15:44:13.990 I/InsetsSourceConsumer(29807): applyRequestedVisibilityToControl: visible=true, type=statusBars, host=com.revc/com.revc.GameActivity
+05-22 15:44:13.990 I/InsetsSourceConsumer(29807): applyRequestedVisibilityToControl: visible=true, type=navigationBars, host=com.revc/com.revc.GameActivity
+05-22 15:44:13.991 D/REVC-DEBUG(29807): Found resolution is w:1560 h:720
+05-22 15:44:13.991 V/SDL     (29807): setOrientation() requestedOrientation=13 width=1560 height=720 resizable=true hint=
+05-22 15:44:13.996 I/BLASTBufferQueue_Java(29807): update, w= 1560 h= 720 mName = VRI[GameActivity]@9486313 mNativeObject= 0xb4000072f2f23530 sc.mNativeObject= 0xb400007192ed9c50 format= -3 caller= android.view.ViewRootImpl.updateBlastSurfaceIfNeeded:3574 android.view.ViewRootImpl.relayoutWindow:11685 android.view.ViewRootImpl.performTraversals:4804 android.view.ViewRootImpl.doTraversal:3924 android.view.ViewRootImpl$TraversalRunnable.run:12903 android.view.Choreographer$CallbackRecord.run:1901 
+05-22 15:44:13.996 I/VRI[GameActivity]@9486313(29807): Relayout returned: old=(57,0,1560,720) new=(0,0,1560,720) relayoutAsync=false req=(1503,720)0 dur=2 res=0x0 s={true 0xb400007342ee6280} ch=false seqId=1
+05-22 15:44:13.996 D/VRI[GameActivity]@9486313(29807): Relayout called with blastSync
+05-22 15:44:13.996 D/VRI[GameActivity]@9486313(29807): reportNextDraw android.view.ViewRootImpl.performTraversals:4814 android.view.ViewRootImpl.doTraversal:3924 android.view.ViewRootImpl$TraversalRunnable.run:12903 android.view.Choreographer$CallbackRecord.run:1901 android.view.Choreographer$CallbackRecord.run:1910 
+05-22 15:44:13.996 D/VRI[GameActivity]@9486313(29807): mThreadedRenderer.updateSurface() mSurface={isValid=true 0xb400007342ee6280}
+05-22 15:44:13.996 I/VRI[GameActivity]@9486313(29807): updateBoundsLayer: t=android.view.SurfaceControl$Transaction@65074b9 sc=Surface(name=Bounds for - com.revc/com.revc.GameActivity@0)/@0x3e840fe frame=3
+05-22 15:44:13.996 I/SurfaceView(29807): 55995171 Changes: creating=false format=false size=false visible=false alpha=false hint=false left=true top=false z=false attached=true lifecycleStrategy=false
+05-22 15:44:13.996 I/SurfaceView(29807): 55995171 Cur surface: Surface(name=null mNativeObject=-5476376651838317264)/@0x227218b
+05-22 15:44:13.996 D/SurfaceComposerClient(29807): setCornerRadius ## 3566b23 SurfaceView[com.revc/com.revc.GameActivity]@0#199679 cornerRadius=0.000000
+05-22 15:44:13.996 I/SV[55995171 GameActivity](29807): updateSurface: mVisible = true mSurface.isValid() = true
+05-22 15:44:13.996 I/SV[55995171 GameActivity](29807): updateSurface: mSurfaceCreated = true surfaceChanged = false visibleChanged = false
+05-22 15:44:13.996 V/SurfaceView(29807): Layout: x=57 y=56 w=1503 h=636, frame=Rect(0, 0 - 1503, 636)
+05-22 15:44:13.996 D/VRI[GameActivity]@9486313(29807): Setup new sync=wmsSync-VRI[GameActivity]@9486313#3
+05-22 15:44:13.996 I/VRI[GameActivity]@9486313(29807): Creating new active sync group VRI[GameActivity]@9486313#4
+05-22 15:44:13.997 D/VRI[GameActivity]@9486313(29807): registerCallbacksForSync syncBuffer=true
+05-22 15:44:13.997 I/View    (29807): RoundedCornerOffset Pair{0 0}
+05-22 15:44:13.997 D/SurfaceView(29807): 55995171 updateSurfacePosition RenderWorker, frameNr = 3, position = [57, 56, 1560, 692] surfaceSize = 1503x636
+05-22 15:44:13.997 I/SV[55995171 GameActivity](29807): uSP: rtp = Rect(57, 56 - 1560, 692) rtsw = 1503 rtsh = 636
+05-22 15:44:13.997 I/SV[55995171 GameActivity](29807): onSSPAndSRT: pl = 57 pt = 56 sx = 1.0 sy = 1.0
+05-22 15:44:13.997 I/SV[55995171 GameActivity](29807): aOrMT: VRI[GameActivity]@9486313 t = android.view.SurfaceControl$Transaction@3d7ad14 fN = 3 android.view.SurfaceView.-$$Nest$mapplyOrMergeTransaction:0 android.view.SurfaceView$SurfaceViewPositionUpdateListener.positionChanged:1932 android.graphics.RenderNode$CompositePositionUpdateListener.positionChanged:401 
+05-22 15:44:13.997 I/VRI[GameActivity]@9486313(29807): mWNT: t=0xb400007292ef9790 mBlastBufferQueue=0xb4000072f2f23530 fn= 3 HdrRenderState mRenderHdrSdrRatio=1.0 caller= android.view.SurfaceView.applyOrMergeTransaction:1863 android.view.SurfaceView.-$$Nest$mapplyOrMergeTransaction:0 android.view.SurfaceView$SurfaceViewPositionUpdateListener.positionChanged:1932 
+05-22 15:44:13.997 D/VRI[GameActivity]@9486313(29807): Received frameDrawingCallback syncResult=0 frameNum=3.
+05-22 15:44:13.997 I/VRI[GameActivity]@9486313(29807): mWNT: t=0xb400007292efe110 mBlastBufferQueue=0xb4000072f2f23530 fn= 3 HdrRenderState mRenderHdrSdrRatio=1.0 caller= android.view.ViewRootImpl$12.onFrameDraw:15441 android.view.ThreadedRenderer$1.onFrameDraw:718 <bottom of call stack> 
+05-22 15:44:13.997 I/VRI[GameActivity]@9486313(29807): Setting up sync and frameCommitCallback
+05-22 15:44:13.997 I/BLASTBufferQueue_Java(29807): syncNextTransaction, mName= VRI[GameActivity]@9486313 acquireSingleBuffer= true mNativeObject= 0xb4000072f2f23530 callback= android.view.ViewRootImpl$12$$ExternalSyntheticLambda0@807837b caller= android.graphics.BLASTBufferQueue.syncNextTransaction:203 android.view.ViewRootImpl$12.onFrameDraw:15467 android.view.ThreadedRenderer$1.onFrameDraw:718 <bottom of call stack> <bottom of call stack> <bottom of call stack> 
+05-22 15:44:13.997 I/BLASTBufferQueue(29807): [VRI[GameActivity]@9486313#0](f:0,a:1,s:0) syncNextTransaction callback: 1, acquireSingleBuffer: 1, mTransactionReadyCallback: 0
+05-22 15:44:13.998 I/AdrenoVK-0(29807): Unknown struct with type 0x3ba082d9 provided to vkQueueSubmit
+05-22 15:44:13.998 I/BLASTBufferQueue(29807): [VRI[GameActivity]@9486313#0](f:0,a:1,s:0) onFrameAvailable-start syncTransactionSet=true
+05-22 15:44:13.998 I/BLASTBufferQueue(29807): [VRI[GameActivity]@9486313#0](f:0,a:1,s:0) onFrameAvailable framenumber=3 syncTransactionSet=true
+05-22 15:44:13.998 I/BLASTBufferQueue(29807): [VRI[GameActivity]@9486313#0](f:1,a:1,s:0) onFrameAvailable framenumber=3 syncTransactionSet=true
+05-22 15:44:13.998 I/BLASTBufferQueue(29807): [VRI[GameActivity]@9486313#0](f:0,a:2,s:1) mergePendingTransactions t: 128020090191915, frameNumber: 3
+05-22 15:44:13.998 I/BLASTBufferQueue(29807): [VRI[GameActivity]@9486313#0] transaction merge. this(id: 128020090191915, fn: 3). other(id: 128020090191889, fn: 3)
+05-22 15:44:13.998 I/BLASTBufferQueue(29807): [VRI[GameActivity]@9486313#0] transaction merge. this(id: 128020090191915, fn: 3). other(id: 128020090191914, fn: 3)
+05-22 15:44:13.998 I/BLASTBufferQueue(29807): [VRI[GameActivity]@9486313#0](f:0,a:2,s:1) acquireNextBufferLocked t: 128020090191915, mLastAppliedFrameNumber: 2
+05-22 15:44:13.998 I/BLASTBufferQueue(29807): [VRI[GameActivity]@9486313#0](f:0,a:2,s:1) acquireNextBufferLocked size=1560x720 mFrameNumber=3 applyTransaction=false mTimestamp=311331412675922(auto) mPendingTransactions.size=0 graphicBufferId=128020090191874 transform=7
+05-22 15:44:13.999 I/VRI[GameActivity]@9486313(29807): Received ready transaction from native, debugName=syncBuffer_VRI[GameActivity]@9486313#4
+05-22 15:44:13.999 I/VRI[GameActivity]@9486313(29807): Received frameCommittedCallback lastAttemptedDrawFrameNum=3 didProduceBuffer=true
+05-22 15:44:13.999 D/VRI[GameActivity]@9486313(29807): reportDrawFinished seqId=1
+05-22 15:44:13.999 I/SurfaceComposerClient(29807): uncacheWithoutTransaction() cacheId: 128020090191874
+05-22 15:44:13.999 I/VRI[GameActivity]@9486313(29807): handleResized, frames=ClientWindowFrames{frame=[0,0][1560,720] display=[0,0][1560,720] parentFrame=[0,0][0,0]} displayId=0 dragResizing=false compatScale=1.0 frameChanged=false attachedFrameChanged=false configChanged=false displayChanged=false compatScaleChanged=false dragResizingChanged=false
+05-22 15:44:13.999 I/VRI[GameActivity]@9486313(29807): handleResized mSyncSeqId = 1
+05-22 15:44:13.999 D/VRI[GameActivity]@9486313(29807): reportNextDraw android.view.ViewRootImpl.handleResized:2983 android.view.ViewRootImpl.-$$Nest$mhandleResized:0 android.view.ViewRootImpl$W.resized:14082 android.app.servertransaction.WindowStateResizeItem.execute:93 android.app.servertransaction.WindowStateTransactionItem.execute:62 
+05-22 15:44:14.011 I/BLASTBufferQueue(29807): [VRI[GameActivity]@9486313#0](f:0,a:2,s:1) transactionCommittedCallback
+05-22 15:44:14.011 I/BLASTBufferQueue(29807): [VRI[GameActivity]@9486313#0](f:0,a:2,s:0) transactionCommittedCallback mSyncedFrameNumbers.erase(3)
+05-22 15:44:14.054 I/com.revc(29807): Compiler allocated 5066KB to compile void android.view.ViewRootImpl.performTraversals()
+05-22 15:44:14.493 I/vulkan  (29807): Loaded layer VK_LAYER_SAMSUNG_GpuWatch
+05-22 15:44:14.493 D/InsetsController(29807): Setting requestedVisibleTypes to -16 (was -9)
+05-22 15:44:14.493 I/Adreno-UNKNOWN(29807): Using previously loaded IMapper library.
+05-22 15:44:14.493 I/InsetsController(29807): setRequestedVisibleTypes: visible=false, mask=statusBars navigationBars captionBar, host=com.revc/com.revc.GameActivity, from=android.view.InsetsController.controlAnimationUnchecked:1604 android.view.InsetsController.applyAnimation:2416 android.view.InsetsController.applyAnimation:2343 android.view.InsetsController.hide:1540 android.view.InsetsController.hide:1450 android.view.ViewRootImpl.controlInsetsForCompatibility:4170 android.view.ViewRootImpl.performTraversals:4757 android.view.ViewRootImpl.doTraversal:3924 android.view.ViewRootImpl$TraversalRunnable.run:12903 android.view.Choreographer$CallbackRecord.run:1901 
+05-22 15:44:14.496 I/InsetsController(29807): controlAnimationUncheckedInner: Added types=statusBars navigationBars, animType=1, host=com.revc/com.revc.GameActivity, from=android.view.InsetsController.controlAnimationUnchecked:1608 android.view.InsetsController.applyAnimation:2416 android.view.InsetsController.applyAnimation:2343 
+05-22 15:44:14.497 I/BLASTBufferQueue_Java(29807): update, w= 1560 h= 720 mName = VRI[GameActivity]@9486313 mNativeObject= 0xb4000072f2f23530 sc.mNativeObject= 0xb400007192ed9c50 format= -3 caller= android.view.ViewRootImpl.updateBlastSurfaceIfNeeded:3574 android.view.ViewRootImpl.relayoutWindow:11685 android.view.ViewRootImpl.performTraversals:4804 android.view.ViewRootImpl.doTraversal:3924 android.view.ViewRootImpl$TraversalRunnable.run:12903 android.view.Choreographer$CallbackRecord.run:1901 
+05-22 15:44:14.497 I/VRI[GameActivity]@9486313(29807): Relayout returned: old=(0,0,1560,720) new=(0,0,1560,720) relayoutAsync=true req=(1560,720)0 dur=1 res=0x0 s={true 0xb400007342ee6280} ch=false seqId=1
+05-22 15:44:14.499 I/Adreno-UNKNOWN(29807): Using previously loaded IMapper library.
+05-22 15:44:14.501 D/VRI[GameActivity]@9486313(29807): cancelDraw returned false
+05-22 15:44:14.501 I/VRI[GameActivity]@9486313(29807): updateBoundsLayer: t=android.view.SurfaceControl$Transaction@65074b9 sc=Surface(name=Bounds for - com.revc/com.revc.GameActivity@0)/@0x3e840fe frame=4
+05-22 15:44:14.502 I/SurfaceView(29807): 55995171 Changes: creating=false format=false size=true visible=false alpha=false hint=false left=true top=true z=false attached=true lifecycleStrategy=false
+05-22 15:44:14.502 I/SurfaceView(29807): 55995171 Cur surface: Surface(name=null mNativeObject=-5476376651838317264)/@0x227218b
+05-22 15:44:14.502 D/SurfaceComposerClient(29807): setCornerRadius ## 3566b23 SurfaceView[com.revc/com.revc.GameActivity]@0#199679 cornerRadius=0.000000
+05-22 15:44:14.502 I/BLASTBufferQueue_Java(29807): update, w= 1560 h= 720 mName = 3566b23 SurfaceView[com.revc/com.revc.GameActivity]@0 mNativeObject= 0xb4000072f2f2b5b0 sc.mNativeObject= 0xb400007192edb210 format= 4 caller= android.view.SurfaceView.setBufferSize:1703 android.view.SurfaceView.performSurfaceTransaction:1238 android.view.SurfaceView.updateSurface:1467 android.view.SurfaceView.setFrame:716 android.view.View.layout:26931 android.widget.RelativeLayout.onLayout:1131 
+05-22 15:44:14.502 I/SV[55995171 GameActivity](29807): pST: sr = Rect(0, 0 - 1560, 720) sw = 1560 sh = 720
+05-22 15:44:14.502 D/SurfaceView(29807): 55995171 performSurfaceTransaction RenderWorker position = [0, 0, 1560, 720] surfaceSize = 1560x720
+05-22 15:44:14.502 I/SV[55995171 GameActivity](29807): updateSurface: mVisible = true mSurface.isValid() = true
+05-22 15:44:14.502 I/SV[55995171 GameActivity](29807): updateSurface: mSurfaceCreated = true surfaceChanged = false visibleChanged = false
+05-22 15:44:14.502 I/SurfaceView(29807): 55995171 surfaceChanged -- format=4 w=1560 h=720
+05-22 15:44:14.502 I/SV[55995171 GameActivity](29807): surfaceChanged (1560,720) 1 #5 org.libsdl.app.SDLSurface{3566b23 VFE...... .F....ID 0,0-1560,720}
+05-22 15:44:14.502 V/SDL     (29807): surfaceChanged()
+05-22 15:44:14.502 V/SDL     (29807): Window size: 1560x720
+05-22 15:44:14.502 V/SDL     (29807): Device size: 1560x720
+05-22 15:44:14.502 I/SurfaceView(29807): 55995171 surfaceRedrawNeeded
+05-22 15:44:14.502 I/SurfaceView(29807): 55995171 finishedDrawing
+05-22 15:44:14.502 V/SurfaceView(29807): Layout: x=0 y=0 w=1560 h=720, frame=Rect(0, 0 - 1560, 720)
+05-22 15:44:14.503 D/VRI[GameActivity]@9486313(29807): Setup new sync=wmsSync-VRI[GameActivity]@9486313#7
+05-22 15:44:14.503 I/VRI[GameActivity]@9486313(29807): Creating new active sync group VRI[GameActivity]@9486313#8
+05-22 15:44:14.503 D/VRI[GameActivity]@9486313(29807): registerCallbacksForSync syncBuffer=false
+05-22 15:44:14.503 I/View    (29807): RoundedCornerOffset Pair{0 0}
+05-22 15:44:14.503 D/SurfaceView(29807): 55995171 updateSurfacePosition RenderWorker, frameNr = 4, position = [0, 0, 1560, 720] surfaceSize = 1560x720
+05-22 15:44:14.503 I/SV[55995171 GameActivity](29807): uSP: rtp = Rect(0, 0 - 1560, 720) rtsw = 1560 rtsh = 720
+05-22 15:44:14.503 I/SV[55995171 GameActivity](29807): onSSPAndSRT: pl = 0 pt = 0 sx = 1.0 sy = 1.0
+05-22 15:44:14.503 I/SV[55995171 GameActivity](29807): aOrMT: VRI[GameActivity]@9486313 t = android.view.SurfaceControl$Transaction@924e5ae fN = 4 android.view.SurfaceView.-$$Nest$mapplyOrMergeTransaction:0 android.view.SurfaceView$SurfaceViewPositionUpdateListener.positionChanged:1932 android.graphics.RenderNode$CompositePositionUpdateListener.positionChanged:401 
+05-22 15:44:14.503 I/VRI[GameActivity]@9486313(29807): mWNT: t=0xb400007292eff7d0 mBlastBufferQueue=0xb4000072f2f23530 fn= 4 HdrRenderState mRenderHdrSdrRatio=1.0 caller= android.view.SurfaceView.applyOrMergeTransaction:1863 android.view.SurfaceView.-$$Nest$mapplyOrMergeTransaction:0 android.view.SurfaceView$SurfaceViewPositionUpdateListener.positionChanged:1932 
+05-22 15:44:14.504 D/VRI[GameActivity]@9486313(29807): Received frameDrawingCallback syncResult=0 frameNum=4.
+05-22 15:44:14.504 I/VRI[GameActivity]@9486313(29807): mWNT: t=0xb400007292f02010 mBlastBufferQueue=0xb4000072f2f23530 fn= 4 HdrRenderState mRenderHdrSdrRatio=1.0 caller= android.view.ViewRootImpl$12.onFrameDraw:15441 android.view.ThreadedRenderer$1.onFrameDraw:718 <bottom of call stack> 
+05-22 15:44:14.504 I/AdrenoVK-0(29807): QUALCOMM build          : e4a2ccdb56, Icac6f3510c
+05-22 15:44:14.504 I/AdrenoVK-0(29807): Build Date              : 07/21/25
+05-22 15:44:14.504 I/AdrenoVK-0(29807): Shader Compiler Version : E031.47.18.36
+05-22 15:44:14.504 I/AdrenoVK-0(29807): Local Branch            : 
+05-22 15:44:14.504 I/AdrenoVK-0(29807): Remote Branch           : refs/tags/AU_LINUX_ANDROID_LA.VENDOR.15.4.0.11.00.00.1088.743
+05-22 15:44:14.504 I/AdrenoVK-0(29807): Remote Branch           : NONE
+05-22 15:44:14.504 I/AdrenoVK-0(29807): Reconstruct Branch      : NOTHING
+05-22 15:44:14.504 I/AdrenoVK-0(29807): Build Config            : S P 18.0.0 AArch64
+05-22 15:44:14.504 I/VRI[GameActivity]@9486313(29807): Setting up sync and frameCommitCallback
+05-22 15:44:14.504 I/AdrenoVK-0(29807): Driver Path             : /vendor/lib64/hw/vulkan.adreno.so
+05-22 15:44:14.504 I/AdrenoVK-0(29807): Driver Version          : 0800.40.1
+05-22 15:44:14.504 I/AdrenoVK-0(29807): PFP                     : 0x01500077
+05-22 15:44:14.504 I/AdrenoVK-0(29807): ME                      : 0x01500014
+05-22 15:44:14.504 I/AdrenoVK-0(29807): Application Name    : librw
+05-22 15:44:14.504 I/AdrenoVK-0(29807): Application Version : 0x00000001
+05-22 15:44:14.504 I/AdrenoVK-0(29807): Engine Name         : librw
+05-22 15:44:14.504 I/AdrenoVK-0(29807): Engine Version      : 0x00000001
+05-22 15:44:14.504 I/AdrenoVK-0(29807): Api Version         : 0x00400000
+05-22 15:44:14.505 I/AdrenoVK-0(29807): Unknown struct with type 0x3ba082d9 provided to vkQueueSubmit
+05-22 15:44:14.506 I/VRI[GameActivity]@9486313(29807): Received frameCommittedCallback lastAttemptedDrawFrameNum=4 didProduceBuffer=true
+05-22 15:44:14.507 D/VRI[GameActivity]@9486313(29807): reportDrawFinished seqId=1
+05-22 15:44:14.507 I/Choreographer(29807): Skipped 59 frames!  The application may be doing too much work on its main thread.
+05-22 15:44:14.508 I/View    (29807): RoundedCornerOffset Pair{0 0}
+05-22 15:44:14.508 I/AdrenoVK-0(29807): Unknown struct with type 0x3ba082d9 provided to vkQueueSubmit
+05-22 15:44:14.509 V/VRI[GameActivity]@9486313(29807): updateAppliedLetterboxDirection, direction=0, Caller=android.view.ViewRootImpl.handleDispatchLetterboxDirectionChanged:15753
+05-22 15:44:14.510 I/InsetsController(29807): onStateChanged: host=com.revc/com.revc.GameActivity, from=android.view.ViewRootImpl.onInsetsStateChanged:3026, state=InsetsState: {mDisplayFrame=Rect(0, 0 - 1560, 720), mDisplayCutout=DisplayCutout{insets=Rect(57, 0 - 0, 0) waterfall=Insets{left=0, top=0, right=0, bottom=0} boundingRect={Bounds=[Rect(0, 342 - 57, 377), Rect(0, 0 - 0, 0), Rect(0, 0 - 0, 0), Rect(0, 0 - 0, 0)]} cutoutPathParserInfo={CutoutPathParserInfo{displayWidth=720 displayHeight=1560 physicalDisplayWidth=720 physicalDisplayHeight=1560 density={1.875} cutoutSpec={M 0,0 H -9.333333333333333 V 30.13333333333333 H 9.333333333333333 V 0 H 0 Z @dp} rotation={1} scale={1.0} physicalPixelDisplaySizeRatio={1.0}}} sideOverrides={}}, mRoundedCorners=RoundedCorners{[RoundedCorner{position=TopLeft, radius=28, center=Point(28, 28)}, RoundedCorner{position=TopRight, radius=28, center=Point(1532, 28)}, RoundedCorner{position=BottomRight, radius=28, center=Point(1532, 692)}, RoundedCorner{position=BottomLeft, radius=28, center=Point(28, 692)}]}  mRoundedCornerFrame=Rect(0, 0 - 1560, 720), mPrivacyIndicatorBounds=PrivacyIndicatorBounds {static bounds=Rect(1477, 0 - 1560, 56) rotation=1}, mDisplayShape=DisplayShape{ spec=-311912193 displayWidth=720 displayHeight=1560 physicalPixelDisplaySizeRatio=0.5 rotation=1 offsetX=0 offsetY=0 scale=1.0}, mSources= { InsetsSource: {3 mType=ime mFrame=[0,0][0,0] mVisible=false mFlags= mSideHint=NONE mBoundingRects=null}, InsetsSource: {7 mType=displayCutout mFrame=[0,0][57,720] mVisible=true mFlags= mSideHint=LEFT mBoundingRects=null}, InsetsSource: {14ca0001 mType=navigationBars mFrame=[0,692][1560,720] mVisible=false mFlags=SUPPRESS_SCRIM mSideHint=BOTTOM mBoundingRects=null}, InsetsSource: {14ca0004 mType=systemGestures mFrame=[0,0][131,720] mVisible=true mFlags= mSideHint=LEFT mBoundingRects=null}, InsetsSource: {14ca0005 mType=mandatorySystemGestures mFrame=[0,660][1560,720] mVisible=true mFlags= mSideHint=BOTTOM mBoundingRects=null}, InsetsSource: {14ca0006 mType=tappableElement mFrame=[0,0][0,0] mVisible=true mFlags= mSideHint=NONE mBoundingRects=null}, InsetsSource: {14ca0024 mType=systemGestures mFrame=[1486,0][1560,720] mVisible=true mFlags= mSideHint=RIGHT mBoundingRects=null}, InsetsSource: {2cb70000 mType=statusBars mFrame=[0,0][1560,56] mVisible=false mFlags= mSideHint=TOP mBoundingRects=null}, InsetsSource: {2cb70005 mType=mandatorySystemGestures mFrame=[0,0][1560,56] mVisible=true mFlags= mSideHint=TOP mBoundingRects=null}, InsetsSource: {2cb70006 mType=tappableElement mFrame=[0,0][1560,56] mVisible=true mFlags= mSideHint=TOP mBoundingRects=null} }
+05-22 15:44:14.510 I/VRI[GameActivity]@9486313(29807): handleResized, frames=ClientWindowFrames{frame=[0,0][1560,720] display=[0,0][1560,720] parentFrame=[0,0][0,0]} displayId=0 dragResizing=false compatScale=1.0 frameChanged=false attachedFrameChanged=false configChanged=false displayChanged=false compatScaleChanged=false dragResizingChanged=false
+05-22 15:44:14.510 D/VRI[GameActivity]@9486313(29807): mThreadedRenderer.initializeIfNeeded()#2 mSurface={isValid=true 0xb400007342ee6280}
+05-22 15:44:14.510 V/SDL     (29807): onWindowFocusChanged(): true
+05-22 15:44:14.510 V/SDL     (29807): nativeFocusChanged()
+05-22 15:44:14.510 D/InputMethodManagerUtils(29807): startInputInner - Id : 0
+05-22 15:44:14.510 I/InputMethodManager(29807): startInputInner - IInputMethodManagerGlobalInvoker.startInputOrWindowGainedFocus
+05-22 15:44:14.511 I/AdrenoVK-0(29807): Unknown struct with type 0x3ba082d9 provided to vkQueueSubmit
+05-22 15:44:14.517 I/InputMethodManager(29807): handleMessage: setImeVisibility visible=false
+05-22 15:44:14.517 D/InsetsController(29807): hide(ime(), fromIme=false)
+05-22 15:44:14.517 D/InputTransport(29807): Input channel constructed: 'ClientS', fd=183
+05-22 15:44:14.517 I/ImeTracker(29807): com.revc:1a26ac89: onCancelled at PHASE_CLIENT_ALREADY_HIDDEN
+05-22 15:44:14.769 I/AdrenoVK-0(29807): Unknown struct with type 0x3ba082d9 provided to vkQueueSubmit
+05-22 15:44:14.844 I/InsetsController(29807): cancelAnimation: types=statusBars navigationBars, animType=1, host=com.revc/com.revc.GameActivity, from=android.view.InsetsController.notifyFinished:2006 android.view.InsetsAnimationThreadControlRunner$1.lambda$notifyFinished$0:82 android.view.InsetsAnimationThreadControlRunner$1.$r8$lambda$cDFF0h4Ncq-8EXdGszv69jrUu7c:0 
+05-22 15:44:14.844 W/InteractionJankMonitor(29807): Initializing without READ_DEVICE_CONFIG permission. enabled=false, interval=1, missedFrameThreshold=3, frameTimeThreshold=64, package=com.revc
+05-22 15:44:14.897 V/hidapi  (29807): initialize(true, false)
+05-22 15:44:14.900 D/DBG-2   (29807): [F:/re3/src/skel/sdl3/sdl3.cpp.main:1790]: gGameState = GS_INIT_ONCE
+05-22 15:44:14.915 I/BLASTBufferQueue(29807): [3566b23 SurfaceView[com.revc/com.revc.GameActivity]@0#1](f:0,a:0,s:0) onFrameAvailable the first frame is available
+05-22 15:44:14.915 I/SurfaceComposerClient(29807): apply transaction with the first frame. layerId: 199680, bufferData(ID: 128020090191886, frameNumber: 1)
+05-22 15:44:15.064 D/REVC-DEBUG(29807): Initialising CTimer...
+05-22 15:44:15.064 D/DBG-2   (29807): Performance counter not available, using millesecond timer
+05-22 15:44:15.064 D/DBG-2   (29807): 
+05-22 15:44:15.064 D/REVC-DEBUG(29807): CTimer ready
+05-22 15:44:15.073 D/REVC-DEBUG(29807): Initialising CPedStats...
+05-22 15:44:15.073 D/REVC-DEBUG(29807): Loading pedstats data...
+05-22 15:44:15.075 D/REVC-DEBUG(29807): CPedStats ready
+05-22 15:44:15.075 D/REVC-DEBUG(29807): Intialising CTimeCycle...
+05-22 15:44:15.079 D/REVC-DEBUG(29807): CTimeCycle ready
+05-22 15:44:15.079 D/openal  (29807): [ALSOFT] (II) Initializing library v1.23.1-d3875f333 HEAD
+05-22 15:44:15.079 D/openal  (29807): [ALSOFT] (II) Supported backends: opensl, null, wave
+05-22 15:44:15.079 D/openal  (29807): [ALSOFT] (II) Loading config /etc/openal/alsoft.conf...
+05-22 15:44:15.079 D/openal  (29807): [ALSOFT] (II) Loading config /etc/xdg/alsoft.conf...
+05-22 15:44:15.079 D/openal  (29807): [ALSOFT] (II) Got binary: "/system/bin", "app_process64"
+05-22 15:44:15.079 D/openal  (29807): [ALSOFT] (II) Loading config /system/bin/alsoft.conf...
+05-22 15:44:15.079 D/openal  (29807): [ALSOFT] (II) Key disable-cpu-exts not found
+05-22 15:44:15.079 D/openal  (29807): [ALSOFT] (II) Extensions: +NEON
+05-22 15:44:15.079 D/openal  (29807): [ALSOFT] (II) Key rt-prio not found
+05-22 15:44:15.079 D/openal  (29807): [ALSOFT] (II) Key rt-time-limit not found
+05-22 15:44:15.079 D/openal  (29807): [ALSOFT] (II) Key game_compat/enable-sub-data-ext not found
+05-22 15:44:15.079 D/openal  (29807): [ALSOFT] (II) Key game_compat/reverse-x not found
+05-22 15:44:15.079 D/openal  (29807): [ALSOFT] (II) Key game_compat/reverse-y not found
+05-22 15:44:15.079 D/openal  (29807): [ALSOFT] (II) Key game_compat/reverse-z not found
+05-22 15:44:15.079 D/openal  (29807): [ALSOFT] (II) Key game_compat/nfc-scale not found
+05-22 15:44:15.079 D/openal  (29807): [ALSOFT] (II) Key resampler not found
+05-22 15:44:15.079 D/openal  (29807): [ALSOFT] (II) Key uhj/decode-filter not found
+05-22 15:44:15.079 D/openal  (29807): [ALSOFT] (II) Key uhj/filter not found
+05-22 15:44:15.079 D/openal  (29807): [ALSOFT] (II) Key uhj/encode-filter not found
+05-22 15:44:15.079 D/openal  (29807): [ALSOFT] (II) Key trap-al-error not found
+05-22 15:44:15.079 D/openal  (29807): [ALSOFT] (II) Key trap-alc-error not found
+05-22 15:44:15.079 D/openal  (29807): [ALSOFT] (II) Key reverb/boost not found
+05-22 15:44:15.079 D/openal  (29807): [ALSOFT] (II) Key drivers not found
+05-22 15:44:15.079 D/openal  (29807): [ALSOFT] (II) Initialized backend "opensl"
+05-22 15:44:15.079 D/openal  (29807): [ALSOFT] (II) Added "opensl" for playback
+05-22 15:44:15.079 D/openal  (29807): [ALSOFT] (II) Added "opensl" for capture
+05-22 15:44:15.079 D/openal  (29807): [ALSOFT] (II) Key excludefx not found
+05-22 15:44:15.079 D/openal  (29807): [ALSOFT] (II) Key default-reverb not found
+05-22 15:44:15.079 D/openal  (29807): [ALSOFT] (II) Opening playback device "OpenSL"
+05-22 15:44:15.079 D/openal  (29807): [ALSOFT] (II) Created device 0xb400007451c7ea30, "OpenSL"
+05-22 15:44:15.079 D/openal  (29807): [ALSOFT] (II) Key frequency not found
+05-22 15:44:15.079 D/openal  (29807): [ALSOFT] (II) Key period_size not found
+05-22 15:44:15.079 D/openal  (29807): [ALSOFT] (II) Key periods not found
+05-22 15:44:15.079 D/openal  (29807): [ALSOFT] (II) Key sample-type not found
+05-22 15:44:15.079 D/openal  (29807): [ALSOFT] (II) Key channels not found
+05-22 15:44:15.079 D/openal  (29807): [ALSOFT] (II) Key ambi-format not found
+05-22 15:44:15.079 D/openal  (29807): [ALSOFT] (II) Key hrtf not found
+05-22 15:44:15.079 D/openal  (29807): [ALSOFT] (II) Key stereo-encoding not found
+05-22 15:44:15.079 D/openal  (29807): [ALSOFT] (II) Pre-reset: Stereo, Float32, 48000hz, 960 / 2880 buffer
+05-22 15:44:15.080 D/AudioSystem(29807): onNewServiceWithAdapter: media.audio_flinger service obtained 0xb4000071a2f758d0
+05-22 15:44:15.080 D/AudioSystem(29807): getService: checking for service media.audio_flinger: 0xb4000071d2f64530
+05-22 15:44:15.080 D/com.revc(29807): PlayerBase::PlayerBase()
+05-22 15:44:15.080 D/com.revc(29807): TrackPlayerBase::TrackPlayerBase()
+05-22 15:44:15.080 I/libOpenSLES(29807): Emulating old channel mask behavior (ignoring positional mask 0x3, using default mask 0x3 based on channel count of 2)
+05-22 15:44:15.082 I/AudioTrack(29807): createTrack_l(0): AUDIO_OUTPUT_FLAG_FAST successful; frameCount 0 -> 576
+05-22 15:44:15.083 D/openal  (29807): [ALSOFT] (II) Post-reset: Stereo, Int16, 48000hz, 960 / 2880 buffer
+05-22 15:44:15.083 D/openal  (29807): [ALSOFT] (II) Key stereo-mode not found
+05-22 15:44:15.083 D/openal  (29807): [ALSOFT] (II) Key cf_level not found
+05-22 15:44:15.083 D/openal  (29807): [ALSOFT] (II) Stereo rendering
+05-22 15:44:15.083 D/openal  (29807): [ALSOFT] (II) Channel config, Main: 3, Real: 2
+05-22 15:44:15.083 D/openal  (29807): [ALSOFT] (II) Allocating 5 channels, 20480 bytes
+05-22 15:44:15.083 D/openal  (29807): [ALSOFT] (II) Enabling single-band first-order ambisonic decoder
+05-22 15:44:15.083 D/openal  (29807): [ALSOFT] (II) Key sources not found
+05-22 15:44:15.083 D/openal  (29807): [ALSOFT] (II) Key sends not found
+05-22 15:44:15.083 D/openal  (29807): [ALSOFT] (II) Max sources: 256 (255 + 1), effect slots: 64, sends: 2
+05-22 15:44:15.083 D/openal  (29807): [ALSOFT] (II) Key dither not found
+05-22 15:44:15.083 D/openal  (29807): [ALSOFT] (II) Key dither-depth not found
+05-22 15:44:15.083 D/openal  (29807): [ALSOFT] (II) Dithering enabled (16-bit, 32768)
+05-22 15:44:15.083 D/openal  (29807): [ALSOFT] (II) Key output-limiter not found
+05-22 15:44:15.083 D/openal  (29807): [ALSOFT] (II) Output limiter enabled, -0.0005dB limit
+05-22 15:44:15.083 D/openal  (29807): [ALSOFT] (II) Fixed device latency: 1000000ns
+05-22 15:44:15.083 D/openal  (29807): [ALSOFT] (II) Post-start: Stereo, Int16, 48000hz, 960 / 2880 buffer
+05-22 15:44:15.083 W/openal  (29807): [ALSOFT] (WW) pthread_setschedparam failed: Operation not permitted (1)
+05-22 15:44:15.083 W/openal  (29807): [ALSOFT] (WW) D-Bus not supported
+05-22 15:44:15.083 D/openal  (29807): [ALSOFT] (II) Increasing allocated voices to 256
+05-22 15:44:15.085 D/openal  (29807): [ALSOFT] (II) Key volume-adjust not found
+05-22 15:44:15.085 D/openal  (29807): [ALSOFT] (II) Created context 0xb4000072c2f67130
+05-22 15:44:15.085 D/openal  (29807): [ALSOFT] (II) Freeing context 0xb4000072c2f67130
+05-22 15:44:15.085 D/openal  (29807): [ALSOFT] (II) Freed 0 context property objects
+05-22 15:44:15.085 D/openal  (29807): [ALSOFT] (II) Freed 0 AuxiliaryEffectSlot property objects
+05-22 15:44:15.086 D/openal  (29807): [ALSOFT] (II) Freeing device 0xb400007451c7ea30
+05-22 15:44:15.086 D/openal  (29807): [ALSOFT] (II) Opening playback device "OpenSL"
+05-22 15:44:15.086 D/openal  (29807): [ALSOFT] (II) Created device 0xb400007451c7ea30, "OpenSL"
+05-22 15:44:15.086 D/openal  (29807): [ALSOFT] (II) Key frequency not found
+05-22 15:44:15.086 D/openal  (29807): [ALSOFT] (II) Key period_size not found
+05-22 15:44:15.086 D/openal  (29807): [ALSOFT] (II) Key periods not found
+05-22 15:44:15.086 D/openal  (29807): [ALSOFT] (II) Key sample-type not found
+05-22 15:44:15.086 D/openal  (29807): [ALSOFT] (II) Key channels not found
+05-22 15:44:15.086 D/openal  (29807): [ALSOFT] (II) Key ambi-format not found
+05-22 15:44:15.086 D/openal  (29807): [ALSOFT] (II) Key hrtf not found
+05-22 15:44:15.086 D/openal  (29807): [ALSOFT] (II) Key stereo-encoding not found
+05-22 15:44:15.086 D/openal  (29807): [ALSOFT] (II) ALC_FREQUENCY = 32000
+05-22 15:44:15.086 D/openal  (29807): [ALSOFT] (II) ALC_MONO_SOURCES = 49
+05-22 15:44:15.086 D/openal  (29807): [ALSOFT] (II) ALC_STEREO_SOURCES = 1
+05-22 15:44:15.086 D/openal  (29807): [ALSOFT] (II) Pre-reset: Stereo, Float32, *32000hz, 640 / 1920 buffer
+05-22 15:44:15.086 D/com.revc(29807): PlayerBase::PlayerBase()
+05-22 15:44:15.086 D/com.revc(29807): TrackPlayerBase::TrackPlayerBase()
+05-22 15:44:15.086 I/libOpenSLES(29807): Emulating old channel mask behavior (ignoring positional mask 0x3, using default mask 0x3 based on channel count of 2)
+05-22 15:44:15.088 I/AudioTrack(29807): Need throttle time for OpenSLES player
+05-22 15:44:15.088 D/openal  (29807): [ALSOFT] (II) Post-reset: Stereo, Int16, 32000hz, 640 / 1920 buffer
+05-22 15:44:15.088 D/openal  (29807): [ALSOFT] (II) Key stereo-mode not found
+05-22 15:44:15.088 D/openal  (29807): [ALSOFT] (II) Key cf_level not found
+05-22 15:44:15.088 D/openal  (29807): [ALSOFT] (II) Stereo rendering
+05-22 15:44:15.088 D/openal  (29807): [ALSOFT] (II) Channel config, Main: 3, Real: 2
+05-22 15:44:15.088 D/openal  (29807): [ALSOFT] (II) Allocating 5 channels, 20480 bytes
+05-22 15:44:15.088 D/openal  (29807): [ALSOFT] (II) Enabling single-band first-order ambisonic decoder
+05-22 15:44:15.088 D/openal  (29807): [ALSOFT] (II) Key sources not found
+05-22 15:44:15.088 D/openal  (29807): [ALSOFT] (II) Key sends not found
+05-22 15:44:15.088 D/openal  (29807): [ALSOFT] (II) Max sources: 256 (255 + 1), effect slots: 64, sends: 2
+05-22 15:44:15.088 D/openal  (29807): [ALSOFT] (II) Key dither not found
+05-22 15:44:15.088 D/openal  (29807): [ALSOFT] (II) Key dither-depth not found
+05-22 15:44:15.088 D/openal  (29807): [ALSOFT] (II) Dithering enabled (16-bit, 32768)
+05-22 15:44:15.088 D/openal  (29807): [ALSOFT] (II) Key output-limiter not found
+05-22 15:44:15.088 D/openal  (29807): [ALSOFT] (II) Output limiter enabled, -0.0005dB limit
+05-22 15:44:15.088 D/openal  (29807): [ALSOFT] (II) Fixed device latency: 1000000ns
+05-22 15:44:15.088 D/openal  (29807): [ALSOFT] (II) Post-start: Stereo, Int16, 32000hz, 640 / 1920 buffer
+05-22 15:44:15.088 W/openal  (29807): [ALSOFT] (WW) pthread_setschedparam failed: Operation not permitted (1)
+05-22 15:44:15.088 W/openal  (29807): [ALSOFT] (WW) D-Bus not supported
+05-22 15:44:15.089 D/openal  (29807): [ALSOFT] (II) Increasing allocated voices to 256
+05-22 15:44:15.089 D/openal  (29807): [ALSOFT] (II) Key volume-adjust not found
+05-22 15:44:15.089 D/openal  (29807): [ALSOFT] (II) Created context 0xb4000072c2f67130
+05-22 15:44:15.089 D/openal  (29807): [ALSOFT] (II) Increasing allocated effect slots to 4
+05-22 15:44:15.116 D/REVC-DEBUG(29807): Loadind audio cache (If game crashes around here, then your cache is corrupted, remove audio/sound.cache)
+05-22 15:44:15.117 D/REVC-DEBUG(29807): Audio cache read 1224/1224 entries
+05-22 15:44:15.117 D/REVC-DEBUG(29807): InitialiseSampleBanks begin
+05-22 15:44:15.118 D/REVC-DEBUG(29807): InitialiseSampleBanks ok: bank0=15044960 ped=325200542
+05-22 15:44:15.118 D/REVC-DEBUG(29807): SFX_BANK_0 malloc ok
+05-22 15:44:15.118 D/REVC-DEBUG(29807): PED comments malloc ok
+05-22 15:44:15.118 D/REVC-DEBUG(29807): LoadSampleBank 0 begin
+05-22 15:44:15.143 D/REVC-DEBUG(29807): LoadSampleBank 0 done: 1
+05-22 15:44:15.143 D/REVC-DEBUG(29807): Closing initial streams begin
+05-22 15:44:15.143 D/REVC-DEBUG(29807): Closing initial streams done
+05-22 15:44:15.143 D/REVC-DEBUG(29807): set_new_provider begin: default=0 providers=3
+05-22 15:44:15.143 D/REVC-DEBUG(29807): set_new_provider done
+05-22 15:44:15.143 D/REVC-DEBUG(29807): _FindMP3s begin
+05-22 15:44:15.143 D/DBG-2   (29807): Finding MP3s...
+05-22 15:44:15.144 D/DBG-2   (29807): ./storage/emulated/0/reVC/MP3/
+05-22 15:44:15.147 D/DBG-2   (29807): ./storage/emulated/0/reVC/MP3/MP3Report.txt - NOT A VALID MP3
+05-22 15:44:15.147 D/REVC-DEBUG(29807): _FindMP3s done: 0 tracks
+05-22 15:44:15.147 D/REVC-DEBUG(29807): cSampleManager::Initialise done
+05-22 15:44:15.151 D/DBG-2   (29807): [F:/re3/src/skel/sdl3/sdl3.cpp.main:1883]: gGameState = GS_INIT_FRONTEND;
+05-22 15:44:15.312 D/DBG-2   (29807): [F:/re3/src/skel/sdl3/sdl3.cpp.main:1905]: gGameState = GS_FRONTEND;
+05-22 15:44:15.718 D/openal  (29807): [ALSOFT] (II) Increasing allocated voice properties to 32
+05-22 15:44:16.462 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 0
+05-22 15:44:16.463 I/GestureDetector(29807): obtain mCurrentDownEvent. id: 623167177 caller: android.view.ScaleGestureDetector.onTouchEvent:297 org.libsdl.app.SDLSurface.onTouch:304 android.view.View.performOnTouchCallback:17224 
+05-22 15:44:16.463 I/VRI[GameActivity]@9486313(29807): call setFrameRateCategory for touch hint category=high hint, reason=touch, vri=VRI[GameActivity]@9486313
+05-22 15:44:16.475 I/GestureDetector(29807): obtain mCurrentMotionEventRaw. action: 2 id: 453116389
+05-22 15:44:16.528 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 1
+05-22 15:44:16.711 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 0
+05-22 15:44:16.712 I/GestureDetector(29807): obtain mCurrentDownEvent. id: 81532628 caller: android.view.ScaleGestureDetector.onTouchEvent:297 org.libsdl.app.SDLSurface.onTouch:304 android.view.View.performOnTouchCallback:17224 
+05-22 15:44:16.724 I/GestureDetector(29807): obtain mCurrentMotionEventRaw. action: 2 id: 232627210
+05-22 15:44:16.746 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 1
+05-22 15:44:16.903 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 0
+05-22 15:44:16.903 I/GestureDetector(29807): obtain mCurrentDownEvent. id: 566391911 caller: android.view.ScaleGestureDetector.onTouchEvent:297 org.libsdl.app.SDLSurface.onTouch:304 android.view.View.performOnTouchCallback:17224 
+05-22 15:44:16.916 I/GestureDetector(29807): obtain mCurrentMotionEventRaw. action: 2 id: 137590365
+05-22 15:44:17.060 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 1
+05-22 15:44:17.177 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 0
+05-22 15:44:17.178 I/GestureDetector(29807): obtain mCurrentDownEvent. id: 560691644 caller: android.view.ScaleGestureDetector.onTouchEvent:297 org.libsdl.app.SDLSurface.onTouch:304 android.view.View.performOnTouchCallback:17224 
+05-22 15:44:17.191 I/GestureDetector(29807): obtain mCurrentMotionEventRaw. action: 2 id: 749463564
+05-22 15:44:17.318 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 1
+05-22 15:44:17.435 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 0
+05-22 15:44:17.436 I/GestureDetector(29807): obtain mCurrentDownEvent. id: 751050793 caller: android.view.ScaleGestureDetector.onTouchEvent:297 org.libsdl.app.SDLSurface.onTouch:304 android.view.View.performOnTouchCallback:17224 
+05-22 15:44:17.448 I/GestureDetector(29807): obtain mCurrentMotionEventRaw. action: 2 id: 26792790
+05-22 15:44:17.552 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 1
+05-22 15:44:17.677 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 0
+05-22 15:44:17.677 I/GestureDetector(29807): obtain mCurrentDownEvent. id: 683099269 caller: android.view.ScaleGestureDetector.onTouchEvent:297 org.libsdl.app.SDLSurface.onTouch:304 android.view.View.performOnTouchCallback:17224 
+05-22 15:44:17.690 I/GestureDetector(29807): obtain mCurrentMotionEventRaw. action: 2 id: 760552300
+05-22 15:44:17.793 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 1
+05-22 15:44:17.910 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 0
+05-22 15:44:17.910 I/GestureDetector(29807): obtain mCurrentDownEvent. id: 209645178 caller: android.view.ScaleGestureDetector.onTouchEvent:297 org.libsdl.app.SDLSurface.onTouch:304 android.view.View.performOnTouchCallback:17224 
+05-22 15:44:17.923 I/GestureDetector(29807): obtain mCurrentMotionEventRaw. action: 2 id: 80525370
+05-22 15:44:18.026 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 1
+05-22 15:44:18.126 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 0
+05-22 15:44:18.126 I/GestureDetector(29807): obtain mCurrentDownEvent. id: 76032800 caller: android.view.ScaleGestureDetector.onTouchEvent:297 org.libsdl.app.SDLSurface.onTouch:304 android.view.View.performOnTouchCallback:17224 
+05-22 15:44:18.139 I/GestureDetector(29807): obtain mCurrentMotionEventRaw. action: 2 id: 837573739
+05-22 15:44:18.250 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 1
+05-22 15:44:18.376 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 0
+05-22 15:44:18.376 I/GestureDetector(29807): obtain mCurrentDownEvent. id: 87254495 caller: android.view.ScaleGestureDetector.onTouchEvent:297 org.libsdl.app.SDLSurface.onTouch:304 android.view.View.performOnTouchCallback:17224 
+05-22 15:44:18.389 I/GestureDetector(29807): obtain mCurrentMotionEventRaw. action: 2 id: 1010155705
+05-22 15:44:18.500 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 1
+05-22 15:44:18.608 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 0
+05-22 15:44:18.609 I/GestureDetector(29807): obtain mCurrentDownEvent. id: 1051304765 caller: android.view.ScaleGestureDetector.onTouchEvent:297 org.libsdl.app.SDLSurface.onTouch:304 android.view.View.performOnTouchCallback:17224 
+05-22 15:44:18.622 I/GestureDetector(29807): obtain mCurrentMotionEventRaw. action: 2 id: 217443645
+05-22 15:44:18.717 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 1
+05-22 15:44:18.883 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 0
+05-22 15:44:18.884 I/GestureDetector(29807): obtain mCurrentDownEvent. id: 264619106 caller: android.view.ScaleGestureDetector.onTouchEvent:297 org.libsdl.app.SDLSurface.onTouch:304 android.view.View.performOnTouchCallback:17224 
+05-22 15:44:18.896 I/GestureDetector(29807): obtain mCurrentMotionEventRaw. action: 2 id: 347803523
+05-22 15:44:19.008 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 1
+05-22 15:44:19.174 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 0
+05-22 15:44:19.175 I/GestureDetector(29807): obtain mCurrentDownEvent. id: 638422652 caller: android.view.ScaleGestureDetector.onTouchEvent:297 org.libsdl.app.SDLSurface.onTouch:304 android.view.View.performOnTouchCallback:17224 
+05-22 15:44:19.188 I/GestureDetector(29807): obtain mCurrentMotionEventRaw. action: 2 id: 317131777
+05-22 15:44:19.291 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 1
+05-22 15:44:19.416 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 0
+05-22 15:44:19.416 I/GestureDetector(29807): obtain mCurrentDownEvent. id: 257405775 caller: android.view.ScaleGestureDetector.onTouchEvent:297 org.libsdl.app.SDLSurface.onTouch:304 android.view.View.performOnTouchCallback:17224 
+05-22 15:44:19.429 I/GestureDetector(29807): obtain mCurrentMotionEventRaw. action: 2 id: 158797918
+05-22 15:44:19.532 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 1
+05-22 15:44:19.716 I/GestureDetector(29807): handleMessage TAP
+05-22 15:44:20.248 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 0
+05-22 15:44:20.249 I/GestureDetector(29807): obtain mCurrentDownEvent. id: 921920020 caller: android.view.ScaleGestureDetector.onTouchEvent:297 org.libsdl.app.SDLSurface.onTouch:304 android.view.View.performOnTouchCallback:17224 
+05-22 15:44:20.261 I/GestureDetector(29807): obtain mCurrentMotionEventRaw. action: 2 id: 698673885
+05-22 15:44:20.364 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 1
+05-22 15:44:20.498 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 0
+05-22 15:44:20.498 I/GestureDetector(29807): obtain mCurrentDownEvent. id: 644042552 caller: android.view.ScaleGestureDetector.onTouchEvent:297 org.libsdl.app.SDLSurface.onTouch:304 android.view.View.performOnTouchCallback:17224 
+05-22 15:44:20.511 I/GestureDetector(29807): obtain mCurrentMotionEventRaw. action: 2 id: 172897025
+05-22 15:44:20.614 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 1
+05-22 15:44:20.723 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 0
+05-22 15:44:20.723 I/GestureDetector(29807): obtain mCurrentDownEvent. id: 674834492 caller: android.view.ScaleGestureDetector.onTouchEvent:297 org.libsdl.app.SDLSurface.onTouch:304 android.view.View.performOnTouchCallback:17224 
+05-22 15:44:20.736 I/GestureDetector(29807): obtain mCurrentMotionEventRaw. action: 2 id: 892383681
+05-22 15:44:20.831 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 1
+05-22 15:44:20.931 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 0
+05-22 15:44:20.931 I/GestureDetector(29807): obtain mCurrentDownEvent. id: 861917313 caller: android.view.ScaleGestureDetector.onTouchEvent:297 org.libsdl.app.SDLSurface.onTouch:304 android.view.View.performOnTouchCallback:17224 
+05-22 15:44:20.944 I/GestureDetector(29807): obtain mCurrentMotionEventRaw. action: 2 id: 100593151
+05-22 15:44:21.038 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 1
+05-22 15:44:21.164 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 0
+05-22 15:44:21.164 I/GestureDetector(29807): obtain mCurrentDownEvent. id: 439901362 caller: android.view.ScaleGestureDetector.onTouchEvent:297 org.libsdl.app.SDLSurface.onTouch:304 android.view.View.performOnTouchCallback:17224 
+05-22 15:44:21.177 I/GestureDetector(29807): obtain mCurrentMotionEventRaw. action: 2 id: 982695961
+05-22 15:44:21.272 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 1
+05-22 15:44:21.388 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 0
+05-22 15:44:21.389 I/GestureDetector(29807): obtain mCurrentDownEvent. id: 1065076269 caller: android.view.ScaleGestureDetector.onTouchEvent:297 org.libsdl.app.SDLSurface.onTouch:304 android.view.View.performOnTouchCallback:17224 
+05-22 15:44:21.401 I/GestureDetector(29807): obtain mCurrentMotionEventRaw. action: 2 id: 936960721
+05-22 15:44:21.488 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 1
+05-22 15:44:21.596 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 0
+05-22 15:44:21.597 I/GestureDetector(29807): obtain mCurrentDownEvent. id: 987857938 caller: android.view.ScaleGestureDetector.onTouchEvent:297 org.libsdl.app.SDLSurface.onTouch:304 android.view.View.performOnTouchCallback:17224 
+05-22 15:44:21.609 I/GestureDetector(29807): obtain mCurrentMotionEventRaw. action: 2 id: 1009733795
+05-22 15:44:21.704 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 1
+05-22 15:44:21.796 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 0
+05-22 15:44:21.797 I/GestureDetector(29807): obtain mCurrentDownEvent. id: 222723505 caller: android.view.ScaleGestureDetector.onTouchEvent:297 org.libsdl.app.SDLSurface.onTouch:304 android.view.View.performOnTouchCallback:17224 
+05-22 15:44:21.809 I/GestureDetector(29807): obtain mCurrentMotionEventRaw. action: 2 id: 749800004
+05-22 15:44:21.904 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 1
+05-22 15:44:22.013 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 0
+05-22 15:44:22.013 I/GestureDetector(29807): obtain mCurrentDownEvent. id: 852479311 caller: android.view.ScaleGestureDetector.onTouchEvent:297 org.libsdl.app.SDLSurface.onTouch:304 android.view.View.performOnTouchCallback:17224 
+05-22 15:44:22.026 I/GestureDetector(29807): obtain mCurrentMotionEventRaw. action: 2 id: 420915661
+05-22 15:44:22.120 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 1
+05-22 15:44:22.220 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 0
+05-22 15:44:22.221 I/GestureDetector(29807): obtain mCurrentDownEvent. id: 460642604 caller: android.view.ScaleGestureDetector.onTouchEvent:297 org.libsdl.app.SDLSurface.onTouch:304 android.view.View.performOnTouchCallback:17224 
+05-22 15:44:22.234 I/GestureDetector(29807): obtain mCurrentMotionEventRaw. action: 2 id: 794318688
+05-22 15:44:22.320 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 1
+05-22 15:44:22.445 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 0
+05-22 15:44:22.446 I/GestureDetector(29807): obtain mCurrentDownEvent. id: 197036915 caller: android.view.ScaleGestureDetector.onTouchEvent:297 org.libsdl.app.SDLSurface.onTouch:304 android.view.View.performOnTouchCallback:17224 
+05-22 15:44:22.458 I/GestureDetector(29807): obtain mCurrentMotionEventRaw. action: 2 id: 724975484
+05-22 15:44:22.553 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 1
+05-22 15:44:22.679 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 0
+05-22 15:44:22.679 I/GestureDetector(29807): obtain mCurrentDownEvent. id: 339985939 caller: android.view.ScaleGestureDetector.onTouchEvent:297 org.libsdl.app.SDLSurface.onTouch:304 android.view.View.performOnTouchCallback:17224 
+05-22 15:44:22.691 I/GestureDetector(29807): obtain mCurrentMotionEventRaw. action: 2 id: 756713855
+05-22 15:44:22.786 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 1
+05-22 15:44:22.895 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 0
+05-22 15:44:22.895 I/GestureDetector(29807): obtain mCurrentDownEvent. id: 1030496942 caller: android.view.ScaleGestureDetector.onTouchEvent:297 org.libsdl.app.SDLSurface.onTouch:304 android.view.View.performOnTouchCallback:17224 
+05-22 15:44:22.908 I/GestureDetector(29807): obtain mCurrentMotionEventRaw. action: 2 id: 86199458
+05-22 15:44:23.002 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 1
+05-22 15:44:23.111 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 0
+05-22 15:44:23.111 I/GestureDetector(29807): obtain mCurrentDownEvent. id: 14744498 caller: android.view.ScaleGestureDetector.onTouchEvent:297 org.libsdl.app.SDLSurface.onTouch:304 android.view.View.performOnTouchCallback:17224 
+05-22 15:44:23.124 I/GestureDetector(29807): obtain mCurrentMotionEventRaw. action: 2 id: 35351889
+05-22 15:44:23.227 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 1
+05-22 15:44:23.336 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 0
+05-22 15:44:23.336 I/GestureDetector(29807): obtain mCurrentDownEvent. id: 119196688 caller: android.view.ScaleGestureDetector.onTouchEvent:297 org.libsdl.app.SDLSurface.onTouch:304 android.view.View.performOnTouchCallback:17224 
+05-22 15:44:23.349 I/GestureDetector(29807): obtain mCurrentMotionEventRaw. action: 2 id: 68831486
+05-22 15:44:23.444 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 1
+05-22 15:44:23.552 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 0
+05-22 15:44:23.552 I/GestureDetector(29807): obtain mCurrentDownEvent. id: 1063593032 caller: android.view.ScaleGestureDetector.onTouchEvent:297 org.libsdl.app.SDLSurface.onTouch:304 android.view.View.performOnTouchCallback:17224 
+05-22 15:44:23.565 I/GestureDetector(29807): obtain mCurrentMotionEventRaw. action: 2 id: 746370244
+05-22 15:44:23.660 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 1
+05-22 15:44:23.760 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 0
+05-22 15:44:23.760 I/GestureDetector(29807): obtain mCurrentDownEvent. id: 612608288 caller: android.view.ScaleGestureDetector.onTouchEvent:297 org.libsdl.app.SDLSurface.onTouch:304 android.view.View.performOnTouchCallback:17224 
+05-22 15:44:23.773 I/GestureDetector(29807): obtain mCurrentMotionEventRaw. action: 2 id: 310882297
+05-22 15:44:23.868 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 1
+05-22 15:44:23.976 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 0
+05-22 15:44:23.977 I/GestureDetector(29807): obtain mCurrentDownEvent. id: 515356220 caller: android.view.ScaleGestureDetector.onTouchEvent:297 org.libsdl.app.SDLSurface.onTouch:304 android.view.View.performOnTouchCallback:17224 
+05-22 15:44:23.985 W/com.revc(29807): Cleared Reference was only reachable from finalizer (only reported once)
+05-22 15:44:23.986 W/com.revc(29807): userfaultfd: MOVE ioctl seems unsupported: Connection timed out
+05-22 15:44:23.990 I/GestureDetector(29807): obtain mCurrentMotionEventRaw. action: 2 id: 300134773
+05-22 15:44:24.084 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 1
+05-22 15:44:24.218 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 0
+05-22 15:44:24.218 I/GestureDetector(29807): obtain mCurrentDownEvent. id: 52992871 caller: android.view.ScaleGestureDetector.onTouchEvent:297 org.libsdl.app.SDLSurface.onTouch:304 android.view.View.performOnTouchCallback:17224 
+05-22 15:44:24.231 I/GestureDetector(29807): obtain mCurrentMotionEventRaw. action: 2 id: 403366726
+05-22 15:44:24.317 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 1
+05-22 15:44:24.459 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 0
+05-22 15:44:24.460 I/GestureDetector(29807): obtain mCurrentDownEvent. id: 190851829 caller: android.view.ScaleGestureDetector.onTouchEvent:297 org.libsdl.app.SDLSurface.onTouch:304 android.view.View.performOnTouchCallback:17224 
+05-22 15:44:24.472 I/GestureDetector(29807): obtain mCurrentMotionEventRaw. action: 2 id: 190636763
+05-22 15:44:24.575 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 1
+05-22 15:44:24.676 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 0
+05-22 15:44:24.676 I/GestureDetector(29807): obtain mCurrentDownEvent. id: 340635523 caller: android.view.ScaleGestureDetector.onTouchEvent:297 org.libsdl.app.SDLSurface.onTouch:304 android.view.View.performOnTouchCallback:17224 
+05-22 15:44:24.689 I/GestureDetector(29807): obtain mCurrentMotionEventRaw. action: 2 id: 229399359
+05-22 15:44:24.783 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 1
+05-22 15:44:24.883 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 0
+05-22 15:44:24.884 I/GestureDetector(29807): obtain mCurrentDownEvent. id: 453782770 caller: android.view.ScaleGestureDetector.onTouchEvent:297 org.libsdl.app.SDLSurface.onTouch:304 android.view.View.performOnTouchCallback:17224 
+05-22 15:44:24.897 I/GestureDetector(29807): obtain mCurrentMotionEventRaw. action: 2 id: 660967774
+05-22 15:44:25.000 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 1
+05-22 15:44:25.117 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 0
+05-22 15:44:25.117 I/GestureDetector(29807): obtain mCurrentDownEvent. id: 563927761 caller: android.view.ScaleGestureDetector.onTouchEvent:297 org.libsdl.app.SDLSurface.onTouch:304 android.view.View.performOnTouchCallback:17224 
+05-22 15:44:25.130 I/GestureDetector(29807): obtain mCurrentMotionEventRaw. action: 2 id: 352048664
+05-22 15:44:25.233 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 1
+05-22 15:44:25.325 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 0
+05-22 15:44:25.325 I/GestureDetector(29807): obtain mCurrentDownEvent. id: 712781096 caller: android.view.ScaleGestureDetector.onTouchEvent:297 org.libsdl.app.SDLSurface.onTouch:304 android.view.View.performOnTouchCallback:17224 
+05-22 15:44:25.338 I/GestureDetector(29807): obtain mCurrentMotionEventRaw. action: 2 id: 187566200
+05-22 15:44:25.449 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 1
+05-22 15:44:25.566 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 0
+05-22 15:44:25.566 I/GestureDetector(29807): obtain mCurrentDownEvent. id: 730488132 caller: android.view.ScaleGestureDetector.onTouchEvent:297 org.libsdl.app.SDLSurface.onTouch:304 android.view.View.performOnTouchCallback:17224 
+05-22 15:44:25.579 I/GestureDetector(29807): obtain mCurrentMotionEventRaw. action: 2 id: 1045475426
+05-22 15:44:25.632 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 1
+05-22 15:44:25.866 I/GestureDetector(29807): handleMessage TAP
+05-22 15:44:26.215 D/DBG-2   (29807): [F:/re3/src/skel/sdl3/sdl3.cpp.main:1921]: gGameState = GS_INIT_PLAYING_GAME;
+05-22 15:44:26.215 D/DBG-2   (29807): [F:/re3/src/skel/sdl3/sdl3.cpp.main:2072]: gGameState = GS_INIT_PLAYING_GAME;
+05-22 15:44:26.411 D/REVC-DEBUG(29807): Initialising CParticleMgr...
+05-22 15:44:26.414 D/REVC-DEBUG(29807): Initialising CParticle...
+05-22 15:44:26.414 D/REVC-DEBUG(29807): CParticle ready
+05-22 15:44:26.416 D/REVC-DEBUG(29807): sizeof SimpleModelStore 341888
+05-22 15:44:26.416 D/REVC-DEBUG(29807): sizeof TimeModelStore 40048
+05-22 15:44:26.416 D/REVC-DEBUG(29807): sizeof WeaponModelStore 3560
+05-22 15:44:26.416 D/REVC-DEBUG(29807): sizeof ClumpModelStore 328
+05-22 15:44:26.416 D/REVC-DEBUG(29807): sizeof VehicleModelStore 66008
+05-22 15:44:26.416 D/REVC-DEBUG(29807): sizeof PedModelStore 12488
+05-22 15:44:26.416 D/REVC-DEBUG(29807): sizeof 2deffectsModelStore 77448
+05-22 15:44:26.416 D/REVC-DEBUG(29807): [CdStreamAddImage] Attempting to open IMG file #0: MODELS\GTA3.IMG
+05-22 15:44:26.417 D/REVC-DEBUG(29807): Opening MODELS\GTA3.IMG
+05-22 15:44:26.417 D/REVC-DEBUG(29807): [CdStreamAddImage] Failed to open MODELS\GTA3.IMG, trying case-insensitive search...
+05-22 15:44:26.418 D/REVC-DEBUG(29807): [CdStreamAddImage] Found alternative path: ./models/gta3.img
+05-22 15:44:26.418 D/REVC-DEBUG(29807): Image 209 , cwd /storage/emulated/0/reVC
+05-22 15:44:26.420 D/REVC-DEBUG(29807): Loading object types from DATA\DEFAULT.IDE ...
+05-22 15:44:26.427 D/REVC-DEBUG(29807): Loading texture dictionary file MODELS\GENERIC\WHEELS.TXD 
+05-22 15:44:26.433 D/REVC-DEBUG(29807): Loading texture dictionary file MODELS\GENERIC.TXD 
+05-22 15:44:26.502 D/REVC-DEBUG(29807): Loading model file MODELS\GENERIC\AIR_VLO.DFF 
+05-22 15:44:26.504 D/REVC-DEBUG(29807): Loading model file MODELS\GENERIC\WHEELS.DFF 
+05-22 15:44:26.506 D/REVC-DEBUG(29807): Loading collision file MODELS\COLL\VEHICLES.COL 
+05-22 15:44:26.508 D/REVC-DEBUG(29807): colmodel bump_front_hi_ok can't find a modelinfo
+05-22 15:44:26.508 D/REVC-DEBUG(29807): colmodel cougar can't find a modelinfo
+05-22 15:44:26.508 D/REVC-DEBUG(29807): colmodel toyz can't find a modelinfo
+05-22 15:44:26.508 D/REVC-DEBUG(29807): Loading collision file MODELS\COLL\WEAPONS.COL 
+05-22 15:44:26.511 D/REVC-DEBUG(29807): Loading object types from DATA\MAPS\generic.IDE ...
+05-22 15:44:26.516 D/REVC-DEBUG(29807): Loading object types from DATA\MAPS\littleha\littleha.IDE ...
+05-22 15:44:26.522 D/REVC-DEBUG(29807): Loading object types from DATA\MAPS\downtown\downtown.IDE ...
+05-22 15:44:26.529 D/REVC-DEBUG(29807): Loading object types from DATA\MAPS\downtows\downtows.IDE ...
+05-22 15:44:26.534 D/REVC-DEBUG(29807): Loading object types from DATA\MAPS\docks\docks.IDE ...
+05-22 15:44:26.539 D/REVC-DEBUG(29807): Loading object types from DATA\MAPS\washintn\washintn.IDE ...
+05-22 15:44:26.545 D/REVC-DEBUG(29807): Loading object types from DATA\MAPS\washints\washints.IDE ...
+05-22 15:44:26.552 D/REVC-DEBUG(29807): LODbuildws44 was draw last
+05-22 15:44:26.552 D/REVC-DEBUG(29807): LODbuildws45 was draw last
+05-22 15:44:26.552 D/REVC-DEBUG(29807): LODbuildws2329 was draw last
+05-22 15:44:26.552 D/REVC-DEBUG(29807): lodbuildws2326 was draw last
+05-22 15:44:26.552 D/REVC-DEBUG(29807): Loading object types from DATA\MAPS\oceandrv\oceandrv.IDE ...
+05-22 15:44:26.559 D/REVC-DEBUG(29807): lodalleys3b_01_nt was draw last
+05-22 15:44:26.559 D/REVC-DEBUG(29807): lodalleys3_01_dy was draw last
+05-22 15:44:26.559 D/REVC-DEBUG(29807): lodalleys3b_01_dy was draw last
+05-22 15:44:26.559 D/REVC-DEBUG(29807): Loading object types from DATA\MAPS\oceandn\oceandn.IDE ...
+05-22 15:44:26.567 D/REVC-DEBUG(29807): lodhotel_windows was draw last
+05-22 15:44:26.567 D/REVC-DEBUG(29807): lodchariot_lghts01 was draw last
+05-22 15:44:26.567 D/REVC-DEBUG(29807): lodchariot_lghts02 was draw last
+05-22 15:44:26.567 D/REVC-DEBUG(29807): Loading object types from DATA\MAPS\golf\golf.IDE ...
+05-22 15:44:26.571 D/REVC-DEBUG(29807): Loading object types from DATA\MAPS\bridge\bridge.IDE ...
+05-22 15:44:26.575 D/REVC-DEBUG(29807): Loading object types from DATA\MAPS\starisl\starisl.IDE ...
+05-22 15:44:26.579 D/REVC-DEBUG(29807): Loading object types from DATA\MAPS\nbeachbt\nbeachbt.IDE ...
+05-22 15:44:26.585 D/REVC-DEBUG(29807): LOD_pizzaplace was draw last
+05-22 15:44:26.585 D/REVC-DEBUG(29807): Loading object types from DATA\MAPS\nbeachw\nbeachw.IDE ...
+05-22 15:44:26.592 D/REVC-DEBUG(29807): LODldingsite2 was draw last
+05-22 15:44:26.593 D/REVC-DEBUG(29807): Loading object types from DATA\MAPS\nbeach\nbeach.IDE ...
+05-22 15:44:26.598 D/REVC-DEBUG(29807): Loading object types from DATA\MAPS\bank\bank.IDE ...
+05-22 15:44:26.602 D/REVC-DEBUG(29807): Loading object types from DATA\MAPS\mall\mall.IDE ...
+05-22 15:44:26.607 D/REVC-DEBUG(29807): Loading object types from DATA\MAPS\yacht\yacht.IDE ...
+05-22 15:44:26.611 D/REVC-DEBUG(29807): Loading object types from DATA\MAPS\cisland\cisland.IDE ...
+05-22 15:44:26.615 D/REVC-DEBUG(29807): Loading object types from DATA\MAPS\club\club.IDE ...
+05-22 15:44:26.620 D/REVC-DEBUG(29807): Loading object types from DATA\MAPS\hotel\hotel.IDE ...
+05-22 15:44:26.624 D/REVC-DEBUG(29807): Loading object types from DATA\MAPS\lawyers\lawyers.IDE ...
+05-22 15:44:26.627 D/REVC-DEBUG(29807): Loading object types from DATA\MAPS\stripclb\stripclb.IDE ...
+05-22 15:44:26.631 D/REVC-DEBUG(29807): Loading object types from DATA\MAPS\airport\airport.IDE ...
+05-22 15:44:26.638 D/REVC-DEBUG(29807): LODtower was draw last
+05-22 15:44:26.638 D/REVC-DEBUG(29807): LODsmallhangars1_01 was draw last
+05-22 15:44:26.638 D/REVC-DEBUG(29807): Loading object types from DATA\MAPS\airportN\airportN.IDE ...
+05-22 15:44:26.643 D/REVC-DEBUG(29807): Loading object types from DATA\MAPS\haiti\haiti.IDE ...
+05-22 15:44:26.649 D/REVC-DEBUG(29807): LODgstoreext was draw last
+05-22 15:44:26.649 D/REVC-DEBUG(29807): LODboxgirdbridge was draw last
+05-22 15:44:26.649 D/REVC-DEBUG(29807): Loading object types from DATA\MAPS\haitin\haitin.IDE ...
+05-22 15:44:26.655 D/REVC-DEBUG(29807): Loading object types from DATA\MAPS\concerth\concerth.IDE ...
+05-22 15:44:26.659 D/REVC-DEBUG(29807): Loading object types from DATA\MAPS\mansion\mansion.IDE ...
+05-22 15:44:26.665 D/REVC-DEBUG(29807): Loading object types from DATA\MAPS\islandsf\islandsf.IDE ...
+05-22 15:44:26.670 D/REVC-DEBUG(29807): Loading object types from DATA\MAPS\stadint\stadint.IDE ...
+05-22 15:44:26.675 D/REVC-DEBUG(29807): Loading collision file MODELS\COLL\GENERIC.COL 
+05-22 15:44:26.683 D/REVC-DEBUG(29807): CObjectData: Cannot find object nbspraydoor
+05-22 15:44:26.685 D/REVC-DEBUG(29807): CObjectData: Cannot find object nbdcoshpwin
+05-22 15:44:26.685 D/REVC-DEBUG(29807): CObjectData: Cannot find object nbdcoshpwin2
+05-22 15:44:26.685 D/REVC-DEBUG(29807): CObjectData: Cannot find object nbdcoshpwin3
+05-22 15:44:26.686 D/REVC-DEBUG(29807): CObjectData: Cannot find object lh_showdoor02
+05-22 15:44:26.696 D/REVC-DEBUG(29807): camera.dff appears more than once in MODELS\GTA3.DIR
+05-22 15:44:26.703 D/REVC-DEBUG(29807): Pga.dff appears more than once in MODELS\GTA3.DIR
+05-22 15:44:26.703 D/REVC-DEBUG(29807): Pgb.dff appears more than once in MODELS\GTA3.DIR
+05-22 15:44:26.704 D/REVC-DEBUG(29807): camera.txd appears more than once in MODELS\GTA3.DIR
+05-22 15:44:26.704 D/REVC-DEBUG(29807): chef.txd appears more than once in MODELS\GTA3.DIR
+05-22 15:44:26.706 D/REVC-DEBUG(29807): Pga.txd appears more than once in MODELS\GTA3.DIR
+05-22 15:44:26.706 D/REVC-DEBUG(29807): Pgb.txd appears more than once in MODELS\GTA3.DIR
+05-22 15:44:26.709 D/REVC-DEBUG(29807): metal.txd appears more than once in MODELS\GTA3.DIR
+05-22 15:44:26.816 D/REVC-DEBUG(29807): Generic.txd appears more than once in MODELS\GTA3.DIR
+05-22 15:44:26.822 D/REVC-DEBUG(29807): airstuff2.txd appears more than once in MODELS\GTA3.DIR
+05-22 15:44:26.823 D/REVC-DEBUG(29807): Streaming buffer size is 328 sectors
+05-22 15:44:26.828 D/REVC-DEBUG(29807): colmodel ap_roadsect4 is huge, size 27348
+05-22 15:44:26.841 D/REVC-DEBUG(29807): colmodel doontoon03 is huge, size 15680
+05-22 15:44:26.842 D/REVC-DEBUG(29807): colmodel hogans_alley is huge, size 18636
+05-22 15:44:26.843 D/REVC-DEBUG(29807): colmodel test_track is huge, size 24524
+05-22 15:44:26.843 D/REVC-DEBUG(29807): colmodel doontoon63 is huge, size 23804
+05-22 15:44:26.844 D/REVC-DEBUG(29807): colmodel doontoon_04_bit2 is huge, size 17756
+05-22 15:44:26.847 D/REVC-DEBUG(29807): downtown.col took 6 ms
+05-22 15:44:26.847 D/REVC-DEBUG(29807): colmodel gf_mainisl5_01 is huge, size 26544
+05-22 15:44:26.847 D/REVC-DEBUG(29807): colmodel gf_northisland1 is huge, size 33544
+05-22 15:44:26.848 D/REVC-DEBUG(29807): colmodel gf_northisland2 is huge, size 30080
+05-22 15:44:26.848 D/REVC-DEBUG(29807): colmodel gf_mainisland1b_01 is huge, size 18160
+05-22 15:44:26.848 D/REVC-DEBUG(29807): colmodel gf_northisland3 is huge, size 29312
+05-22 15:44:26.848 D/REVC-DEBUG(29807): colmodel gf_mainisland6a_01 is huge, size 16036
+05-22 15:44:26.848 D/REVC-DEBUG(29807): colmodel gf_mainisl4_01 is huge, size 17960
+05-22 15:44:26.850 D/REVC-DEBUG(29807): colmodel hai_houses27 is huge, size 21400
+05-22 15:44:26.851 D/REVC-DEBUG(29807): colmodel sjmhoose is huge, size 18868
+05-22 15:44:26.851 D/REVC-DEBUG(29807): colmodel sjmfsthus is huge, size 16496
+05-22 15:44:26.851 D/REVC-DEBUG(29807): colmodel sjmkhus is huge, size 16416
+05-22 15:44:26.851 D/REVC-DEBUG(29807): colmodel lithitsjm is huge, size 18536
+05-22 15:44:26.852 D/REVC-DEBUG(29807): colmodel lh_crushefuck is huge, size 17968
+05-22 15:44:26.852 D/REVC-DEBUG(29807): colmodel lh_crushers08 is huge, size 21276
+05-22 15:44:26.858 D/REVC-DEBUG(29807): colmodel hav_car_show_out is huge, size 19576
+05-22 15:44:26.865 D/REVC-DEBUG(29807): mall.col took 6 ms
+05-22 15:44:26.868 D/REVC-DEBUG(29807): colmodel manmrgbuild1 is huge, size 17732
+05-22 15:44:26.870 D/REVC-DEBUG(29807): colmodel nbhotel03 is huge, size 17648
+05-22 15:44:26.874 D/REVC-DEBUG(29807): colmodel 4x4racecotop is huge, size 24388
+05-22 15:44:26.874 D/REVC-DEBUG(29807): colmodel 4x4racecotop2 is huge, size 16708
+05-22 15:44:26.875 D/REVC-DEBUG(29807): nbeach.col took 6 ms
+05-22 15:44:26.876 D/REVC-DEBUG(29807): colmodel nbt_mansion01 is huge, size 24476
+05-22 15:44:26.877 D/REVC-DEBUG(29807): colmodel nbeachbit04 is huge, size 17204
+05-22 15:44:26.877 D/REVC-DEBUG(29807): colmodel nbt_hotel05 is huge, size 24796
+05-22 15:44:26.877 D/REVC-DEBUG(29807): colmodel nbt_mansionbase02 is huge, size 21172
+05-22 15:44:26.880 D/REVC-DEBUG(29807): colmodel nbeachbit04b is huge, size 19884
+05-22 15:44:26.881 D/REVC-DEBUG(29807): colmodel nbt_road11 is huge, size 15428
+05-22 15:44:26.884 D/REVC-DEBUG(29807): nbeachbt.col took 8 ms
+05-22 15:44:26.890 D/REVC-DEBUG(29807): oceandrv.col took 6 ms
+05-22 15:44:26.890 D/REVC-DEBUG(29807): colmodel mansion1gardens is huge, size 27204
+05-22 15:44:26.892 D/REVC-DEBUG(29807): colmodel starbridge2 is huge, size 24624
+05-22 15:44:26.893 D/REVC-DEBUG(29807): colmodel mansion3_base is huge, size 27496
+05-22 15:44:26.893 D/REVC-DEBUG(29807): colmodel stripinter is huge, size 19168
+05-22 15:44:26.895 D/REVC-DEBUG(29807): colmodel wshbuildws40 is huge, size 19684
+05-22 15:44:26.903 D/REVC-DEBUG(29807): washintn.col took 10 ms
+05-22 15:44:26.913 D/REVC-DEBUG(29807): washints.col took 9 ms
+05-22 15:44:26.913 D/REVC-DEBUG(29807): colmodel yt_main_body2 is huge, size 21880
+05-22 15:44:26.917 D/REVC-DEBUG(29807): colmodel doontoon23 is huge, size 20652
+05-22 15:44:26.918 D/REVC-DEBUG(29807): colmodel lh_crushers10 is huge, size 19384
+05-22 15:44:26.920 D/REVC-DEBUG(29807): colmodel buildblown is huge, size 18528
+05-22 15:44:26.931 D/REVC-DEBUG(29807): oceandN.col took 9 ms
+05-22 15:44:26.933 D/REVC-DEBUG(29807): colmodel kickstart is huge, size 53056
+05-22 15:44:26.934 D/REVC-DEBUG(29807): colmodel kickcar3 is huge, size 27968
+05-22 15:44:26.935 D/REVC-DEBUG(29807): colmodel kickbus03 is huge, size 17052
+05-22 15:44:26.935 D/REVC-DEBUG(29807): colmodel kickcar23 is huge, size 49564
+05-22 15:44:26.935 D/REVC-DEBUG(29807): colmodel kickcar28 is huge, size 39668
+05-22 15:44:26.935 D/REVC-DEBUG(29807): colmodel kickcar36 is huge, size 49612
+05-22 15:44:26.936 D/REVC-DEBUG(29807): colmodel carsontrack is huge, size 39620
+05-22 15:44:26.945 D/REVC-DEBUG(29807): nbeachw.col took 7 ms
+05-22 15:44:26.945 D/REVC-DEBUG(29807): Creating objects from DATA\MAP.ZON ...
+05-22 15:44:26.947 D/REVC-DEBUG(29807): Finished loading IPL
+05-22 15:44:26.947 D/REVC-DEBUG(29807): Creating objects from DATA\NAVIG.ZON ...
+05-22 15:44:26.949 D/REVC-DEBUG(29807): Finished loading IPL
+05-22 15:44:26.949 D/REVC-DEBUG(29807): Creating objects from DATA\INFO.ZON ...
+05-22 15:44:26.950 D/REVC-DEBUG(29807): Finished loading IPL
+05-22 15:44:26.950 D/REVC-DEBUG(29807): Creating objects from DATA\MAPS\littleha\littleha.IPL ...
+05-22 15:44:26.955 D/REVC-DEBUG(29807): Finished loading IPL
+05-22 15:44:26.955 D/REVC-DEBUG(29807): Creating objects from DATA\MAPS\downtown\downtown.IPL ...
+05-22 15:44:26.959 D/REVC-DEBUG(29807): Finished loading IPL
+05-22 15:44:26.959 D/REVC-DEBUG(29807): Creating objects from DATA\MAPS\downtows\downtows.IPL ...
+05-22 15:44:26.963 D/REVC-DEBUG(29807): Finished loading IPL
+05-22 15:44:26.963 D/REVC-DEBUG(29807): Creating objects from DATA\MAPS\docks\docks.IPL ...
+05-22 15:44:26.966 D/REVC-DEBUG(29807): Finished loading IPL
+05-22 15:44:26.966 D/REVC-DEBUG(29807): Creating objects from DATA\MAPS\washintn\washintn.IPL ...
+05-22 15:44:26.972 D/REVC-DEBUG(29807): Finished loading IPL
+05-22 15:44:26.972 D/REVC-DEBUG(29807): Creating objects from DATA\MAPS\washints\washints.IPL ...
+05-22 15:44:26.978 D/REVC-DEBUG(29807): Finished loading IPL
+05-22 15:44:26.978 D/REVC-DEBUG(29807): Creating objects from DATA\MAPS\oceandrv\oceandrv.IPL ...
+05-22 15:44:26.983 D/REVC-DEBUG(29807): Finished loading IPL
+05-22 15:44:26.983 D/REVC-DEBUG(29807): Creating objects from DATA\MAPS\oceandn\oceandn.IPL ...
+05-22 15:44:26.989 D/REVC-DEBUG(29807): Finished loading IPL
+05-22 15:44:26.989 D/REVC-DEBUG(29807): Creating objects from DATA\MAPS\golf\golf.IPL ...
+05-22 15:44:26.992 D/REVC-DEBUG(29807): Finished loading IPL
+05-22 15:44:26.992 D/REVC-DEBUG(29807): Creating objects from DATA\MAPS\bridge\bridge.IPL ...
+05-22 15:44:26.995 D/REVC-DEBUG(29807): Finished loading IPL
+05-22 15:44:26.995 D/REVC-DEBUG(29807): Creating objects from DATA\MAPS\starisl\starisl.IPL ...
+05-22 15:44:27.000 D/REVC-DEBUG(29807): Finished loading IPL
+05-22 15:44:27.000 D/REVC-DEBUG(29807): Creating objects from DATA\MAPS\nbeachbt\nbeachbt.IPL ...
+05-22 15:44:27.005 D/REVC-DEBUG(29807): Finished loading IPL
+05-22 15:44:27.005 D/REVC-DEBUG(29807): Creating objects from DATA\MAPS\nbeach\nbeach.IPL ...
+05-22 15:44:27.010 D/REVC-DEBUG(29807): Finished loading IPL
+05-22 15:44:27.010 D/REVC-DEBUG(29807): Creating objects from DATA\MAPS\nbeachw\nbeachw.IPL ...
+05-22 15:44:27.015 D/REVC-DEBUG(29807): Finished loading IPL
+05-22 15:44:27.015 D/REVC-DEBUG(29807): Creating objects from DATA\MAPS\cisland\cisland.IPL ...
+05-22 15:44:27.019 D/REVC-DEBUG(29807): Finished loading IPL
+05-22 15:44:27.019 D/REVC-DEBUG(29807): Creating objects from DATA\MAPS\airport\airport.IPL ...
+05-22 15:44:27.023 D/REVC-DEBUG(29807): Finished loading IPL
+05-22 15:44:27.023 D/REVC-DEBUG(29807): Creating objects from DATA\MAPS\airportN\airportN.IPL ...
+05-22 15:44:27.027 D/REVC-DEBUG(29807): Finished loading IPL
+05-22 15:44:27.027 D/REVC-DEBUG(29807): Creating objects from DATA\MAPS\haiti\haiti.IPL ...
+05-22 15:44:27.031 D/REVC-DEBUG(29807): Finished loading IPL
+05-22 15:44:27.031 D/REVC-DEBUG(29807): Creating objects from DATA\MAPS\haitin\haitin.IPL ...
+05-22 15:44:27.035 D/REVC-DEBUG(29807): Finished loading IPL
+05-22 15:44:27.035 D/REVC-DEBUG(29807): Creating objects from DATA\MAPS\islandsf\islandsf.IPL ...
+05-22 15:44:27.038 D/REVC-DEBUG(29807): Finished loading IPL
+05-22 15:44:27.038 D/REVC-DEBUG(29807): Creating objects from DATA\MAPS\stadint\stadint.IPL ...
+05-22 15:44:27.042 D/REVC-DEBUG(29807): Finished loading IPL
+05-22 15:44:27.042 D/REVC-DEBUG(29807): Creating objects from DATA\MAPS\paths.ipl ...
+05-22 15:44:27.080 D/REVC-DEBUG(29807): Finished loading IPL
+05-22 15:44:27.080 D/REVC-DEBUG(29807): Creating objects from DATA\MAPS\cull.ipl ...
+05-22 15:44:27.083 D/REVC-DEBUG(29807): Finished loading IPL
+05-22 15:44:27.083 D/REVC-DEBUG(29807): Creating objects from DATA\occlu.ipl ...
+05-22 15:44:27.086 D/REVC-DEBUG(29807): Finished loading IPL
+05-22 15:44:27.086 D/REVC-DEBUG(29807): Creating objects from DATA\MAPS\bank\bank.IPL ...
+05-22 15:44:27.089 D/REVC-DEBUG(29807): Finished loading IPL
+05-22 15:44:27.089 D/REVC-DEBUG(29807): Creating objects from DATA\MAPS\mall\mall.IPL ...
+05-22 15:44:27.092 D/REVC-DEBUG(29807): Finished loading IPL
+05-22 15:44:27.092 D/REVC-DEBUG(29807): Creating objects from DATA\MAPS\yacht\yacht.IPL ...
+05-22 15:44:27.095 D/REVC-DEBUG(29807): Finished loading IPL
+05-22 15:44:27.095 D/REVC-DEBUG(29807): Creating objects from DATA\MAPS\club\club.IPL ...
+05-22 15:44:27.097 D/REVC-DEBUG(29807): Finished loading IPL
+05-22 15:44:27.097 D/REVC-DEBUG(29807): Creating objects from DATA\MAPS\hotel\hotel.IPL ...
+05-22 15:44:27.099 D/REVC-DEBUG(29807): Finished loading IPL
+05-22 15:44:27.099 D/REVC-DEBUG(29807): Creating objects from DATA\MAPS\lawyers\lawyers.IPL ...
+05-22 15:44:27.102 D/REVC-DEBUG(29807): Finished loading IPL
+05-22 15:44:27.102 D/REVC-DEBUG(29807): Creating objects from DATA\MAPS\stripclb\stripclb.IPL ...
+05-22 15:44:27.105 D/REVC-DEBUG(29807): Finished loading IPL
+05-22 15:44:27.105 D/REVC-DEBUG(29807): Creating objects from DATA\MAPS\concerth\concerth.IPL ...
+05-22 15:44:27.107 D/REVC-DEBUG(29807): Finished loading IPL
+05-22 15:44:27.107 D/REVC-DEBUG(29807): Creating objects from DATA\MAPS\mansion\mansion.IPL ...
+05-22 15:44:27.110 D/REVC-DEBUG(29807): Finished loading IPL
+05-22 15:44:27.313 D/REVC-DEBUG(29807): cop.txd took 8 ms
+05-22 15:44:27.321 D/REVC-DEBUG(29807): HMOCA.txd took 7 ms
+05-22 15:44:27.334 D/REVC-DEBUG(29807): male01.txd took 12 ms
+05-22 15:44:27.374 D/REVC-DEBUG(29807): police.txd took 39 ms
+05-22 15:44:27.400 D/REVC-DEBUG(29807): islandlolodb.txd took 20 ms
+05-22 15:44:27.425 D/REVC-DEBUG(29807): islandlolodm.txd took 23 ms
+05-22 15:44:27.447 D/REVC-DEBUG(29807): IslandLODmainland.dff took 20 ms
+05-22 15:44:27.451 D/REVC-DEBUG(29807): Loading ANIMS ped
+05-22 15:44:27.452 D/REVC-DEBUG(29807): anim bomber has toe keyframes
+05-22 15:44:27.452 D/REVC-DEBUG(29807): anim CAR_align_LHS has toe keyframes
+05-22 15:44:27.452 D/REVC-DEBUG(29807): anim CAR_align_RHS has toe keyframes
+05-22 15:44:27.453 D/REVC-DEBUG(29807): anim CAR_open_LHS has toe keyframes
+05-22 15:44:27.453 D/REVC-DEBUG(29807): anim CAR_open_RHS has toe keyframes
+05-22 15:44:27.453 D/REVC-DEBUG(29807): anim CAR_sitp has toe keyframes
+05-22 15:44:27.454 D/REVC-DEBUG(29807): anim Drive_LO_l has toe keyframes
+05-22 15:44:27.454 D/REVC-DEBUG(29807): anim Drive_LO_R has toe keyframes
+05-22 15:44:27.455 D/REVC-DEBUG(29807): anim HIT_back has toe keyframes
+05-22 15:44:27.455 D/REVC-DEBUG(29807): anim HIT_behind has toe keyframes
+05-22 15:44:27.455 D/REVC-DEBUG(29807): anim HIT_chest has toe keyframes
+05-22 15:44:27.455 D/REVC-DEBUG(29807): anim HIT_front has toe keyframes
+05-22 15:44:27.455 D/REVC-DEBUG(29807): anim HIT_L has toe keyframes
+05-22 15:44:27.455 D/REVC-DEBUG(29807): anim HIT_R has toe keyframes
+05-22 15:44:27.456 D/REVC-DEBUG(29807): anim KD_left has toe keyframes
+05-22 15:44:27.456 D/REVC-DEBUG(29807): anim KD_right has toe keyframes
+05-22 15:44:27.462 D/REVC-DEBUG(29807): Loading ANIMS baseball
+05-22 15:44:27.463 D/REVC-DEBUG(29807): Initialising CPed...
+05-22 15:44:27.463 D/REVC-DEBUG(29807): Initialising CPedType...
+05-22 15:44:27.463 D/REVC-DEBUG(29807): Loading ped data...
+05-22 15:44:27.464 D/REVC-DEBUG(29807): CPedType ready
+05-22 15:44:27.465 D/REVC-DEBUG(29807): Loading ANIMS biked
+05-22 15:44:27.466 D/REVC-DEBUG(29807): Loading ANIMS bikeh
+05-22 15:44:27.466 D/REVC-DEBUG(29807): Loading ANIMS bikes
+05-22 15:44:27.467 D/REVC-DEBUG(29807): Loading ANIMS bikev
+05-22 15:44:27.467 D/REVC-DEBUG(29807): Loading ANIMS van
+05-22 15:44:27.468 D/REVC-DEBUG(29807): Removing ANIMS van
+05-22 15:44:27.468 D/REVC-DEBUG(29807): Removing ANIMS bikes
+05-22 15:44:27.468 D/REVC-DEBUG(29807): Removing ANIMS bikev
+05-22 15:44:27.468 D/REVC-DEBUG(29807): Removing ANIMS bikeh
+05-22 15:44:27.468 D/REVC-DEBUG(29807): Removing ANIMS biked
+05-22 15:44:27.468 D/REVC-DEBUG(29807): CPed ready
+05-22 15:44:27.468 D/REVC-DEBUG(29807): Initialising CEventList...
+05-22 15:44:27.471 D/REVC-DEBUG(29807): Initialising CWeaponInfo...
+05-22 15:44:27.471 D/REVC-DEBUG(29807): Loading weapon data...
+05-22 15:44:27.473 D/REVC-DEBUG(29807): CWeaponInfo ready
+05-22 15:44:27.473 D/REVC-DEBUG(29807): Initialising CShotInfo...
+05-22 15:44:27.473 D/REVC-DEBUG(29807): CShotInfo ready
+05-22 15:44:27.473 D/REVC-DEBUG(29807): Initialising CExplosion...
+05-22 15:44:27.473 D/REVC-DEBUG(29807): CExplosion ready
+05-22 15:44:27.473 D/REVC-DEBUG(29807): Initialising CProjectileInfo...
+05-22 15:44:27.473 D/REVC-DEBUG(29807): CProjectileInfo ready
+05-22 15:44:27.473 D/REVC-DEBUG(29807): Initialising CBulletInfo...
+05-22 15:44:27.473 D/REVC-DEBUG(29807): CBulletInfo ready
+05-22 15:44:27.504 D/REVC-DEBUG(29807): Initialising CPopulation...
+05-22 15:44:27.507 D/REVC-DEBUG(29807): CPopulation ready
+05-22 15:44:27.535 D/REVC-DEBUG(29807): Initialising CClock...
+05-22 15:44:27.535 D/REVC-DEBUG(29807): CClock ready
+05-22 15:44:27.536 D/REVC-DEBUG(29807): Loading model file models/generic/arrow.dff
+05-22 15:44:27.537 D/REVC-DEBUG(29807): Loading model file models/generic/zonecylb.dff
+05-22 15:44:27.547 D/REVC-DEBUG(29807): Start load scene
+05-22 15:44:27.566 D/REVC-DEBUG(29807): lod_docks2.txd took 6 ms
+05-22 15:44:27.580 D/REVC-DEBUG(29807): LODnbeachbtbig.txd took 11 ms
+05-22 15:44:27.602 D/REVC-DEBUG(29807): LODbuildws07.txd took 13 ms
+05-22 15:44:27.638 D/REVC-DEBUG(29807): LODwsouth08.txd took 31 ms
+05-22 15:44:27.656 D/REVC-DEBUG(29807): LODwashsth.txd took 12 ms
+05-22 15:44:27.708 D/REVC-DEBUG(29807): LODwshsth99.txd took 49 ms
+05-22 15:44:27.755 D/REVC-DEBUG(29807): LODodrive.txd took 43 ms
+05-22 15:44:27.776 D/REVC-DEBUG(29807): lod_starbig.txd took 11 ms
+05-22 15:44:27.800 D/REVC-DEBUG(29807): lod_starsmall.txd took 22 ms
+05-22 15:44:27.824 D/REVC-DEBUG(29807): lod_man_grnds.txd took 21 ms
+05-22 15:44:27.862 D/REVC-DEBUG(29807): LODnbchw.txd took 36 ms
+05-22 15:44:27.878 D/REVC-DEBUG(29807): LODnbeachwbig.txd took 13 ms
+05-22 15:44:27.939 D/REVC-DEBUG(29807): LODodriveN.txd took 55 ms
+05-22 15:44:27.987 D/REVC-DEBUG(29807): islandlolodb.txd took 37 ms
+05-22 15:44:27.998 D/REVC-DEBUG(29807): seabed.txd took 11 ms
+05-22 15:44:27.998 D/REVC-DEBUG(29807): colmodel wshbuildws40 is huge, size 19684
+05-22 15:44:28.025 D/REVC-DEBUG(29807): bobcat.txd took 8 ms
+05-22 15:44:28.043 D/REVC-DEBUG(29807): sentxs.txd took 7 ms
+05-22 15:44:28.050 D/REVC-DEBUG(29807): walton.txd took 7 ms
+05-22 15:44:28.128 D/REVC-DEBUG(29807): BillBrd.txd took 75 ms
+05-22 15:44:28.143 D/REVC-DEBUG(29807): dynhydrent.txd took 14 ms
+05-22 15:44:28.176 D/REVC-DEBUG(29807): dynsigns.txd took 32 ms
+05-22 15:44:28.203 D/REVC-DEBUG(29807): metal.txd took 27 ms
+05-22 15:44:28.213 D/REVC-DEBUG(29807): mitraffic.txd took 9 ms
+05-22 15:44:28.260 D/REVC-DEBUG(29807): northbuild.txd took 42 ms
+05-22 15:44:28.308 D/REVC-DEBUG(29807): northbuild.txd took 48 ms
+05-22 15:44:28.330 D/REVC-DEBUG(29807): washlandb.txd took 21 ms
+05-22 15:44:28.356 D/REVC-DEBUG(29807): washnewbuild1.txd took 25 ms
+05-22 15:44:28.365 D/REVC-DEBUG(29807): washnrthpstr1.txd took 7 ms
+05-22 15:44:28.368 D/REVC-DEBUG(29807): Loading ANIMS bikeh
+05-22 15:44:28.369 D/REVC-DEBUG(29807): Loading ANIMS bikev
+05-22 15:44:28.370 D/REVC-DEBUG(29807): End load scene
+05-22 15:44:28.395 D/REVC-DEBUG(29807): player.txd took 25 ms
+05-22 15:44:28.401 D/DBG-2   (29807): [F:/re3/src/skel/sdl3/sdl3.cpp.main:1969]: gGameState = GS_PLAYING_GAME;
+05-22 15:44:28.633 I/VRI[GameActivity]@9486313(29807): call setFrameRateCategory for touch hint category=no preference, reason=boost timeout, vri=VRI[GameActivity]@9486313
+05-22 15:44:28.865 D/REVC-DEBUG(29807): BFYST.txd took 18 ms
+05-22 15:44:28.865 D/REVC-DEBUG(29807): colmodel yt_main_body2 is huge, size 21880
+05-22 15:44:28.883 D/REVC-DEBUG(29807): BMYST.txd took 14 ms
+05-22 15:44:28.898 D/REVC-DEBUG(29807): HFYBU.txd took 14 ms
+05-22 15:44:28.914 D/REVC-DEBUG(29807): HFYST.txd took 15 ms
+05-22 15:44:28.930 D/REVC-DEBUG(29807): HMOST.txd took 15 ms
+05-22 15:44:28.946 D/REVC-DEBUG(29807): WFYBU.txd took 15 ms
+05-22 15:44:28.962 D/REVC-DEBUG(29807): WFYRI.txd took 15 ms
+05-22 15:44:28.978 D/REVC-DEBUG(29807): WFYSH.txd took 14 ms
+05-22 15:44:28.980 D/REVC-DEBUG(29807): Loading ANIMS colt45
+05-22 15:44:28.981 D/REVC-DEBUG(29807): colt45 has 288 polys
+05-22 15:44:30.222 D/REVC-DEBUG(29807): Start load scene
+05-22 15:44:30.250 D/REVC-DEBUG(29807): CSsonny.txd took 23 ms
+05-22 15:44:30.258 D/REVC-DEBUG(29807): drink.txd took 6 ms
+05-22 15:44:30.309 D/REVC-DEBUG(29807): mbtbemp.txd took 49 ms
+05-22 15:44:30.316 D/REVC-DEBUG(29807): schair.txd took 6 ms
+05-22 15:44:30.337 D/REVC-DEBUG(29807): sfrenda.txd took 20 ms
+05-22 15:44:30.357 D/REVC-DEBUG(29807): sfrendb.txd took 19 ms
+05-22 15:44:30.377 D/REVC-DEBUG(29807): sgoona.txd took 18 ms
+05-22 15:44:30.398 D/REVC-DEBUG(29807): sgoonb.txd took 19 ms
+05-22 15:44:30.405 D/REVC-DEBUG(29807): svntray.txd took 6 ms
+05-22 15:44:30.422 D/REVC-DEBUG(29807): hi_cuthoomintshad.txd took 7 ms
+05-22 15:44:30.445 D/REVC-DEBUG(29807): hi_cuthtl2.txd took 17 ms
+05-22 15:44:30.458 D/REVC-DEBUG(29807): hi_cuthtlalp.txd took 9 ms
+05-22 15:44:30.469 D/REVC-DEBUG(29807): hi_cutint1.txd took 11 ms
+05-22 15:44:30.479 D/REVC-DEBUG(29807): hi_cutintprops.txd took 8 ms
+05-22 15:44:30.525 D/REVC-DEBUG(29807): hotelroomint.txd took 45 ms
+05-22 15:44:30.537 D/com.revc(29807): TrackPlayerBase::~TrackPlayerBase()
+05-22 15:44:30.537 D/com.revc(29807): PlayerBase::~PlayerBase()
+05-22 15:44:30.562 D/REVC-DEBUG(29807): hotelroomint.txd took 37 ms
+05-22 15:44:30.633 D/REVC-DEBUG(29807): hot_mobint.txd took 67 ms
+05-22 15:44:30.672 D/REVC-DEBUG(29807): hot_mobint.txd took 40 ms
+05-22 15:44:30.692 D/REVC-DEBUG(29807): hot_roomtrans.txd took 17 ms
+05-22 15:44:30.713 D/REVC-DEBUG(29807): hi_cuttblprop.txd took 12 ms
+05-22 15:44:30.714 D/REVC-DEBUG(29807): End load scene
+05-22 15:44:30.717 D/REVC-DEBUG(29807): Loading ANIMS int_a
+05-22 15:44:30.725 D/REVC-DEBUG(29807): Associated anim CSsonny with model cssonny
+05-22 15:44:30.725 D/REVC-DEBUG(29807): Associated anim drink01 with model drink
+05-22 15:44:30.725 D/REVC-DEBUG(29807): Associated anim drink02 with model drink
+05-22 15:44:30.725 D/REVC-DEBUG(29807): Associated anim drink03 with model drink
+05-22 15:44:30.725 D/REVC-DEBUG(29807): Associated anim mbtbemp with model mbtbemp
+05-22 15:44:30.725 D/REVC-DEBUG(29807): Associated anim schair with model schair
+05-22 15:44:30.726 D/REVC-DEBUG(29807): Associated anim sfrenda with model sfrenda
+05-22 15:44:30.726 D/REVC-DEBUG(29807): Associated anim sfrendb with model sfrendb
+05-22 15:44:30.726 D/REVC-DEBUG(29807): Associated anim sgoona with model sgoona
+05-22 15:44:30.726 D/REVC-DEBUG(29807): Associated anim sgoonb with model sgoonb
+05-22 15:44:30.726 D/REVC-DEBUG(29807): Associated anim svntray with model svntray
+05-22 15:44:30.763 D/REVC-DEBUG(29807): Created cutscene object sfrenda
+05-22 15:44:30.764 D/REVC-DEBUG(29807): Give cutscene anim SFRENDA
+05-22 15:44:30.764 D/REVC-DEBUG(29807): Created cutscene object sfrendb
+05-22 15:44:30.764 D/REVC-DEBUG(29807): Give cutscene anim SFRENDB
+05-22 15:44:30.764 D/REVC-DEBUG(29807): Created cutscene object cssonny
+05-22 15:44:30.764 D/REVC-DEBUG(29807): Give cutscene anim CSSONNY
+05-22 15:44:30.764 D/REVC-DEBUG(29807): Created cutscene object sgoona
+05-22 15:44:30.764 D/REVC-DEBUG(29807): Give cutscene anim SGOONA
+05-22 15:44:30.764 D/REVC-DEBUG(29807): Created cutscene object sgoonb
+05-22 15:44:30.764 D/REVC-DEBUG(29807): Give cutscene anim SGOONB
+05-22 15:44:30.765 D/REVC-DEBUG(29807): Created cutscene object svntray
+05-22 15:44:30.765 D/REVC-DEBUG(29807): Give cutscene anim SVNTRAY
+05-22 15:44:30.765 D/REVC-DEBUG(29807): Created cutscene object drink
+05-22 15:44:30.765 D/REVC-DEBUG(29807): Give cutscene anim DRINK01
+05-22 15:44:30.765 D/REVC-DEBUG(29807): Created cutscene object drink
+05-22 15:44:30.765 D/REVC-DEBUG(29807): Give cutscene anim DRINK02
+05-22 15:44:30.765 D/REVC-DEBUG(29807): Created cutscene object drink
+05-22 15:44:30.765 D/REVC-DEBUG(29807): Give cutscene anim DRINK03
+05-22 15:44:30.765 D/REVC-DEBUG(29807): Created cutscene object mbtbemp
+05-22 15:44:30.765 D/REVC-DEBUG(29807): Give cutscene anim MBTBEMP
+05-22 15:44:30.765 D/REVC-DEBUG(29807): Created cutscene object schair
+05-22 15:44:30.765 D/REVC-DEBUG(29807): Give cutscene anim SCHAIR
+05-22 15:44:31.462 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 0
+05-22 15:44:31.462 I/GestureDetector(29807): obtain mCurrentDownEvent. id: 349811428 caller: android.view.ScaleGestureDetector.onTouchEvent:297 org.libsdl.app.SDLSurface.onTouch:304 android.view.View.performOnTouchCallback:17224 
+05-22 15:44:31.462 I/VRI[GameActivity]@9486313(29807): call setFrameRateCategory for touch hint category=high hint, reason=touch, vri=VRI[GameActivity]@9486313
+05-22 15:44:31.473 I/GestureDetector(29807): obtain mCurrentMotionEventRaw. action: 2 id: 479673288
+05-22 15:44:31.563 D/REVC-DEBUG(29807): icons9.txd took 9 ms
+05-22 15:44:31.568 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 1
+05-22 15:44:31.763 I/GestureDetector(29807): handleMessage TAP
+05-22 15:44:32.168 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 0
+05-22 15:44:32.168 I/GestureDetector(29807): obtain mCurrentDownEvent. id: 274394998 caller: android.view.ScaleGestureDetector.onTouchEvent:297 org.libsdl.app.SDLSurface.onTouch:304 android.view.View.performOnTouchCallback:17224 
+05-22 15:44:32.180 I/GestureDetector(29807): obtain mCurrentMotionEventRaw. action: 2 id: 54820706
+05-22 15:44:32.258 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 1
+05-22 15:44:32.341 D/REVC-DEBUG(29807): icons3.txd took 7 ms
+05-22 15:44:32.361 D/REVC-DEBUG(29807): IGKen.txd took 19 ms
+05-22 15:44:32.368 D/REVC-DEBUG(29807): Start load scene
+05-22 15:44:32.377 D/REVC-DEBUG(29807): LOD_hotel03.dff took 6 ms
+05-22 15:44:32.409 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 0
+05-22 15:44:32.409 D/REVC-DEBUG(29807): LODnbeach.txd took 31 ms
+05-22 15:44:32.409 I/GestureDetector(29807): obtain mCurrentDownEvent. id: 948889994 caller: android.view.ScaleGestureDetector.onTouchEvent:297 org.libsdl.app.SDLSurface.onTouch:304 android.view.View.performOnTouchCallback:17224 
+05-22 15:44:32.422 I/GestureDetector(29807): obtain mCurrentMotionEventRaw. action: 2 id: 1027669427
+05-22 15:44:32.450 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 1
+05-22 15:44:32.583 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 0
+05-22 15:44:32.584 I/GestureDetector(29807): obtain mCurrentDownEvent. id: 952551592 caller: android.view.ScaleGestureDetector.onTouchEvent:297 org.libsdl.app.SDLSurface.onTouch:304 android.view.View.performOnTouchCallback:17224 
+05-22 15:44:32.596 I/GestureDetector(29807): obtain mCurrentMotionEventRaw. action: 2 id: 647734488
+05-22 15:44:32.649 D/REVC-DEBUG(29807): nbeach_lod.txd took 238 ms
+05-22 15:44:32.658 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 1
+05-22 15:44:32.662 D/REVC-DEBUG(29807): glendale.txd took 7 ms
+05-22 15:44:32.702 D/REVC-DEBUG(29807): infernus.txd took 40 ms
+05-22 15:44:32.759 D/REVC-DEBUG(29807): signs.txd took 43 ms
+05-22 15:44:32.761 D/REVC-DEBUG(29807): End load scene
+05-22 15:44:32.774 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 0
+05-22 15:44:32.775 I/GestureDetector(29807): obtain mCurrentDownEvent. id: 1055411071 caller: android.view.ScaleGestureDetector.onTouchEvent:297 org.libsdl.app.SDLSurface.onTouch:304 android.view.View.performOnTouchCallback:17224 
+05-22 15:44:32.788 I/GestureDetector(29807): obtain mCurrentMotionEventRaw. action: 2 id: 491898063
+05-22 15:44:32.841 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 1
+05-22 15:44:32.958 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 0
+05-22 15:44:32.958 I/GestureDetector(29807): obtain mCurrentDownEvent. id: 383168918 caller: android.view.ScaleGestureDetector.onTouchEvent:297 org.libsdl.app.SDLSurface.onTouch:304 android.view.View.performOnTouchCallback:17224 
+05-22 15:44:32.971 I/GestureDetector(29807): obtain mCurrentMotionEventRaw. action: 2 id: 621255103
+05-22 15:44:33.040 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 1
+05-22 15:44:33.141 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 0
+05-22 15:44:33.141 I/GestureDetector(29807): obtain mCurrentDownEvent. id: 789010078 caller: android.view.ScaleGestureDetector.onTouchEvent:297 org.libsdl.app.SDLSurface.onTouch:304 android.view.View.performOnTouchCallback:17224 
+05-22 15:44:33.154 I/GestureDetector(29807): obtain mCurrentMotionEventRaw. action: 2 id: 186301106
+05-22 15:44:33.224 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 1
+05-22 15:44:33.332 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 0
+05-22 15:44:33.332 I/GestureDetector(29807): obtain mCurrentDownEvent. id: 11591301 caller: android.view.ScaleGestureDetector.onTouchEvent:297 org.libsdl.app.SDLSurface.onTouch:304 android.view.View.performOnTouchCallback:17224 
+05-22 15:44:33.345 I/GestureDetector(29807): obtain mCurrentMotionEventRaw. action: 2 id: 779784030
+05-22 15:44:33.385 D/REVC-DEBUG(29807): BFOTR.txd took 13 ms
+05-22 15:44:33.407 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 1
+05-22 15:44:33.540 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 0
+05-22 15:44:33.540 I/GestureDetector(29807): obtain mCurrentDownEvent. id: 414084295 caller: android.view.ScaleGestureDetector.onTouchEvent:297 org.libsdl.app.SDLSurface.onTouch:304 android.view.View.performOnTouchCallback:17224 
+05-22 15:44:33.553 I/GestureDetector(29807): obtain mCurrentMotionEventRaw. action: 2 id: 385834473
+05-22 15:44:33.580 D/REVC-DEBUG(29807): BMOST.txd took 13 ms
+05-22 15:44:33.595 D/REVC-DEBUG(29807): BMOTR.txd took 15 ms
+05-22 15:44:33.632 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 1
+05-22 15:44:33.748 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 0
+05-22 15:44:33.748 I/GestureDetector(29807): obtain mCurrentDownEvent. id: 1024402080 caller: android.view.ScaleGestureDetector.onTouchEvent:297 org.libsdl.app.SDLSurface.onTouch:304 android.view.View.performOnTouchCallback:17224 
+05-22 15:44:33.761 I/GestureDetector(29807): obtain mCurrentMotionEventRaw. action: 2 id: 654063029
+05-22 15:44:33.823 D/REVC-DEBUG(29807): BMYPI.txd took 14 ms
+05-22 15:44:33.839 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 1
+05-22 15:44:33.948 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 0
+05-22 15:44:33.949 I/GestureDetector(29807): obtain mCurrentDownEvent. id: 888854003 caller: android.view.ScaleGestureDetector.onTouchEvent:297 org.libsdl.app.SDLSurface.onTouch:304 android.view.View.performOnTouchCallback:17224 
+05-22 15:44:33.961 I/GestureDetector(29807): obtain mCurrentMotionEventRaw. action: 2 id: 280592586
+05-22 15:44:34.019 D/REVC-DEBUG(29807): HFOST.txd took 14 ms
+05-22 15:44:34.039 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 1
+05-22 15:44:34.156 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 0
+05-22 15:44:34.156 I/GestureDetector(29807): obtain mCurrentDownEvent. id: 816228416 caller: android.view.ScaleGestureDetector.onTouchEvent:297 org.libsdl.app.SDLSurface.onTouch:304 android.view.View.performOnTouchCallback:17224 
+05-22 15:44:34.169 I/GestureDetector(29807): obtain mCurrentMotionEventRaw. action: 2 id: 491736810
+05-22 15:44:34.239 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 1
+05-22 15:44:34.245 D/REVC-DEBUG(29807): HFYPR.txd took 12 ms
+05-22 15:44:34.438 D/REVC-DEBUG(29807): HMOTR.txd took 12 ms
+05-22 15:44:34.456 I/GestureDetector(29807): handleMessage TAP
+05-22 15:44:34.667 D/REVC-DEBUG(29807): HMYST.txd took 17 ms
+05-22 15:44:34.860 D/REVC-DEBUG(29807): hermes.txd took 11 ms
+05-22 15:44:35.305 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 0
+05-22 15:44:35.306 I/GestureDetector(29807): obtain mCurrentDownEvent. id: 618053935 caller: android.view.ScaleGestureDetector.onTouchEvent:297 org.libsdl.app.SDLSurface.onTouch:304 android.view.View.performOnTouchCallback:17224 
+05-22 15:44:35.317 I/GestureDetector(29807): obtain mCurrentMotionEventRaw. action: 2 id: 312590138
+05-22 15:44:35.537 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 1
+05-22 15:44:38.537 I/VRI[GameActivity]@9486313(29807): call setFrameRateCategory for touch hint category=no preference, reason=boost timeout, vri=VRI[GameActivity]@9486313
+05-22 15:44:40.699 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 0
+05-22 15:44:40.700 I/GestureDetector(29807): obtain mCurrentDownEvent. id: 1022669559 caller: android.view.ScaleGestureDetector.onTouchEvent:297 org.libsdl.app.SDLSurface.onTouch:304 android.view.View.performOnTouchCallback:17224 
+05-22 15:44:40.700 I/VRI[GameActivity]@9486313(29807): call setFrameRateCategory for touch hint category=high hint, reason=touch, vri=VRI[GameActivity]@9486313
+05-22 15:44:40.710 I/GestureDetector(29807): obtain mCurrentMotionEventRaw. action: 2 id: 67605803
+05-22 15:44:41.005 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 1
+05-22 15:44:42.288 D/REVC-DEBUG(29807): telegraph.txd took 29 ms
+05-22 15:44:44.005 I/VRI[GameActivity]@9486313(29807): call setFrameRateCategory for touch hint category=no preference, reason=boost timeout, vri=VRI[GameActivity]@9486313
+05-22 15:44:44.468 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 0
+05-22 15:44:44.469 I/GestureDetector(29807): obtain mCurrentDownEvent. id: 852332829 caller: android.view.ScaleGestureDetector.onTouchEvent:297 org.libsdl.app.SDLSurface.onTouch:304 android.view.View.performOnTouchCallback:17224 
+05-22 15:44:44.469 I/VRI[GameActivity]@9486313(29807): call setFrameRateCategory for touch hint category=high hint, reason=touch, vri=VRI[GameActivity]@9486313
+05-22 15:44:44.481 I/GestureDetector(29807): obtain mCurrentMotionEventRaw. action: 2 id: 524992239
+05-22 15:44:44.484 D/REVC-DEBUG(29807): newashbuild1.txd took 19 ms
+05-22 15:44:44.567 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 1
+05-22 15:44:44.648 D/REVC-DEBUG(29807): newashbuild1.txd took 14 ms
+05-22 15:44:44.768 I/GestureDetector(29807): handleMessage TAP
+05-22 15:44:44.851 D/REVC-DEBUG(29807): washmallnew.txd took 27 ms
+05-22 15:44:45.020 D/REVC-DEBUG(29807): washmallnew.txd took 22 ms
+05-22 15:44:45.159 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 0
+05-22 15:44:45.159 I/GestureDetector(29807): obtain mCurrentDownEvent. id: 916936381 caller: android.view.ScaleGestureDetector.onTouchEvent:297 org.libsdl.app.SDLSurface.onTouch:304 android.view.View.performOnTouchCallback:17224 
+05-22 15:44:45.179 I/GestureDetector(29807): obtain mCurrentMotionEventRaw. action: 2 id: 497919442
+05-22 15:44:45.358 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 1
+05-22 15:44:45.458 I/GestureDetector(29807): handleMessage TAP
+05-22 15:44:45.474 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 0
+05-22 15:44:45.475 I/GestureDetector(29807): obtain mCurrentDownEvent. id: 195582957 caller: android.view.ScaleGestureDetector.onTouchEvent:297 org.libsdl.app.SDLSurface.onTouch:304 android.view.View.performOnTouchCallback:17224 
+05-22 15:44:45.487 I/GestureDetector(29807): obtain mCurrentMotionEventRaw. action: 2 id: 673043802
+05-22 15:44:45.898 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 1
+05-22 15:44:45.990 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 0
+05-22 15:44:45.991 I/GestureDetector(29807): obtain mCurrentDownEvent. id: 517563643 caller: android.view.ScaleGestureDetector.onTouchEvent:297 org.libsdl.app.SDLSurface.onTouch:304 android.view.View.performOnTouchCallback:17224 
+05-22 15:44:46.002 D/REVC-DEBUG(29807): washmallpark.txd took 12 ms
+05-22 15:44:46.004 I/GestureDetector(29807): obtain mCurrentMotionEventRaw. action: 2 id: 1041302683
+05-22 15:44:46.193 D/REVC-DEBUG(29807): washmiamistrip4.txd took 15 ms
+05-22 15:44:46.357 D/REVC-DEBUG(29807): washmiamistrip4.txd took 16 ms
+05-22 15:44:46.473 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 1
+05-22 15:44:46.556 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 0
+05-22 15:44:46.556 I/GestureDetector(29807): obtain mCurrentDownEvent. id: 1019463351 caller: android.view.ScaleGestureDetector.onTouchEvent:297 org.libsdl.app.SDLSurface.onTouch:304 android.view.View.performOnTouchCallback:17224 
+05-22 15:44:46.569 I/GestureDetector(29807): obtain mCurrentMotionEventRaw. action: 2 id: 658067581
+05-22 15:44:46.797 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 1
+05-22 15:44:46.856 I/GestureDetector(29807): handleMessage TAP
+05-22 15:44:48.391 D/REVC-DEBUG(29807): washmiamistrip3.txd took 15 ms
+05-22 15:44:48.607 D/REVC-DEBUG(29807): washmiamistrip3.txd took 19 ms
+05-22 15:44:48.801 D/REVC-DEBUG(29807): washsky1.txd took 31 ms
+05-22 15:44:49.389 D/REVC-DEBUG(29807): ocmiamistrip9.txd took 22 ms
+05-22 15:44:49.584 D/REVC-DEBUG(29807): ocmiamistrip9.txd took 31 ms
+05-22 15:44:49.797 I/VRI[GameActivity]@9486313(29807): call setFrameRateCategory for touch hint category=no preference, reason=boost timeout, vri=VRI[GameActivity]@9486313
+05-22 15:44:50.524 D/REVC-DEBUG(29807): odneontest.txd took 9 ms
+05-22 15:44:50.848 D/REVC-DEBUG(29807): sharedalleyod.txd took 162 ms
+05-22 15:44:51.049 D/REVC-DEBUG(29807): icons7.txd took 8 ms
+05-22 15:44:52.857 D/REVC-DEBUG(29807): washmiamistrip2.txd took 24 ms
+05-22 15:44:53.046 D/REVC-DEBUG(29807): washmiamistrip2.txd took 24 ms
+05-22 15:44:54.851 D/REVC-DEBUG(29807): package1.txd took 8 ms
+05-22 15:44:55.504 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 0
+05-22 15:44:55.505 I/GestureDetector(29807): obtain mCurrentDownEvent. id: 1067550750 caller: android.view.ScaleGestureDetector.onTouchEvent:297 org.libsdl.app.SDLSurface.onTouch:304 android.view.View.performOnTouchCallback:17224 
+05-22 15:44:55.505 I/VRI[GameActivity]@9486313(29807): call setFrameRateCategory for touch hint category=high hint, reason=touch, vri=VRI[GameActivity]@9486313
+05-22 15:44:55.517 I/GestureDetector(29807): obtain mCurrentMotionEventRaw. action: 2 id: 473213678
+05-22 15:44:55.620 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 1
+05-22 15:44:55.804 I/GestureDetector(29807): handleMessage TAP
+05-22 15:44:56.328 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 0
+05-22 15:44:56.329 I/GestureDetector(29807): obtain mCurrentDownEvent. id: 835232199 caller: android.view.ScaleGestureDetector.onTouchEvent:297 org.libsdl.app.SDLSurface.onTouch:304 android.view.View.performOnTouchCallback:17224 
+05-22 15:44:56.341 I/GestureDetector(29807): obtain mCurrentMotionEventRaw. action: 2 id: 416795973
+05-22 15:44:56.802 I/VRI[GameActivity]@9486313(29807): ViewPostIme pointer 1

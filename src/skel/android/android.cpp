@@ -3,7 +3,8 @@
 #include <cstdlib>
 #include <android/log.h>
 #if defined(LIBRW_SDL3)
-#include <SDL3/SDL_main.h>
+#define SDL_MAIN_HANDLED
+#include <SDL3/SDL.h>
 #include <SDL3/SDL_hints.h>
 #endif
 #include "android.h"
@@ -11,6 +12,7 @@
 FILE* logfile = nullptr;
 
 extern void InitCrashHandler();
+extern int main(int argc, char *argv[]);
 
 extern "C" JNIEXPORT void JNICALL
 Java_com_sh0zer_revc_LauncherActivity_setenv(JNIEnv *env, jobject obj, jstring value)
@@ -29,7 +31,6 @@ JNI_WRAPPER int LaunchAndroid(){
     int argc = 0;
     char *argv[1] = { nullptr };
     SDL_SetHint(SDL_HINT_TOUCH_MOUSE_EVENTS, "0");
-    int result = SDL_main(argc, argv);
+    int result = main(argc, argv);
     return result;
 }
-

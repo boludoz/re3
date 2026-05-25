@@ -2817,7 +2817,7 @@ void CControllerConfigManager::UpdateJoyButtonState(int32 padnumber)
 		else
 			m_aButtonStates[i] = false;
 	}
-#elif defined RW_GL3
+#elif defined(RW_GL3) || defined(LIBRW_SDL3)
 	if (m_NewState.isGamepad) {
 		for (int32 i = 0; i < MAX_BUTTONS; i++) {
 #ifdef LIBRW_SDL3

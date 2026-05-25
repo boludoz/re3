@@ -1,3 +1,6 @@
+// We handle WinMain ourselves, don't let SDL3 override it
+#define SDL_MAIN_HANDLED
+
 #include <SDL3/SDL.h>
 #include <SDL3/SDL_main.h>
 #ifdef _WIN32
@@ -794,7 +797,8 @@ psSelectDevice()
 
 		if(bestFsMode < 0){
 			debug("WARNING: Cannot find desired video mode, selecting device cancelled\n %d", bestFsMode);
-			return FALSE;
+			// return FALSE;
+			bestFsMode = 0;
 		}
 		GcurSelVM = bestFsMode;
 
@@ -1452,25 +1456,52 @@ bool _InputMouseNeedsExclusive()
  *****************************************************************************
  */
 #ifdef _WIN32
-int PASCAL
-WinMain(HINSTANCE instance,
-	HINSTANCE prevInstance	__RWUNUSED__,
-	CMDSTR cmdLine,
-	int cmdShow)
-{
+// Compat for strcasecmp/strncasecmp on Windows
+int strcasecmp(const char* s1, const char* s2) {
+    return _stricmp(s1, s2);
+}
+int strncasecmp(const char* s1, const char* s2, size_t n) {
+    return _strnicmp(s1, s2, n);
+}
 
-	RwInt32 argc;
-	RwChar** argv;
+// Since we link with -subsystem:console (default), we need main(), not WinMain.
+// SDL3 defines SDL_MAIN_HANDLED so it won't inject its own main.
+int main(int argc, char *argv[])
+{
+	// Ensure we have arguments converted if needed, but main gives us UTF-8 args usually with modern manifest,
+	// or we can just use GetCommandLineW if we really wanted to.
+	// But let's just use what we get for now.
+
+    // Original code used CMDSTR cmdLine which is char*. 
+    // We can simulate it or just ignore it if re3 parses argv internally?
+    // Looking at the code below, it tries to parse cmdLine. 
+    // But wait, re3 likely uses argv elsewhere?
+    
 	SystemParametersInfo(SPI_SETFOREGROUNDLOCKTIMEOUT, 0, nil, SPIF_SENDCHANGE);
 
 #ifndef MASTER
-	if (strstr(cmdLine, "-console"))
-	{
-		AllocConsole();
-		freopen("CONIN$", "r", stdin);
-		freopen("CONOUT$", "w", stdout);
-		freopen("CONOUT$", "w", stderr);
-	}
+	// Console allocation logic is redundant if we are already a console app, but harmless.
+    // If we want to support -console flag to show/hide? 
+    // Since we ARE a console app, we have a console.
+#endif
+
+    // We need to construct the logic that was in WinMain.
+    // WinMain called psMain(instance, prevInstance, cmdLine, cmdShow); ?
+    // No, looking at next lines:
+
+
+    // argc and argv are already passed to main. We don't need to declare them again or use Win32 API to get them.
+    // However, the original code used Win32 specific logic.
+    // For now, let's just use the main's argc/argv.
+    // But wait, the original code uses 'argvw' logic for wide chars.
+    // Linking as console app gives standard main(argc, argv).
+    
+
+
+	SystemParametersInfo(SPI_SETFOREGROUNDLOCKTIMEOUT, 0, nil, SPIF_SENDCHANGE);
+
+#ifndef MASTER
+
 #endif
 
 #else
@@ -1503,8 +1534,10 @@ main(int argc, char *argv[])
 	{
 		if(strcmp(argv[i], "--dir") == 0 && i + 1 < argc)
 		{
+			// Note: --dir flag is deprecated, base path is now determined by SDL_GetBasePath()
+			// in FileMgr::Initialise() and CdStreamInit(). This block is kept for compatibility.
 			const char *gamePath = argv[i+1];
-			setenv("GAMEFILES", gamePath, 1);
+			debug("Warning: --dir flag is deprecated, using SDL_GetBasePath() instead\n");
 		}
 	}
 	
@@ -1526,12 +1559,21 @@ main(int argc, char *argv[])
 	 * Get proper command line params, cmdLine passed to us does not
 	 * work properly under all circumstances...
 	 */
-	cmdLine = GetCommandLine();
+	LPWSTR cmdLineW = GetCommandLineW();
 
 	/*
 	 * Parse command line into standard (argv, argc) parameters...
 	 */
-	argv = CommandLineToArgv(cmdLine, &argc);
+	LPWSTR *argvW = CommandLineToArgvW(cmdLineW, &argc);
+	
+	// Convert wide string arguments to regular strings
+	argv = new char*[argc];
+	for(int i = 0; i < argc; i++) {
+		int size = WideCharToMultiByte(CP_UTF8, 0, argvW[i], -1, NULL, 0, NULL, NULL);
+		argv[i] = new char[size];
+		WideCharToMultiByte(CP_UTF8, 0, argvW[i], -1, argv[i], size, NULL, NULL);
+	}
+	LocalFree(argvW);
 
 
 	/* 
@@ -1562,12 +1604,14 @@ main(int argc, char *argv[])
 	}
 
 #ifdef _WIN32
-	HWND wnd = glfwGetWin32Window(PSGLOBAL(window));
+	HWND wnd = (HWND)SDL_GetPointerProperty(SDL_GetWindowProperties(PSGLOBAL(window)), SDL_PROP_WINDOW_WIN32_HWND_POINTER, NULL);
 
-	HICON icon = LoadIcon(instance, MAKEINTRESOURCE(IDI_MAIN_ICON));
+	if (wnd) {
+		HICON icon = LoadIcon(GetModuleHandle(NULL), MAKEINTRESOURCE(IDI_MAIN_ICON));
 
-	SendMessage(wnd, WM_SETICON, ICON_BIG, (LPARAM)icon);
-	SendMessage(wnd, WM_SETICON, ICON_SMALL, (LPARAM)icon);
+		SendMessage(wnd, WM_SETICON, ICON_BIG, (LPARAM)icon);
+		SendMessage(wnd, WM_SETICON, ICON_SMALL, (LPARAM)icon);
+	}
 #endif
 
 	psPostRWinit();

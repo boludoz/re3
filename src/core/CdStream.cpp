@@ -137,6 +137,7 @@ CdStreamInit(int32 numChannels)
 	
 	debug("%s: read info %p\n", "cdvd_stream", gpReadInfo);
 	
+	debug("[CdStreamInit] Attempting to load IMG file: MODELS\\GTA3.IMG\n");
 	CdStreamAddImage("MODELS\\GTA3.IMG");
 	
 	int32 nStatus = CdStreamRead(0, pBuffer, 0, 1);
@@ -482,6 +483,7 @@ CdStreamAddImage(char const *path)
 	ASSERT(path != nil);
 	ASSERT(gNumImages < MAX_CDIMAGES);
 	
+	debug("[CdStreamAddImage] IMG #%d: Opening '%s'\n", gNumImages, path);
 	SetLastError(0);
 	
 	gImgFiles[gNumImages] = CreateFile(path,
@@ -492,10 +494,14 @@ CdStreamAddImage(char const *path)
 	                                   _gdwCdStreamFlags | FILE_FLAG_RANDOM_ACCESS | FILE_ATTRIBUTE_READONLY,
 	                                   nil);
 	
-	ASSERT( gImgFiles[gNumImages] != nil );
-	if ( gImgFiles[gNumImages] == NULL )
+	if ( gImgFiles[gNumImages] == NULL || gImgFiles[gNumImages] == INVALID_HANDLE_VALUE ) {
+		DWORD error = GetLastError();
+		debug("[CdStreamAddImage] ERROR: Failed to open '%s' (Error code: %d)\n", path, error);
+		ASSERT( gImgFiles[gNumImages] != nil );
 		return false;
+	}
 	
+	debug("[CdStreamAddImage] Successfully opened '%s' as IMG #%d\n", path, gNumImages);
 	strcpy(gCdImageNames[gNumImages], path);
 	
 	gNumImages++;

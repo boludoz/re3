@@ -71,12 +71,13 @@ if not exist "gradlew.bat" (
 
 REM Check argument
 if "%1"=="" (
-    echo Usage: build_android.bat [debug^|release^|clean]
+    echo Usage: build_android.bat [debug^|release^|clean^|install]
     echo.
     echo Commands:
     echo   debug   - Build debug version
     echo   release - Build release version
     echo   clean   - Clean build files
+    echo   install - Install debug APK to connected device
     echo.
     set BUILD_TYPE=debug
 ) else (
@@ -86,6 +87,17 @@ if "%1"=="" (
 if "%BUILD_TYPE%"=="clean" (
     echo Cleaning project...
     call gradlew.bat clean
+    goto :end
+)
+
+if "%BUILD_TYPE%"=="install" (
+    echo Installing DEBUG APK to connected device...
+    call gradlew.bat installDebug
+    if %ERRORLEVEL% EQU 0 (
+        echo APK installed successfully.
+    ) else (
+        echo Failed to install APK.
+    )
     goto :end
 )
 

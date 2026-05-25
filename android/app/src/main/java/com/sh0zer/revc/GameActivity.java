@@ -15,7 +15,6 @@ public class GameActivity extends SDLActivity {
         return new String[] {
             "SDL3",
             "openal",
-            "mpg123",
             "revc"
         };
     }

@@ -1,6 +1,7 @@
 #ifndef _WIN32
 #include "common.h"
 #include "crossplatform.h"
+#include <SDL3/SDL.h>
 #include <signal.h>
 #include <pthread.h>
 #include <sys/types.h>
@@ -19,6 +20,7 @@
 #include <sys/resource.h>
 #include <stdarg.h>
 #include <limits.h>
+#include <stdlib.h>
 
 #ifdef __linux__
 #include <sys/syscall.h>
@@ -143,21 +145,40 @@ CdStreamInit(int32 numChannels)
 	
 	char imgPath[MAX_PATH];
 	
-	if(getenv("GAMEFILES") == NULL)
+#ifdef ANDROID
+	const char *gameFiles = getenv("GAMEFILES");
+	if (gameFiles != NULL && gameFiles[0] != '\0') {
+		strncpy(imgPath, gameFiles, sizeof(imgPath)-2);
+		imgPath[sizeof(imgPath)-2] = '\0';
+		size_t len = strlen(imgPath);
+		if (len > 0 && imgPath[len-1] != '/' && imgPath[len-1] != '\\')
+			strcat(imgPath, "/");
+	} else
+#endif
 	{
-		char pwd[128];
-		getcwd(pwd, 128);
-		setenv("GAMEFILES", pwd, 1);
-		printf("%s\n", pwd);
+		const char *basePath = SDL_GetBasePath();
+		printf("Base path: %s\n", basePath ? basePath : "(null)");
+		if (basePath != NULL)
+			strcpy(imgPath, basePath);
+		else {
+		// Fallback to current directory if SDL_GetBasePath fails
+			getcwd(imgPath, MAX_PATH);
+			strcat(imgPath, "/");
+		}
 	}
 	
-	printf("FILES %s\n", getenv("GAMEFILES"));
+	debug("Game files directory: %s\n", imgPath);
 	
-	strcpy(imgPath, getenv("GAMEFILES"));
-	strcat(imgPath, "/models/gta3.img");
-	printf("%s\n", imgPath);
+	// Store for later use
+	char imgPathBase[MAX_PATH];
+	strcpy(imgPathBase, imgPath);
+	
+	strcat(imgPath, "models/gta3.img");
+	debug("[CdStreamInit] Searching for gta3.img at: %s\n", imgPath);
+	
 	if((statvfs(imgPath, &fsInfo)) < 0)
 	{
+		debug("[CdStreamInit] ERROR: Cannot access %s\n", imgPath);
 		CDTRACE("can't get filesystem info");
 		ASSERT(0);
 		return;
@@ -509,14 +530,17 @@ CdStreamAddImage(char const *path)
 	ASSERT(path != nil);
 	ASSERT(gNumImages < MAX_CDIMAGES);
 
+	debug("[CdStreamAddImage] Attempting to open IMG file #%d: %s\n", gNumImages, path);
 	gImgFiles[gNumImages] = open(path, _gdwCdStreamFlags);
 	debug("Opening %s\n",path);
 
 	// Fix case sensitivity and backslashes.
 	if (gImgFiles[gNumImages] == -1) {
+		debug("[CdStreamAddImage] Failed to open %s, trying case-insensitive search...\n", path);
 		char* real = casepath(path, false);
 		if (real)
 		{
+			debug("[CdStreamAddImage] Found alternative path: %s\n", real);
 			gImgFiles[gNumImages] = open(real, _gdwCdStreamFlags);
 			char cwd[MAX_PATH];
 			getcwd(cwd, sizeof(cwd));
@@ -526,6 +550,7 @@ CdStreamAddImage(char const *path)
 	}
 
 	if ( gImgFiles[gNumImages] == -1 ) {
+		debug("[CdStreamAddImage] ERROR: Failed to open IMG file: %s\n", path);
 		assert(false);
 		return false;
 	}
