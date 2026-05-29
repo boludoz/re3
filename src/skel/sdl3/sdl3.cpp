@@ -96,6 +96,11 @@ float mousePosY = 0.f;
 bool gJoystickConnected = false;  // True when joystick connected - hide touch UI
 
 TouchInfo touchInfo[10] = {0};
+static SDL_FingerID touchFingerIds[10] = {0};
+static bool touchSlotUsed[10] = {false};
+static SDL_Gamepad *gamepad1 = NULL;
+static SDL_Gamepad *gamepad2 = NULL;
+static uint8 joystickButtons[2][MAX_BUTTONS];
 /*
  *****************************************************************************
  */
@@ -879,6 +884,14 @@ void _InputInitialiseJoys()
 		SDL_CloseHaptic(g_haptic);
 		g_haptic = NULL;
 	}
+	if (gamepad1) {
+		SDL_CloseGamepad(gamepad1);
+		gamepad1 = NULL;
+	}
+	if (gamepad2) {
+		SDL_CloseGamepad(gamepad2);
+		gamepad2 = NULL;
+	}
 	
 	PSGLOBAL(joy1) = NULL;
 	PSGLOBAL(joy2) = NULL;
@@ -892,12 +905,19 @@ void _InputInitialiseJoys()
 		{
 			SDL_JoystickID id = joysticks[i];
 			if(SDL_IsGamepad(id)){
-				if(PSGLOBAL(joy1) == NULL)
-					PSGLOBAL(joy1) = SDL_OpenJoystick(id);
-				else if (PSGLOBAL(joy2) == NULL)
-					PSGLOBAL(joy2) = SDL_OpenJoystick(id);
-				else
+				SDL_Gamepad *gamepad = SDL_OpenGamepad(id);
+				if(gamepad == NULL)
+					continue;
+				if(PSGLOBAL(joy1) == NULL) {
+					gamepad1 = gamepad;
+					PSGLOBAL(joy1) = SDL_GetGamepadJoystick(gamepad1);
+				} else if (PSGLOBAL(joy2) == NULL) {
+					gamepad2 = gamepad;
+					PSGLOBAL(joy2) = SDL_GetGamepadJoystick(gamepad2);
+				} else {
+					SDL_CloseGamepad(gamepad);
 					break;
+				}
 			}
 		}
 		SDL_free(joysticks);
@@ -1022,6 +1042,47 @@ void SDL_Active()
 	}
 }
 
+static void
+ClearTouchDeltas(void)
+{
+	for (int i = 0; i < 10; i++) {
+		touchInfo[i].dx = 0.0f;
+		touchInfo[i].dy = 0.0f;
+	}
+}
+
+static int
+FindTouchSlot(SDL_FingerID fingerID, bool create)
+{
+	for (int i = 0; i < 10; i++)
+		if (touchSlotUsed[i] && touchFingerIds[i] == fingerID)
+			return i;
+	if (!create)
+		return -1;
+	for (int i = 0; i < 10; i++) {
+		if (!touchSlotUsed[i]) {
+			touchSlotUsed[i] = true;
+			touchFingerIds[i] = fingerID;
+			return i;
+		}
+	}
+	return -1;
+}
+
+static void
+ReleaseTouchSlot(int slot)
+{
+	if (slot < 0 || slot >= 10)
+		return;
+	touchSlotUsed[slot] = false;
+	touchFingerIds[slot] = 0;
+	touchInfo[slot].pressed = false;
+	touchInfo[slot].x = 0.0f;
+	touchInfo[slot].y = 0.0f;
+	touchInfo[slot].dx = 0.0f;
+	touchInfo[slot].dy = 0.0f;
+}
+
 void Joy_Events(SDL_Event *event)
 {
 	RsPadButtonStatus bs;
@@ -1040,11 +1101,13 @@ void Joy_Events(SDL_Event *event)
 				memcpy(&ControlsManager.m_OldState, &ControlsManager.m_NewState, sizeof(ControlsManager.m_NewState));
 				if(event->type == SDL_EVENT_JOYSTICK_BUTTON_UP){
 					RsPadEventHandler(rsPADBUTTONUP,   (void *)&bs);	
-					ControlsManager.m_NewState.mappedButtons[event->jbutton.button] = false;	
+					if (event->jbutton.button < MAX_BUTTONS)
+						ControlsManager.m_NewState.mappedButtons[event->jbutton.button] = false;	
 				}
 				else{
 					RsPadEventHandler(rsPADBUTTONDOWN, (void *)&bs);
-					ControlsManager.m_NewState.mappedButtons[event->jbutton.button] = true;
+					if (event->jbutton.button < MAX_BUTTONS)
+						ControlsManager.m_NewState.mappedButtons[event->jbutton.button] = true;
 				}
 			}
 			break;
@@ -1086,7 +1149,8 @@ void SDL_Events(SDL_Event *event)
 				
 				mousePosX = xposabs;
 				mousePosY = yposabs;
-				}
+			}
+			break;
 		case SDL_EVENT_MOUSE_BUTTON_DOWN:
 			if(event->button.button == SDL_BUTTON_LEFT)
 				mouse1 = true;
@@ -1162,28 +1226,65 @@ void SDL_Events(SDL_Event *event)
 			}
 			break;
 		case SDL_EVENT_FINGER_DOWN:
+		{
+			int slot = FindTouchSlot(event->tfinger.fingerID, true);
+			if (slot < 0)
+				break;
 			if (FrontEndMenuManager.m_bMenuActive)
 			{
 				FrontEndMenuManager.m_nTouchTempPosX = event->tfinger.x * (float)RsGlobal.maximumWidth;
 				FrontEndMenuManager.m_nTouchTempPosY = event->tfinger.y * (float)RsGlobal.maximumHeight;
 			}
-			touchInfo[event->tfinger.fingerID].pressed = true;
-			touchInfo[event->tfinger.fingerID].x = event->tfinger.x * (float)RsGlobal.maximumWidth;
-			touchInfo[event->tfinger.fingerID].y = event->tfinger.y * (float)RsGlobal.maximumHeight;
+			touchInfo[slot].pressed = true;
+			touchInfo[slot].x = event->tfinger.x * (float)RsGlobal.maximumWidth;
+			touchInfo[slot].y = event->tfinger.y * (float)RsGlobal.maximumHeight;
+			touchInfo[slot].dx = 0.0f;
+			touchInfo[slot].dy = 0.0f;
 			break;
+		}
 		case SDL_EVENT_FINGER_UP:
-			touchInfo[event->tfinger.fingerID].pressed = false;
-			touchInfo[event->tfinger.fingerID].x = 0.0f;
-			touchInfo[event->tfinger.fingerID].y = 0.0f;
-			touchInfo[event->tfinger.fingerID].dx = 0.0f;
-			touchInfo[event->tfinger.fingerID].dy = 0.0f;
+		{
+			int slot = FindTouchSlot(event->tfinger.fingerID, false);
+			ReleaseTouchSlot(slot);
 			break;
+		}
 		case SDL_EVENT_FINGER_MOTION:
-			touchInfo[event->tfinger.fingerID].x  += event->tfinger.dx * (float)RsGlobal.maximumWidth;
-			touchInfo[event->tfinger.fingerID].y  += event->tfinger.dy * (float)RsGlobal.maximumHeight;
-			touchInfo[event->tfinger.fingerID].dx  = event->tfinger.dx * (float)RsGlobal.maximumWidth;
-			touchInfo[event->tfinger.fingerID].dy  = event->tfinger.dy * (float)RsGlobal.maximumHeight;
+		{
+			int slot = FindTouchSlot(event->tfinger.fingerID, true);
+			if (slot < 0)
+				break;
+			touchInfo[slot].pressed = true;
+			touchInfo[slot].x  = event->tfinger.x * (float)RsGlobal.maximumWidth;
+			touchInfo[slot].y  = event->tfinger.y * (float)RsGlobal.maximumHeight;
+			touchInfo[slot].dx = event->tfinger.dx * (float)RsGlobal.maximumWidth;
+			touchInfo[slot].dy = event->tfinger.dy * (float)RsGlobal.maximumHeight;
+			if (FrontEndMenuManager.m_bMenuActive)
+			{
+				FrontEndMenuManager.m_nTouchTempPosX = touchInfo[slot].x;
+				FrontEndMenuManager.m_nTouchTempPosY = touchInfo[slot].y;
+			}
+			break;
+		}
 	}
+}
+
+void
+_InputPollEvents(void)
+{
+	static bool polling = false;
+	if (polling)
+		return;
+	polling = true;
+
+	SDL_Active();
+	ClearTouchDeltas();
+	SDL_Event e;
+	while (SDL_PollEvent(&e) != 0)
+		SDL_Events(&e);
+	SDL_UpdateGamepads();
+	SDL_UpdateJoysticks();
+
+	polling = false;
 }
 
 // R* calls that in ControllerConfig, idk why
@@ -1762,10 +1863,6 @@ main(int argc, char *argv[])
 			//glfwPollEvents();
 #else	
 			SDL_Active();
-			SDL_Event e;
-			while (SDL_PollEvent(&e) != 0){
-				SDL_Events(&e);
-			}
 #endif			
 #ifdef GET_KEYBOARD_INPUT_FROM_X11
 			checkKeyPresses();
@@ -2126,30 +2223,46 @@ void CapturePad(RwInt32 padID)
 {
 	
 	SDL_Joystick *glfwPad = NULL;
+	SDL_Gamepad *gamepad = NULL;
 
-	if( padID == 0 )
+	if( padID == 0 ) {
 		glfwPad = PSGLOBAL(joy1);
-	else if( padID == 1)
+		gamepad = gamepad1;
+	} else if( padID == 1) {
 		glfwPad = PSGLOBAL(joy2);
-	else
+		gamepad = gamepad2;
+	} else
 		assert("invalid padID");
 	
 	if ( glfwPad == NULL )
 		return;
 	
-	ControlsManager.m_NewState.isGamepad = SDL_IsGamepad(SDL_GetJoystickID(glfwPad));
-	
-// 	if (ControlsManager.m_bFirstCapture == false) {
-// 		memcpy(&ControlsManager.m_OldState, &ControlsManager.m_NewState, sizeof(ControlsManager.m_NewState));
-// 	} else {
-// 		ControlsManager.m_NewState.mappedButtons[15] = ControlsManager.m_NewState.mappedButtons[16] = 0;
-// 	}
-// 
-// 	if (ControlsManager.m_bFirstCapture == true) {
-// 		memcpy(&ControlsManager.m_OldState, &ControlsManager.m_NewState, sizeof(ControlsManager.m_NewState));
-// 		
-// 		ControlsManager.m_bFirstCapture = false;
-// 	}
+	if (ControlsManager.m_bFirstCapture == false)
+		memcpy(&ControlsManager.m_OldState, &ControlsManager.m_NewState, sizeof(ControlsManager.m_NewState));
+
+	memset(joystickButtons[padID], 0, sizeof(joystickButtons[padID]));
+	ControlsManager.m_NewState.buttons = joystickButtons[padID];
+	ControlsManager.m_NewState.numButtons = Min(SDL_GetNumJoystickButtons(glfwPad), MAX_BUTTONS);
+	ControlsManager.m_NewState.id = SDL_GetJoystickID(glfwPad);
+	ControlsManager.m_NewState.isGamepad = gamepad != NULL;
+
+	if (ControlsManager.m_NewState.isGamepad) {
+		for (int i = 0; i < MAX_BUTTONS; i++)
+			ControlsManager.m_NewState.mappedButtons[i] = SDL_GetGamepadButton(gamepad, (SDL_GamepadButton)i);
+
+		ControlsManager.m_NewState.mappedButtons[15] =
+			SDL_GetGamepadAxis(gamepad, SDL_GAMEPAD_AXIS_LEFT_TRIGGER) > 8192;
+		ControlsManager.m_NewState.mappedButtons[16] =
+			SDL_GetGamepadAxis(gamepad, SDL_GAMEPAD_AXIS_RIGHT_TRIGGER) > 8192;
+	} else {
+		for (int i = 0; i < ControlsManager.m_NewState.numButtons; i++)
+			joystickButtons[padID][i] = SDL_GetJoystickButton(glfwPad, i) ? 1 : 0;
+	}
+
+	if (ControlsManager.m_bFirstCapture == true) {
+		memcpy(&ControlsManager.m_OldState, &ControlsManager.m_NewState, sizeof(ControlsManager.m_NewState));
+		ControlsManager.m_bFirstCapture = false;
+	}
 
 	RsPadButtonStatus bs;
 	bs.padID = padID;
@@ -2161,40 +2274,28 @@ void CapturePad(RwInt32 padID)
 		RsPadEventHandler(rsPADBUTTONDOWN, (void *)&bs);
 	}
 	
-		
-	float lt =  SDL_GetJoystickAxis(glfwPad, SDL_GAMEPAD_AXIS_LEFT_TRIGGER) / (float)SHRT_MAX;
-	float rt = SDL_GetJoystickAxis(glfwPad, SDL_GAMEPAD_AXIS_RIGHT_TRIGGER) / (float)SHRT_MAX;
-		
-	if (lt != 0.0f)
-		ControlsManager.m_NewState.mappedButtons[15] = lt > -0.8f;
-
-	if (rt != 0.0f)
-		ControlsManager.m_NewState.mappedButtons[16] = rt > -0.8f;
-
-	leftStickPos.y = SDL_GetJoystickAxis(glfwPad, SDL_GAMEPAD_AXIS_LEFTY) / (float)SHRT_MAX;
-		
-	leftStickPos.x = SDL_GetJoystickAxis(glfwPad, SDL_GAMEPAD_AXIS_LEFTX) / (float)SHRT_MAX;
- 
-	rightStickPos.x =  SDL_GetJoystickAxis(glfwPad, SDL_GAMEPAD_AXIS_RIGHTX) / (float)SHRT_MAX;
-			
-	rightStickPos.y = SDL_GetJoystickAxis(glfwPad, SDL_GAMEPAD_AXIS_RIGHTY) / (float)SHRT_MAX;
+	if (ControlsManager.m_NewState.isGamepad) {
+		leftStickPos.x = SDL_GetGamepadAxis(gamepad, SDL_GAMEPAD_AXIS_LEFTX) / (float)SHRT_MAX;
+		leftStickPos.y = SDL_GetGamepadAxis(gamepad, SDL_GAMEPAD_AXIS_LEFTY) / (float)SHRT_MAX;
+		rightStickPos.x = SDL_GetGamepadAxis(gamepad, SDL_GAMEPAD_AXIS_RIGHTX) / (float)SHRT_MAX;
+		rightStickPos.y = SDL_GetGamepadAxis(gamepad, SDL_GAMEPAD_AXIS_RIGHTY) / (float)SHRT_MAX;
+	} else {
+		int numAxes = SDL_GetNumJoystickAxes(glfwPad);
+		leftStickPos.x = numAxes >= 1 ? SDL_GetJoystickAxis(glfwPad, 0) / (float)SHRT_MAX : 0.0f;
+		leftStickPos.y = numAxes >= 2 ? SDL_GetJoystickAxis(glfwPad, 1) / (float)SHRT_MAX : 0.0f;
+		rightStickPos.x = numAxes >= 3 ? SDL_GetJoystickAxis(glfwPad, 2) / (float)SHRT_MAX : 0.0f;
+		rightStickPos.y = numAxes >= 4 ? SDL_GetJoystickAxis(glfwPad, 3) / (float)SHRT_MAX : 0.0f;
+	}
 		
 	{
 		if (CPad::m_bMapPadOneToPadTwo)
 			bs.padID = 1;
 		CPad *pad = CPad::GetPad(bs.padID);
 
-		if ( Abs(leftStickPos.x)  > 0.3f )
-			pad->PCTempJoyState.LeftStickX	= (int32)(leftStickPos.x  * 128.0f);
-				
-		if ( Abs(leftStickPos.y)  > 0.3f )
-			pad->PCTempJoyState.LeftStickY	= (int32)(leftStickPos.y  * 128.0f);
-				
-		if ( Abs(rightStickPos.x) > 0.3f )
-			pad->PCTempJoyState.RightStickX = (int32)(rightStickPos.x * 128.0f);
-
-		if ( Abs(rightStickPos.y) > 0.3f )
-			pad->PCTempJoyState.RightStickY = (int32)(rightStickPos.y * 128.0f);
+		pad->PCTempJoyState.LeftStickX  = Abs(leftStickPos.x)  > 0.3f ? (int32)(leftStickPos.x  * 128.0f) : 0;
+		pad->PCTempJoyState.LeftStickY  = Abs(leftStickPos.y)  > 0.3f ? (int32)(leftStickPos.y  * 128.0f) : 0;
+		pad->PCTempJoyState.RightStickX = Abs(rightStickPos.x) > 0.3f ? (int32)(rightStickPos.x * 128.0f) : 0;
+		pad->PCTempJoyState.RightStickY = Abs(rightStickPos.y) > 0.3f ? (int32)(rightStickPos.y * 128.0f) : 0;
 	}
 	_psHandleVibration();
 

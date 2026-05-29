@@ -43,15 +43,17 @@ public:
 		lookAxisX = lookAxisY = 0;
 	}
 	
-	void Draw() { 
+	void Update() {
 		CTouchInput::Update();
-		CTouchInput::Draw();
 		
-		// Actualizar ejes después de Update
 		moveAxisX = CTouchInput::GetLeftStickX();
 		moveAxisY = CTouchInput::GetLeftStickY();
 		lookAxisX = CTouchInput::GetRightStickX();
 		lookAxisY = CTouchInput::GetRightStickY();
+	}
+
+	void Draw() { 
+		CTouchInput::Draw();
 	}
 	
 	bool getButtonJustDown(BtnType type) {

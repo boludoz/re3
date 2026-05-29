@@ -121,6 +121,26 @@ CText::Get(const char *key)
 #else
 		outstr = mission_keyArray.Search(key, &result);
 #endif
+	if (!result && strcmp(key, "FED_RTX") == 0) {
+		static wchar rayTracingText[] = { 'R', 'A', 'Y', ' ', 'T', 'R', 'A', 'C', 'I', 'N', 'G', '\0' };
+		return rayTracingText;
+	}
+	if (!result && strcmp(key, "FED_VSF") == 0) {
+		static wchar fifoText[] = { 'F', 'I', 'F', 'O', '\0' };
+		return fifoText;
+	}
+	if (!result && strcmp(key, "FED_VSR") == 0) {
+		static wchar fifoRelaxedText[] = { 'F', 'I', 'F', 'O', ' ', 'R', 'E', 'L', 'A', 'X', 'E', 'D', '\0' };
+		return fifoRelaxedText;
+	}
+	if (!result && strcmp(key, "FED_VSM") == 0) {
+		static wchar mailboxText[] = { 'M', 'A', 'I', 'L', 'B', 'O', 'X', '\0' };
+		return mailboxText;
+	}
+	if (!result && strcmp(key, "FED_VSI") == 0) {
+		static wchar immediateText[] = { 'I', 'M', 'M', 'E', 'D', 'I', 'A', 'T', 'E', '\0' };
+		return immediateText;
+	}
 	return outstr;
 }
 

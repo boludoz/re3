@@ -265,13 +265,11 @@ void CTouchInput::UpdateJoysticks() {
 		
 		float normX = touchInfo[i].x / SCREEN_WIDTH;
 		float normY = touchInfo[i].y / SCREEN_HEIGHT;
+		bool sameFinger = leftJoy.fingerID == i;
+		bool inStartArea = normX <= 0.45f && normY >= 0.45f;
 		
-		// Solo procesar toques en la mitad izquierda de la pantalla
-		if (normX > 0.4f)
-			continue;
-		
-		// Si el joystick ya está activo con este dedo, actualizar posición
-		if (leftJoy.fingerID == i || leftJoy.ContainsPoint(touchInfo[i].x, touchInfo[i].y)) {
+		// Mantener el dedo capturado aunque salga del círculo visible.
+		if (sameFinger || leftJoy.ContainsPoint(touchInfo[i].x, touchInfo[i].y) || inStartArea) {
 			leftJoy.active = true;
 			leftJoy.fingerID = i;
 			

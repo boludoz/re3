@@ -67,6 +67,17 @@
 	#define DUALPASS_SELECTOR 
 #endif
 
+#ifdef RW_VULKAN
+namespace rw { namespace vulkan { bool32 isRayTracingEnabled(void); void setRayTracingEnabled(bool32 enabled); void setPresentModePreference(int32 preference); } }
+static void VulkanFrameSyncAfterChange(int8 before, int8 after);
+static void VulkanRayTracingAfterChange(int8 before, int8 after);
+	#define FRAME_SYNC_SELECTOR(page) MENUACTION_CFO_SELECT, "FEM_VSC", { new CCFOSelect((int8*)&FrontEndMenuManager.m_PrefsVulkanSyncMode, "Graphics", "VulkanFrameSync", vulkanFrameSyncOpts, ARRAY_SIZE(vulkanFrameSyncOpts), false, VulkanFrameSyncAfterChange) }, 0, 0, MENUALIGN_LEFT,
+	#define VULKAN_RAYTRACING_SELECTOR MENUACTION_CFO_SELECT, "FED_RTX", { new CCFOSelect((int8*)&FrontEndMenuManager.m_PrefsVulkanRayTracing, nil, nil, off_on, 2, false, VulkanRayTracingAfterChange) }, 0, 0, MENUALIGN_LEFT,
+#else
+	#define FRAME_SYNC_SELECTOR(page) MENUACTION_FRAMESYNC, "FEM_VSC", {nil, SAVESLOT_NONE, page}, 0, 0, MENUALIGN_LEFT,
+	#define VULKAN_RAYTRACING_SELECTOR
+#endif
+
 #ifdef PED_CAR_DENSITY_SLIDERS
 	// 0.2f - 3.4f makes it possible to have 1.0f somewhere inbetween
 	#define DENSITY_SLIDERS \
@@ -104,6 +115,9 @@
 
 const char *filterNames[] = { "FEM_NON", "FEM_SIM", "FEM_NRM", "FEM_MOB" };
 const char *off_on[] = { "FEM_OFF", "FEM_ON" };
+#ifdef RW_VULKAN
+const char *vulkanFrameSyncOpts[] = { "FEM_AUT", "FED_VSF", "FED_VSR", "FED_VSM", "FED_VSI" };
+#endif
 
 void RestoreDefGraphics(int8 action) {
 	if (action != FEOPTION_ACTION_SELECT)
@@ -133,10 +147,32 @@ void RestoreDefGraphics(int8 action) {
 		#endif
 		FrontEndMenuManager.m_PrefsUseWideScreen = false;
 		FrontEndMenuManager.m_nDisplayVideoMode = FrontEndMenuManager.m_nPrefsVideoMode;
+		FrontEndMenuManager.m_PrefsVulkanSyncMode = 0;
+		FrontEndMenuManager.m_PrefsVulkanRayTracing = false;
+#ifdef RW_VULKAN
+		rw::vulkan::setPresentModePreference(FrontEndMenuManager.m_PrefsVulkanSyncMode);
+		rw::vulkan::setRayTracingEnabled(false);
+#endif
 		CMBlur::BlurOn = false;
 		FrontEndMenuManager.SaveSettings();
 	#endif
 }
+
+#ifdef RW_VULKAN
+static void
+VulkanFrameSyncAfterChange(int8, int8 after)
+{
+	rw::vulkan::setPresentModePreference(after);
+}
+
+static void
+VulkanRayTracingAfterChange(int8, int8 after)
+{
+	rw::vulkan::setRayTracingEnabled(after != 0);
+	if(after != 0 && !rw::vulkan::isRayTracingEnabled())
+		FrontEndMenuManager.m_PrefsVulkanRayTracing = 0;
+}
+#endif
 
 void RestoreDefDisplay(int8 action) {
 	if (action != FEOPTION_ACTION_SELECT)
@@ -432,7 +468,7 @@ CMenuScreenCustom aScreens[] = {
 		MENUACTION_DRAWDIST,	"FEM_LOD", {nil, SAVESLOT_NONE, MENUPAGE_DISPLAY_SETTINGS}, 0, 0, MENUALIGN_LEFT,
 		DENSITY_SLIDERS
 #ifdef LEGACY_MENU_OPTIONS
-		MENUACTION_FRAMESYNC,	"FEM_VSC", {nil, SAVESLOT_NONE, MENUPAGE_DISPLAY_SETTINGS}, 0, 0, MENUALIGN_LEFT,
+		FRAME_SYNC_SELECTOR(MENUPAGE_DISPLAY_SETTINGS)
 #endif
 		MENUACTION_FRAMELIMIT,	"FEM_FRM", {nil, SAVESLOT_NONE, MENUPAGE_DISPLAY_SETTINGS}, 0, 0, MENUALIGN_LEFT,
 #if defined LEGACY_MENU_OPTIONS && !defined EXTENDED_COLOURFILTER
@@ -774,9 +810,10 @@ CMenuScreenCustom aScreens[] = {
 		MENUACTION_WIDESCREEN,	"FED_WIS", { nil, SAVESLOT_NONE, MENUPAGE_GRAPHICS_SETTINGS }, 0, 0, MENUALIGN_LEFT,
 		VIDEOMODE_SELECTOR
 #ifdef LEGACY_MENU_OPTIONS
-		MENUACTION_FRAMESYNC,	"FEM_VSC", {nil, SAVESLOT_NONE, MENUPAGE_GRAPHICS_SETTINGS}, 0, 0, MENUALIGN_LEFT,
+		FRAME_SYNC_SELECTOR(MENUPAGE_GRAPHICS_SETTINGS)
 #endif
 		MENUACTION_FRAMELIMIT,	"FEM_FRM", { nil, SAVESLOT_NONE, MENUPAGE_GRAPHICS_SETTINGS }, 0, 0, MENUALIGN_LEFT,
+		VULKAN_RAYTRACING_SELECTOR
 		MULTISAMPLING_SELECTOR
 		ISLAND_LOADING_SELECTOR
 		DUALPASS_SELECTOR

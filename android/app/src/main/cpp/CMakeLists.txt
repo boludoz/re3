@@ -97,6 +97,16 @@ set(LIBRW_INSTALL OFF CACHE BOOL "" FORCE)
 set(LIBRW_EXAMPLES OFF CACHE BOOL "" FORCE)
 add_subdirectory(${LIBRW_DIR} ${CMAKE_CURRENT_BINARY_DIR}/librw)
 
+# The Android debug variant is what we install while iterating, but the Vulkan
+# backend does a lot of native geometry work. Keep symbols/debuggability while
+# avoiding an effectively unoptimized renderer/game build.
+target_compile_options(librw PRIVATE
+    $<$<CONFIG:Debug>:-O3>
+    $<$<CONFIG:Debug>:-ffast-math>
+    $<$<CONFIG:Debug>:-ftree-vectorize>
+    $<$<CONFIG:Debug>:-fno-omit-frame-pointer>
+)
+
 # Agregar includes de SDL3 a librw (necesario para gl3device.cpp)
 target_include_directories(librw PUBLIC 
     ${SDL3_DIR}/include
@@ -184,6 +194,10 @@ target_compile_options(${EXECUTABLE} PRIVATE
     $<$<CONFIG:RelWithDebInfo>:-ffast-math>
     $<$<CONFIG:RelWithDebInfo>:-fno-finite-math-only>
     $<$<CONFIG:RelWithDebInfo>:-ftree-vectorize>
+    $<$<CONFIG:Debug>:-O3>
+    $<$<CONFIG:Debug>:-ffast-math>
+    $<$<CONFIG:Debug>:-ftree-vectorize>
+    $<$<CONFIG:Debug>:-fno-omit-frame-pointer>
 )
 
 # Librerías del sistema Android

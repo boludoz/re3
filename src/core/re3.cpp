@@ -58,6 +58,10 @@
 
 #include <list>
 
+#ifdef RW_VULKAN
+namespace rw { namespace vulkan { void setRayTracingEnabled(bool32 enabled); void setPresentModePreference(int32 preference); } }
+#endif
+
 #ifdef RWLIBS
 extern "C" int vsprintf(char* const _Buffer, char const* const _Format, va_list  _ArgList);
 #endif
@@ -583,6 +587,13 @@ bool LoadINISettings()
 #endif
 
 	// Fetched in above block, but needs evaluation
+#ifdef RW_VULKAN
+	if (FrontEndMenuManager.m_PrefsVulkanSyncMode < 0 || FrontEndMenuManager.m_PrefsVulkanSyncMode >= 5)
+		FrontEndMenuManager.m_PrefsVulkanSyncMode = 0;
+	rw::vulkan::setPresentModePreference(FrontEndMenuManager.m_PrefsVulkanSyncMode);
+	FrontEndMenuManager.m_PrefsVulkanRayTracing = 0;
+	rw::vulkan::setRayTracingEnabled(FrontEndMenuManager.m_PrefsVulkanRayTracing);
+#endif
 #ifdef PED_CAR_DENSITY_SLIDERS
 	CPopulation::MaxNumberOfPedsInUse = DEFAULT_MAX_NUMBER_OF_PEDS * CIniFile::PedNumberMultiplier;
 	CPopulation::MaxNumberOfPedsInUseInterior = DEFAULT_MAX_NUMBER_OF_PEDS_INTERIOR * CIniFile::PedNumberMultiplier;

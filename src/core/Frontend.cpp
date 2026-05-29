@@ -493,6 +493,8 @@ CMenuManager::CMenuManager()
 	m_PrefsVsync = 0;
 	m_PrefsVsyncDisp = 1;
 	m_PrefsFrameLimiter = 1;
+	m_PrefsVulkanSyncMode = 0;
+	m_PrefsVulkanRayTracing = 0;
 	m_PrefsLanguage = 0;
 	field_54 = 0;
 	m_PrefsAllowNastyGame = 1;
@@ -5000,6 +5002,8 @@ CMenuManager::ProcessUserInput(uint8 goDown, uint8 goUp, uint8 optionSelected, u
 					m_PrefsShowLegends = true;
 					m_PrefsVsyncDisp = true;
 					m_PrefsFrameLimiter = true;
+					m_PrefsVulkanSyncMode = 0;
+					m_PrefsVulkanRayTracing = false;
 					m_PrefsRadarMode = 0;
 					m_PrefsShowHud = true;
 					m_nDisplayVideoMode = m_nPrefsVideoMode;

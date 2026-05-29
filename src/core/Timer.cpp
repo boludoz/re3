@@ -287,7 +287,7 @@ uint32 CTimer::GetCyclesPerMillisecond(void)
 		return _nCyclesPerMS;
 	else 
 #endif
-		return 1;
+		return 1000;
 }
 
 uint32 CTimer::GetCurrentTimeInCycles(void)
@@ -301,7 +301,7 @@ uint32 CTimer::GetCurrentTimeInCycles(void)
 	}
 	else
 #endif
-		return RsTimer() - oldPcTimer;
+		return uint32((RsTimer() - oldPcTimer) * 1000.0);
 }
 
 bool CTimer::GetIsSlowMotionActive(void)
@@ -328,4 +328,3 @@ uint32 CTimer::GetCyclesPerFrame()
 {
 	return 20;
 }
-

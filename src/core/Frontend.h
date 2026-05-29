@@ -609,6 +609,8 @@ public:
 	int8 m_PrefsVsync;
 	int8 m_PrefsVsyncDisp;
 	int8 m_PrefsFrameLimiter;
+	int8 m_PrefsVulkanSyncMode;
+	int8 m_PrefsVulkanRayTracing;
 	int8 m_nPrefsAudio3DProviderIndex;
 	int8 m_PrefsSpeakers;
 	int8 m_PrefsDMA;
